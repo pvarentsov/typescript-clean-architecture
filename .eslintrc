@@ -17,8 +17,14 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "quotes": [
-      2, "single"
-    ]
+    "quotes": ["error", "single"],
+    "indent": ["error", 2],
+    "@typescript-eslint/typedef": ["error", {
+      "memberVariableDeclaration": true,
+      "propertyDeclaration": true,
+      "variableDeclaration": true,
+      "variableDeclarationIgnoreFunction": true,
+      "arrowParameter": false
+    }]
   }
 }

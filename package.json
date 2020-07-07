@@ -4,6 +4,8 @@
   "description": "It is my attempt to create Clean Architecture based application in Typescript",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint --ext .ts src/**",
+    "lint:fix": "eslint --ext .ts src/** --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +21,15 @@
   "bugs": {
     "url": "https://github.com/pvarentsov/typescript-clean-architecture/issues"
   },
-  "homepage": "https://github.com/pvarentsov/typescript-clean-architecture#readme"
+  "homepage": "https://github.com/pvarentsov/typescript-clean-architecture#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "3.6.0",
+    "@typescript-eslint/parser": "3.6.0",
+    "eslint": "7.4.0",
+    "jest": "26.1.0",
+    "typescript": "3.9.6"
+  },
+  "dependencies": {
+    "reflect-metadata": "0.1.13"
+  }
 }

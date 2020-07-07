@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "target": "es2018",
+    "module": "commonjs",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "types": [
+      "reflect-metadata",
+      "jest",
+      "node"
+    ],
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "allowJs": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": true,
+    "sourceMap": true
+  },
+  "typeRoots": [
+    "./src/core/types"
+  ],
+  "include": [
+    "./src/**/*.ts"
+  ]
+}

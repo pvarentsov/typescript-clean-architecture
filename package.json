@@ -31,8 +31,8 @@
     "typescript": "3.9.6"
   },
   "dependencies": {
-    "class-transformer": "^0.2.3",
-    "class-validator": "^0.12.2",
+    "class-transformer": "0.2.3",
+    "class-validator": "0.12.2",
     "reflect-metadata": "0.1.13",
     "uuid": "8.2.0"
   }

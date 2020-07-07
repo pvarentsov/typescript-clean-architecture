@@ -1,0 +1,23 @@
+{
+  "name": "typescript-clean-architecture",
+  "version": "1.0.0",
+  "description": "It is my attempt to create Clean Architecture based application in Typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pvarentsov/typescript-clean-architecture.git"
+  },
+  "keywords": [
+    "clean-architecture",
+    "typescript"
+  ],
+  "author": "Pavel Varentsov (varentsovpavel@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pvarentsov/typescript-clean-architecture/issues"
+  },
+  "homepage": "https://github.com/pvarentsov/typescript-clean-architecture#readme"
+}

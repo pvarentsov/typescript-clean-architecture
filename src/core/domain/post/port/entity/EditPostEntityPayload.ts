@@ -1,4 +1,4 @@
 export type EditPostEntityPayload = {
-  imageId?: string|null,
-  content?: string|null,
+  imageId?: Nullable<string>,
+  content?: Nullable<string>,
 }

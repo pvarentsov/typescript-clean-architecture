@@ -1,6 +1,6 @@
-export class DomainEntity<TIdentifier extends string|number> {
+export class DomainEntity<TIdentifier extends Optional<string|number>> {
   
-  protected _id: TIdentifier;
+  protected id: TIdentifier;
   
   public async validate(): Promise<void> {
     // TODO: Add implementation

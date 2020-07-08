@@ -8,102 +8,102 @@ import { RemovableDomainEntity } from '../../.shared/entity/RemovableDomainEntit
 import { v4 } from 'uuid';
 
 @Exclude()
-export class Post extends DomainEntity<string> implements RemovableDomainEntity{
+export class Post extends DomainEntity<string> implements RemovableDomainEntity {
   
   @Expose()
   @IsUUID()
-  private readonly _authorId: string;
-  
-  @Expose()
-  @IsOptional()
-  @IsUUID()
-  private _imageId: string|null;
+  private readonly authorId: string;
   
   @Expose()
   @IsOptional()
   @IsUUID()
-  private _content: string|null;
+  private imageId: Nullable<string>;
   
   @Expose()
   @IsOptional()
   @IsUUID()
-  private _status: PostStatus;
+  private content: Nullable<string>;
+  
+  @Expose()
+  @IsOptional()
+  @IsUUID()
+  private status: PostStatus;
   
   @Expose()
   @IsDate()
-  private readonly _createdAt: Date;
+  private readonly createdAt: Date;
   
   @Expose()
   @IsOptional()
   @IsDate()
-  private _editedAt: Date|null;
+  private editedAt: Nullable<Date>;
   
   @Expose()
   @IsOptional()
   @IsDate()
-  private _publishedAt: Date|null;
+  private publishedAt: Nullable<Date>;
   
   @Expose()
   @IsOptional()
   @IsDate()
-  private _removedAt: Date|null;
+  private removedAt: Nullable<Date>;
   
   constructor(payload?: CreatePostEntityPayload) {
     super();
     
     if (payload) {
-      this._authorId = payload.authorId;
-      this._imageId = payload.imageId;
-      this._content = payload.content;
+      this.authorId = payload.authorId;
+      this.imageId = payload.imageId;
+      this.content = payload.content;
     }
     
-    this._id = v4();
-    this._status = PostStatus.DRAFT;
-    this._createdAt = new Date();
+    this.id = v4();
+    this.status = PostStatus.DRAFT;
+    this.createdAt = new Date();
     
-    this._editedAt = null;
-    this._publishedAt = null;
-    this._removedAt = null;
+    this.editedAt = null;
+    this.publishedAt = null;
+    this.removedAt = null;
   }
   
-  public get authorId(): string {
-    return this._authorId;
+  public getAuthorId(): string {
+    return this.authorId;
   }
   
-  public get imageId(): string|null {
-    return this._imageId;
+  public getImageId(): Nullable<string> {
+    return this.imageId;
   }
   
-  public get content(): string|null {
-    return this._content;
+  public get getContent(): Nullable<string> {
+    return this.content;
   }
   
-  public get status(): string {
-    return this._status;
+  public get getStatus(): string {
+    return this.status;
   }
   
-  public get createdAt(): Date {
-    return this._createdAt;
+  public get getCreatedAt(): Date {
+    return this.createdAt;
   }
   
-  public get editedAt(): Date|null {
-    return this._editedAt;
+  public get getEditedAt(): Nullable<Date> {
+    return this.editedAt;
   }
   
-  public get publishedAt(): Date|null {
-    return this._publishedAt;
+  public get getPublishedAt(): Nullable<Date> {
+    return this.publishedAt;
   }
   
-  public get removedAt(): Date|null {
-    return this._removedAt;
+  public get getRemovedAt(): Nullable<Date> {
+    return this.removedAt;
   }
   
   public async edit(payload: EditPostEntityPayload): Promise<void> {
     if (typeof payload.imageId !== 'undefined') {
-      this._imageId = payload.imageId;
+      this.imageId = payload.imageId;
     }
     if (typeof payload.content !== 'undefined') {
-      this._content = payload.content;
+      this.content = payload.content;
     }
     
     await this.validate();
@@ -112,9 +112,9 @@ export class Post extends DomainEntity<string> implements RemovableDomainEntity{
   public async publish(): Promise<void>  {
     const currentDate: Date = new Date();
     
-    this._status = PostStatus.PUBLISHED;
-    this._editedAt = currentDate;
-    this._publishedAt = currentDate;
+    this.status = PostStatus.PUBLISHED;
+    this.editedAt = currentDate;
+    this.publishedAt = currentDate;
   
     await this.validate();
   }
@@ -122,14 +122,14 @@ export class Post extends DomainEntity<string> implements RemovableDomainEntity{
   public async draft(): Promise<void>  {
     const currentDate: Date = new Date();
     
-    this._status = PostStatus.DRAFT;
-    this._editedAt = currentDate;
+    this.status = PostStatus.DRAFT;
+    this.editedAt = currentDate;
     
     await this.validate();
   }
   
   public async remove(): Promise<void> {
-    this._removedAt = new Date();
+    this.removedAt = new Date();
     await this.validate();
   }
   

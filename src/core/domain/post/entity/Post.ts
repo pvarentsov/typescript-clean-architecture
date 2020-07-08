@@ -1,6 +1,6 @@
 import { Entity } from '../../.shared/entity/Entity';
 import { Exclude, Expose } from 'class-transformer';
-import { IsDate, IsOptional, IsUUID } from 'class-validator';
+import { IsDate, IsEnum, IsOptional, IsUUID } from 'class-validator';
 import { CreatePostEntityPayload } from '../port/entity/CreatePostEntityPayload';
 import { EditPostEntityPayload } from '../port/entity/EditPostEntityPayload';
 import { RemovableEntity } from '../../.shared/entity/RemovableEntity';
@@ -27,7 +27,7 @@ export class Post extends Entity<string> implements RemovableEntity {
   
   @Expose()
   @IsOptional()
-  @IsUUID()
+  @IsEnum(PostStatus)
   private status: PostStatus;
   
   @Expose()

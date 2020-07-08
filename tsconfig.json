@@ -21,9 +21,6 @@
     "removeComments": true,
     "sourceMap": true
   },
-  "typeRoots": [
-    "./src/core/types"
-  ],
   "include": [
     "./src/**/*.ts"
   ]

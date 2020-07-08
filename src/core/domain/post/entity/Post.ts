@@ -1,14 +1,15 @@
-import { DomainEntity } from '../../.shared/entity/DomainEntity';
-import { PostStatus } from '../../.shared/entity/post/PostStatus';
+import { Entity } from '../../.shared/entity/Entity';
 import { Exclude, Expose } from 'class-transformer';
 import { IsDate, IsOptional, IsUUID } from 'class-validator';
 import { CreatePostEntityPayload } from '../port/entity/CreatePostEntityPayload';
 import { EditPostEntityPayload } from '../port/entity/EditPostEntityPayload';
-import { RemovableDomainEntity } from '../../.shared/entity/RemovableDomainEntity';
+import { RemovableEntity } from '../../.shared/entity/RemovableEntity';
+import { Nullable } from '../../.shared/type/CommonTypes';
+import { PostStatus } from '../../.shared/enum/PostEnums';
 import { v4 } from 'uuid';
 
 @Exclude()
-export class Post extends DomainEntity<string> implements RemovableDomainEntity {
+export class Post extends Entity<string> implements RemovableEntity {
   
   @Expose()
   @IsUUID()
@@ -99,11 +100,15 @@ export class Post extends DomainEntity<string> implements RemovableDomainEntity 
   }
   
   public async edit(payload: EditPostEntityPayload): Promise<void> {
+    const currentDate: Date = new Date();
+    
     if (typeof payload.imageId !== 'undefined') {
       this.imageId = payload.imageId;
+      this.editedAt = currentDate;
     }
     if (typeof payload.content !== 'undefined') {
       this.content = payload.content;
+      this.editedAt = currentDate;
     }
     
     await this.validate();
@@ -120,10 +125,8 @@ export class Post extends DomainEntity<string> implements RemovableDomainEntity 
   }
   
   public async draft(): Promise<void>  {
-    const currentDate: Date = new Date();
-    
     this.status = PostStatus.DRAFT;
-    this.editedAt = currentDate;
+    this.editedAt = new Date();
     
     await this.validate();
   }

@@ -1,4 +1,6 @@
-export class DomainEntity<TIdentifier extends Optional<string|number>> {
+import { Optional } from '../type/CommonTypes';
+
+export class Entity<TIdentifier extends Optional<string|number>> {
   
   protected id: TIdentifier;
   

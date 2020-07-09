@@ -1,5 +1,5 @@
 import { UseCase } from '../../.shared/usecase/UseCase';
-import { PostUseCaseCommonOutPort } from '../port/usecase/PostUseCaseCommonOutPort';
-import { GetPostUseListCaseInPort } from '../port/usecase/GetPostUseListCaseInPort';
+import { PostOutPort } from '../port/usecase/PostOutPort';
+import { GetPostListInPort } from '../port/usecase/GetPostListInPort';
 
-export interface GetPostListUseCase extends UseCase<GetPostUseListCaseInPort, PostUseCaseCommonOutPort> {}
+export interface GetPostListUseCase extends UseCase<GetPostListInPort, PostOutPort> {}

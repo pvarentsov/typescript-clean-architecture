@@ -1,7 +1,7 @@
 import { PostStatus } from '../../../.shared/enum/PostEnums';
 import { Nullable } from '../../../.shared/type/CommonTypes';
 
-export interface PostUseCaseCommonOutPort {
+export interface PostOutPort {
   id: string;
   authorId: string,
   imageId: Nullable<string>;

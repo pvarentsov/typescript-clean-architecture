@@ -1,4 +1,4 @@
-export interface GetPostUseCaseInPort {
+export interface GetPostInPort {
   executorId: string;
   postId: string;
 }

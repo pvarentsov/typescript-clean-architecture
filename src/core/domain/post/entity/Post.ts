@@ -75,27 +75,27 @@ export class Post extends Entity<string> implements RemovableEntity {
     return this.imageId;
   }
   
-  public get getContent(): Nullable<string> {
+  public getContent(): Nullable<string> {
     return this.content;
   }
   
-  public get getStatus(): string {
+  public getStatus(): string {
     return this.status;
   }
   
-  public get getCreatedAt(): Date {
+  public getCreatedAt(): Date {
     return this.createdAt;
   }
   
-  public get getEditedAt(): Nullable<Date> {
+  public getEditedAt(): Nullable<Date> {
     return this.editedAt;
   }
   
-  public get getPublishedAt(): Nullable<Date> {
+  public getPublishedAt(): Nullable<Date> {
     return this.publishedAt;
   }
   
-  public get getRemovedAt(): Nullable<Date> {
+  public getRemovedAt(): Nullable<Date> {
     return this.removedAt;
   }
   

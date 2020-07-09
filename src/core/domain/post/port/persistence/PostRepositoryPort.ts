@@ -1,7 +1,7 @@
 import { Optional } from '../../../.shared/type/CommonTypes';
 import { Post } from '../../entity/Post';
 
-export interface PostRepository {
+export interface PostRepositoryPort {
 
   findOne(by: {id?: string}): Promise<Optional<Post>>;
   

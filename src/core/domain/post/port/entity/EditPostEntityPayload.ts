@@ -1,6 +1,6 @@
 import { Nullable } from '../../../.shared/type/CommonTypes';
 
-export type EditPostEntityPayload = {
+export interface EditPostEntityPayload {
   imageId?: Nullable<string>,
   content?: Nullable<string>,
 }

@@ -15,4 +15,9 @@ export class Code {
     message: 'Entity validation error.'
   }
   
+  public static USE_CASE_PORT_VALIDATION_ERROR: CodeDescription = {
+    code: 102,
+    message: 'Use-case port validation error.'
+  }
+  
 }

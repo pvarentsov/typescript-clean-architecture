@@ -1,4 +1,4 @@
-import { Nullable } from '../../../.shared/type/CommonTypes';
+import { Nullable } from '../../../../shared/type/CommonTypes';
 
 export type CreatePostEntityPayload = {
   authorId: string,

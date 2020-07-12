@@ -9,8 +9,7 @@ export class Entity<TIdentifier extends string|number> {
   
   public getId(): TIdentifier {
     if (typeof this.id === 'undefined') {
-      const message: string = `${this.constructor.name}: ID is empty.`
-      throw Exception.new({code: Code.ENTITY_VALIDATION_ERROR, overrideMessage: message})
+      throw Exception.new({code: Code.ENTITY_VALIDATION_ERROR, overrideMessage: `${this.constructor.name}: ID is empty.`})
     }
     
     return this.id;

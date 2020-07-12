@@ -1,8 +1,8 @@
-import { QueryBusPort } from '../../../../domain/.shared/port/cqers/QueryBusPort';
-import { DoesMediaExistQuery } from '../../../../domain/.shared/cqers/query/media/DoesMediaExistQuery';
-import { DoesMediaExistQueryResult } from '../../../../domain/.shared/cqers/query/media/result/DoesMediaExistQueryResult';
-import { Exception } from '../../../../domain/.shared/exception/Exception';
-import { Code } from '../../../../domain/.shared/code/Code';
+import { QueryBusPort } from '../../../../shared/port/cqers/QueryBusPort';
+import { DoesMediaExistQuery } from '../../../../shared/cqers/query/media/DoesMediaExistQuery';
+import { DoesMediaExistQueryResult } from '../../../../shared/cqers/query/media/result/DoesMediaExistQueryResult';
+import { Exception } from '../../../../shared/exception/Exception';
+import { Code } from '../../../../shared/code/Code';
 
 export type PostValidationRelations = {
   image?: PostImageValidationInfo,

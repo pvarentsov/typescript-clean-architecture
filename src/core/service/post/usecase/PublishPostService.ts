@@ -1,9 +1,9 @@
 import { PostRepositoryPort } from '../../../domain/post/port/persistence/PostRepositoryPort';
 import { PostUseCaseDto } from '../../../domain/post/usecase/dto/PostUseCaseDto';
 import { Post } from '../../../domain/post/entity/Post';
-import { Optional } from '../../../domain/.shared/type/CommonTypes';
-import { Exception } from '../../../domain/.shared/exception/Exception';
-import { Code } from '../../../domain/.shared/code/Code';
+import { Optional } from '../../../shared/type/CommonTypes';
+import { Exception } from '../../../shared/exception/Exception';
+import { Code } from '../../../shared/code/Code';
 import { PublishPostUseCase } from '../../../domain/post/usecase/PublishPostUseCase';
 import { PublishPostPort } from '../../../domain/post/port/usecase/PublishPostPort';
 

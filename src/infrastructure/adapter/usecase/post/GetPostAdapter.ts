@@ -1,5 +1,5 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { UseCaseValidatableAdapter } from '../../../../core/domain/.shared/adapter/usecase/UseCaseValidatableAdapter';
+import { UseCaseValidatableAdapter } from '../../../../core/shared/adapter/usecase/UseCaseValidatableAdapter';
 import { IsUUID } from 'class-validator';
 import { GetPostPort } from '../../../../core/domain/post/port/usecase/GetPostPort';
 

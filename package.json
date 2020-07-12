@@ -4,8 +4,8 @@
   "description": "It is my attempt to create Clean Architecture based application in Typescript",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --ext .ts src/**",
-    "lint:fix": "eslint --ext .ts src/** --fix",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

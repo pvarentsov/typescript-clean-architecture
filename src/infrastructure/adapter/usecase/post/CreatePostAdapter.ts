@@ -1,7 +1,7 @@
 import { CreatePostPort } from '../../../../core/domain/post/port/usecase/CreatePostPort';
 import { IsOptional, IsString, IsUUID } from 'class-validator';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { UseCaseValidatableAdapter } from '../../../../core/domain/.shared/adapter/usecase/UseCaseValidatableAdapter';
+import { UseCaseValidatableAdapter } from '../../../../core/shared/adapter/usecase/UseCaseValidatableAdapter';
 
 @Exclude()
 export class CreatePostAdapter extends UseCaseValidatableAdapter implements CreatePostPort {

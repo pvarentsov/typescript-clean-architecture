@@ -3,7 +3,7 @@ import { PostRepositoryPort } from '../../../domain/post/port/persistence/PostRe
 import { CreatePostPort } from '../../../domain/post/port/usecase/CreatePostPort';
 import { PostUseCaseDto } from '../../../domain/post/usecase/dto/PostUseCaseDto';
 import { Post } from '../../../domain/post/entity/Post';
-import { QueryBusPort } from '../../../domain/.shared/port/cqers/QueryBusPort';
+import { QueryBusPort } from '../../../shared/port/cqers/QueryBusPort';
 import { ExternalPostRelationsValidator, PostValidationRelations } from './shared/ExternalPostRelationsValidator';
 
 export class CreatePostService implements CreatePostUseCase {

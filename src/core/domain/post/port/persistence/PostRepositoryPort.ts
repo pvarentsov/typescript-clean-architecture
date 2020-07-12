@@ -1,6 +1,6 @@
-import { Nullable, Optional } from '../../../.shared/type/CommonTypes';
+import { Nullable, Optional } from '../../../../shared/type/CommonTypes';
 import { Post } from '../../entity/Post';
-import { RepositoryFindOptions, RepositoryRemoveOptions, RepositoryUpdateManyOptions } from '../../../.shared/persistence/RepositoryOptions';
+import { RepositoryFindOptions, RepositoryRemoveOptions, RepositoryUpdateManyOptions } from '../../../../shared/persistence/RepositoryOptions';
 
 export interface PostRepositoryPort {
 

@@ -3,7 +3,7 @@ import { ClassValidationDetails, ClassValidator } from '../../util/class-validat
 import { Exception } from '../../exception/Exception';
 import { Code } from '../../code/Code';
 
-export class UseCaseValidatableInAdapter {
+export class UseCaseValidatableAdapter {
   
   public async validate(): Promise<void> {
     const details: Optional<ClassValidationDetails> = await ClassValidator.validate(this);

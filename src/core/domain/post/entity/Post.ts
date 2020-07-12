@@ -1,6 +1,6 @@
 import { Entity } from '../../.shared/entity/Entity';
 import { Exclude, Expose } from 'class-transformer';
-import { IsDate, IsEnum, IsOptional, IsUUID } from 'class-validator';
+import { IsDate, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import { CreatePostEntityPayload } from './type/CreatePostEntityPayload';
 import { EditPostEntityPayload } from './type/EditPostEntityPayload';
 import { RemovableEntity } from '../../.shared/entity/RemovableEntity';
@@ -16,13 +16,17 @@ export class Post extends Entity<string> implements RemovableEntity {
   private readonly authorId: string;
   
   @Expose()
+  @IsString()
+  private title: string;
+  
+  @Expose()
   @IsOptional()
   @IsUUID()
   private imageId: Nullable<string>;
   
   @Expose()
   @IsOptional()
-  @IsUUID()
+  @IsString()
   private content: Nullable<string>;
   
   @Expose()
@@ -54,8 +58,9 @@ export class Post extends Entity<string> implements RemovableEntity {
     
     if (payload) {
       this.authorId = payload.authorId;
-      this.imageId = payload.imageId;
-      this.content = payload.content;
+      this.title = payload.title;
+      this.imageId = payload.imageId || null;
+      this.content = payload.content || null;
     }
     
     this.id = v4();
@@ -69,6 +74,10 @@ export class Post extends Entity<string> implements RemovableEntity {
   
   public getAuthorId(): string {
     return this.authorId;
+  }
+  
+  public getTitle(): string {
+    return this.title;
   }
   
   public getImageId(): Nullable<string> {
@@ -101,7 +110,11 @@ export class Post extends Entity<string> implements RemovableEntity {
   
   public async edit(payload: EditPostEntityPayload): Promise<void> {
     const currentDate: Date = new Date();
-    
+  
+    if (typeof payload.title !== 'undefined') {
+      this.title = payload.title;
+      this.editedAt = currentDate;
+    }
     if (typeof payload.imageId !== 'undefined') {
       this.imageId = payload.imageId;
       this.editedAt = currentDate;
@@ -121,13 +134,6 @@ export class Post extends Entity<string> implements RemovableEntity {
     this.editedAt = currentDate;
     this.publishedAt = currentDate;
   
-    await this.validate();
-  }
-  
-  public async draft(): Promise<void>  {
-    this.status = PostStatus.DRAFT;
-    this.editedAt = new Date();
-    
     await this.validate();
   }
   

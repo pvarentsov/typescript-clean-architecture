@@ -1,4 +1,4 @@
-export interface GetPostInPort {
+export interface RemovePostPort {
   executorId: string;
   postId: string;
 }

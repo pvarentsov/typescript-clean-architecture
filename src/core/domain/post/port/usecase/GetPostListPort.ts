@@ -1,4 +1,4 @@
-export interface GetPostListInPort {
+export interface GetPostListPort {
   executorId: string;
   authorId?: string;
 }

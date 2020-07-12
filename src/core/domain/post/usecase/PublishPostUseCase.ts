@@ -1,5 +1,5 @@
 import { UseCase } from '../../.shared/usecase/UseCase';
-import { PublishPostInPort } from '../port/usecase/PublishPostInPort';
-import { PostOutPort } from '../port/usecase/PostOutPort';
+import { PublishPostPort } from '../port/usecase/PublishPostPort';
+import { PostUseCaseDto } from './dto/PostUseCaseDto';
 
-export interface PublishPostUseCase extends UseCase<PublishPostInPort, PostOutPort> {}
+export interface PublishPostUseCase extends UseCase<PublishPostPort, PostUseCaseDto> {}

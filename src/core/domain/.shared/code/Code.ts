@@ -5,6 +5,8 @@ export type CodeDescription = {
 
 export class Code {
   
+  // Common
+  
   public static ENTITY_NOT_FOUND_ERROR: CodeDescription = {
     code: 100,
     message: 'Entity not found.'

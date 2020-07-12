@@ -1,6 +1,5 @@
-export interface EditPostInPort {
+export interface CreatePostPort {
   executorId: string;
-  postId: string;
   imageId?: string;
   content?: string;
 }

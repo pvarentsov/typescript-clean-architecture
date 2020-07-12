@@ -1,4 +1,4 @@
-export interface PublishPostInPort {
+export interface GetPostPort {
   executorId: string;
   postId: string;
 }

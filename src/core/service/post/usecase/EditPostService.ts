@@ -7,7 +7,7 @@ import { Optional } from '../../../domain/.shared/type/CommonTypes';
 import { Exception } from '../../../domain/.shared/exception/Exception';
 import { Code } from '../../../domain/.shared/code/Code';
 import { QueryBusPort } from '../../../domain/.shared/port/cqers/QueryBusPort';
-import { ExternalPostRelationsValidator, PostValidationRelations } from './shared/ExternalRelationsValidator';
+import { ExternalPostRelationsValidator, PostValidationRelations } from './shared/ExternalPostRelationsValidator';
 
 export class EditPostService implements EditPostUseCase {
   

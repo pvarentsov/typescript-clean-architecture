@@ -6,9 +6,8 @@ import { EditPostPort } from '../../../domain/post/port/usecase/EditPostPort';
 import { Optional } from '../../../domain/.shared/type/CommonTypes';
 import { Exception } from '../../../domain/.shared/exception/Exception';
 import { Code } from '../../../domain/.shared/code/Code';
-import { DoesMediaExistQuery } from '../../../domain/.shared/cqers/query/media/DoesMediaExistQuery';
-import { DoesMediaExistQueryResult } from '../../../domain/.shared/cqers/query/media/result/DoesMediaExistQueryResult';
 import { QueryBusPort } from '../../../domain/.shared/port/cqers/QueryBusPort';
+import { ExternalPostRelationsValidator, PostValidationRelations } from './shared/ExternalRelationsValidator';
 
 export class EditPostService implements EditPostUseCase {
   
@@ -37,14 +36,13 @@ export class EditPostService implements EditPostUseCase {
   }
   
   private async validateExternalRelations(payload: EditPostPort): Promise<void> {
+    const relations: PostValidationRelations = {};
+    
     if (payload.imageId) {
-      const doesImageExistQuery: DoesMediaExistQuery = DoesMediaExistQuery.new({id: payload.imageId})
-      const doesImageExistQueryResult: DoesMediaExistQueryResult = await this.queryBus.sendQuery(doesImageExistQuery);
-      
-      if (!doesImageExistQueryResult.doesExist) {
-        throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post image not found.'})
-      }
+      relations.image = {id: payload.imageId, userId: payload.executorId};
     }
+    
+    await ExternalPostRelationsValidator.validate(relations, this.queryBus);
   }
   
 }

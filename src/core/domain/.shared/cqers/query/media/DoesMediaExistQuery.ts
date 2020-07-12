@@ -1,15 +1,18 @@
+import { RepositoryFindOptions } from '../../../persistence/RepositoryOptions';
+
 export class DoesMediaExistQuery {
   
-  mediaId: string;
+  by: {id: string}
   
-  includeRemoved?: boolean;
+  options?: RepositoryFindOptions;
   
-  private constructor(mediaId: string, includeRemoved?: boolean) {
-    this.mediaId = mediaId;
-    this.includeRemoved = includeRemoved;
+  private constructor(by: {id: string}, options?: RepositoryFindOptions) {
+    this.by = by;
+    this.options = options;
   }
   
-  public static new(mediaId: string, includeRemoved?: boolean): DoesMediaExistQuery {
-    return new DoesMediaExistQuery(mediaId, includeRemoved);
+  public static new(by: {id: string}, options?: RepositoryFindOptions): DoesMediaExistQuery {
+    return new DoesMediaExistQuery(by, options);
   }
+  
 }

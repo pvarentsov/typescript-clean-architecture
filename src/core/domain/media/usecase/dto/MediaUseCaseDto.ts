@@ -1,4 +1,4 @@
-import { MediaType } from '../../entity/enum/PostEnums';
+import { MediaType } from '../../entity/enum/MediaEnums';
 import { Nullable } from '../../../../shared/type/CommonTypes';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { Media } from '../../entity/Media';

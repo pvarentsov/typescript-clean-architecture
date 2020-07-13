@@ -4,7 +4,7 @@ import { IsDate, IsEnum, IsInstance, IsOptional, IsString, IsUUID } from 'class-
 import { RemovableEntity } from '../../../shared/entity/RemovableEntity';
 import { Nullable } from '../../../shared/type/CommonTypes';
 import { v4 } from 'uuid';
-import { MediaType } from './enum/PostEnums';
+import { MediaType } from './enum/MediaEnums';
 import { CreateMediaEntityPayload } from './type/CreateMediaEntityPayload';
 import { EditMediaEntityPayload } from './type/EditMediaEntityPayload';
 import { FileMetadata } from '../value-object/FileMetadata';

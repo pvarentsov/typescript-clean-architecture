@@ -1,5 +1,5 @@
-import { Nullable, Optional } from '../../../../shared/type/CommonTypes';
-import { RepositoryFindOptions, RepositoryRemoveOptions, RepositoryUpdateManyOptions } from '../../../../shared/persistence/RepositoryOptions';
+import { Nullable, Optional } from '../../../../common/type/CommonTypes';
+import { RepositoryFindOptions, RepositoryRemoveOptions, RepositoryUpdateManyOptions } from '../../../../common/persistence/RepositoryOptions';
 import { Media } from '../../entity/Media';
 
 export interface MediaRepositoryPort {

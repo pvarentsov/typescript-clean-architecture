@@ -1,10 +1,10 @@
-import { Entity } from '../../../shared/entity/Entity';
+import { Entity } from '../../../common/entity/Entity';
 import { Exclude, Expose } from 'class-transformer';
 import { IsDate, IsEnum, IsInstance, IsOptional, IsString, IsUUID } from 'class-validator';
-import { RemovableEntity } from '../../../shared/entity/RemovableEntity';
-import { Nullable } from '../../../shared/type/CommonTypes';
+import { RemovableEntity } from '../../../common/entity/RemovableEntity';
+import { Nullable } from '../../../common/type/CommonTypes';
 import { v4 } from 'uuid';
-import { MediaType } from '../../../shared/enums/MediaEnums';
+import { MediaType } from '../../../common/enums/MediaEnums';
 import { CreateMediaEntityPayload } from './type/CreateMediaEntityPayload';
 import { EditMediaEntityPayload } from './type/EditMediaEntityPayload';
 import { FileMetadata } from '../value-object/FileMetadata';

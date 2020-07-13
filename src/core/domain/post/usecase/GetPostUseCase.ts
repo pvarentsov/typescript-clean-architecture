@@ -1,4 +1,4 @@
-import { UseCase } from '../../../shared/usecase/UseCase';
+import { UseCase } from '../../../common/usecase/UseCase';
 import { GetPostPort } from '../port/usecase/GetPostPort';
 import { PostUseCaseDto } from './dto/PostUseCaseDto';
 

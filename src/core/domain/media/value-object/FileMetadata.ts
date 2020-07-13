@@ -1,8 +1,8 @@
 import { Exclude, Expose } from 'class-transformer';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
-import { Nullable } from '../../../shared/type/CommonTypes';
+import { Nullable } from '../../../common/type/CommonTypes';
 import { CreateFileMetadataValueObjectPayload } from './type/CreateFileMetadataValueObjectPayload';
-import { ValueObject } from '../../../shared/value-object/ValueObject';
+import { ValueObject } from '../../../common/value-object/ValueObject';
 
 @Exclude()
 export class FileMetadata extends ValueObject {

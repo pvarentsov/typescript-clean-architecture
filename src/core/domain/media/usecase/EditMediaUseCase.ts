@@ -1,4 +1,4 @@
-import { UseCase } from '../../../shared/usecase/UseCase';
+import { UseCase } from '../../../common/usecase/UseCase';
 import { EditMediaPort } from '../port/usecase/EditMediaPort';
 import { MediaUseCaseDto } from './dto/MediaUseCaseDto';
 

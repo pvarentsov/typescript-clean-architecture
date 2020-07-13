@@ -3,11 +3,11 @@ import { PostUseCaseDto } from '../../../domain/post/usecase/dto/PostUseCaseDto'
 import { Post } from '../../../domain/post/entity/Post';
 import { EditPostUseCase } from '../../../domain/post/usecase/EditPostUseCase';
 import { EditPostPort } from '../../../domain/post/port/usecase/EditPostPort';
-import { Optional } from '../../../shared/type/CommonTypes';
-import { Exception } from '../../../shared/exception/Exception';
-import { Code } from '../../../shared/code/Code';
-import { QueryBusPort } from '../../../shared/port/cqers/QueryBusPort';
-import { ExternalPostRelationsValidator, PostValidationRelations } from './shared/ExternalPostRelationsValidator';
+import { Optional } from '../../../common/type/CommonTypes';
+import { Exception } from '../../../common/exception/Exception';
+import { Code } from '../../../common/code/Code';
+import { QueryBusPort } from '../../../common/port/cqers/QueryBusPort';
+import { ExternalPostRelationsValidator, PostValidationRelations } from './common/ExternalPostRelationsValidator';
 
 export class EditPostService implements EditPostUseCase {
   

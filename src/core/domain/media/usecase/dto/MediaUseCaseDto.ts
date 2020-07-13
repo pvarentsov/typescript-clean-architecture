@@ -1,5 +1,5 @@
-import { MediaType } from '../../../../shared/enums/MediaEnums';
-import { Nullable } from '../../../../shared/type/CommonTypes';
+import { MediaType } from '../../../../common/enums/MediaEnums';
+import { Nullable } from '../../../../common/type/CommonTypes';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { Media } from '../../entity/Media';
 

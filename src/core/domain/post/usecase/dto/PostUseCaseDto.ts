@@ -1,5 +1,5 @@
-import { PostStatus } from '../../../../shared/enums/PostEnums';
-import { Nullable } from '../../../../shared/type/CommonTypes';
+import { PostStatus } from '../../../../common/enums/PostEnums';
+import { Nullable } from '../../../../common/type/CommonTypes';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { Post } from '../../entity/Post';
 

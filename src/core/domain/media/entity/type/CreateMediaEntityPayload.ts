@@ -1,4 +1,4 @@
-import { MediaType } from '../../../../shared/enums/MediaEnums';
+import { MediaType } from '../../../../common/enums/MediaEnums';
 import { FileMetadata } from '../../value-object/FileMetadata';
 
 export type CreateMediaEntityPayload = {

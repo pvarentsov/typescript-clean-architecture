@@ -1,9 +1,9 @@
 import { MediaRepositoryPort } from '../../../domain/media/port/persistence/MediaRepositoryPort';
 import { MediaUseCaseDto } from '../../../domain/media/usecase/dto/MediaUseCaseDto';
 import { Media } from '../../../domain/media/entity/Media';
-import { Optional } from '../../../shared/type/CommonTypes';
-import { Exception } from '../../../shared/exception/Exception';
-import { Code } from '../../../shared/code/Code';
+import { Optional } from '../../../common/type/CommonTypes';
+import { Exception } from '../../../common/exception/Exception';
+import { Code } from '../../../common/code/Code';
 import { GetMediaPort } from '../../../domain/media/port/usecase/GetMediaPort';
 import { GetMediaUseCase } from '../../../domain/media/usecase/GetMediaUseCase';
 

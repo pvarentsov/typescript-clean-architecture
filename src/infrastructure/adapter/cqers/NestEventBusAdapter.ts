@@ -1,4 +1,4 @@
-import { EventBusPort } from '../../../core/shared/port/cqers/EventBusPort';
+import { EventBusPort } from '../../../core/common/port/cqers/EventBusPort';
 import { EventBus } from '@nestjs/cqrs';
 
 export class NestEventBusAdapter implements EventBusPort {

@@ -1,8 +1,8 @@
 import { IsDefined, IsEnum, IsString, IsUUID } from 'class-validator';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { UseCaseValidatableAdapter } from '../../../../core/shared/adapter/usecase/UseCaseValidatableAdapter';
+import { UseCaseValidatableAdapter } from '../../../../core/common/adapter/usecase/UseCaseValidatableAdapter';
 import { CreateMediaPort } from '../../../../core/domain/media/port/usecase/CreateMediaPort';
-import { MediaType } from '../../../../core/shared/enums/MediaEnums';
+import { MediaType } from '../../../../core/common/enums/MediaEnums';
 import { Readable } from 'stream';
 
 @Exclude()

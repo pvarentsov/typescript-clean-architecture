@@ -1,8 +1,8 @@
 import { PostRepositoryPort } from '../../../domain/post/port/persistence/PostRepositoryPort';
 import { Post } from '../../../domain/post/entity/Post';
-import { Optional } from '../../../shared/type/CommonTypes';
-import { Exception } from '../../../shared/exception/Exception';
-import { Code } from '../../../shared/code/Code';
+import { Optional } from '../../../common/type/CommonTypes';
+import { Exception } from '../../../common/exception/Exception';
+import { Code } from '../../../common/code/Code';
 import { RemovePostUseCase } from '../../../domain/post/usecase/RemovePostUseCase';
 import { RemovePostPort } from '../../../domain/post/port/usecase/RemovePostPort';
 

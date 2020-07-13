@@ -1,11 +1,11 @@
-import { Entity } from '../../../shared/entity/Entity';
+import { Entity } from '../../../common/entity/Entity';
 import { Exclude, Expose } from 'class-transformer';
 import { IsDate, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import { CreatePostEntityPayload } from './type/CreatePostEntityPayload';
 import { EditPostEntityPayload } from './type/EditPostEntityPayload';
-import { RemovableEntity } from '../../../shared/entity/RemovableEntity';
-import { Nullable } from '../../../shared/type/CommonTypes';
-import { PostStatus } from '../../../shared/enums/PostEnums';
+import { RemovableEntity } from '../../../common/entity/RemovableEntity';
+import { Nullable } from '../../../common/type/CommonTypes';
+import { PostStatus } from '../../../common/enums/PostEnums';
 import { v4 } from 'uuid';
 
 @Exclude()

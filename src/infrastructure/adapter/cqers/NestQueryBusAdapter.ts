@@ -1,4 +1,4 @@
-import { QueryBusPort } from '../../../core/shared/port/cqers/QueryBusPort';
+import { QueryBusPort } from '../../../core/common/port/cqers/QueryBusPort';
 import { QueryBus } from '@nestjs/cqrs';
 
 export class NestQueryBusAdapter implements QueryBusPort {

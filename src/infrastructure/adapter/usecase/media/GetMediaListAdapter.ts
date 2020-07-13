@@ -1,5 +1,5 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { UseCaseValidatableAdapter } from '../../../../core/shared/adapter/usecase/UseCaseValidatableAdapter';
+import { UseCaseValidatableAdapter } from '../../../../core/common/adapter/usecase/UseCaseValidatableAdapter';
 import { IsUUID } from 'class-validator';
 import { GetMediaListPort } from '../../../../core/domain/media/port/usecase/GetMediaListPort';
 

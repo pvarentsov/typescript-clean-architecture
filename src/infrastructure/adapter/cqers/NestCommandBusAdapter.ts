@@ -1,5 +1,5 @@
 import { CommandBus } from '@nestjs/cqrs';
-import { CommandBusPort } from '../../../core/shared/port/cqers/CommandBusPort';
+import { CommandBusPort } from '../../../core/common/port/cqers/CommandBusPort';
 
 export class NestCommandBusAdapter implements CommandBusPort {
   

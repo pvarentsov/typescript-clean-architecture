@@ -1,12 +1,12 @@
 import { MediaRepositoryPort } from '../../../domain/media/port/persistence/MediaRepositoryPort';
 import { Media } from '../../../domain/media/entity/Media';
-import { Optional } from '../../../shared/type/CommonTypes';
-import { Exception } from '../../../shared/exception/Exception';
-import { Code } from '../../../shared/code/Code';
+import { Optional } from '../../../common/type/CommonTypes';
+import { Exception } from '../../../common/exception/Exception';
+import { Code } from '../../../common/code/Code';
 import { RemoveMediaUseCase } from '../../../domain/media/usecase/RemoveMediaUseCase';
 import { RemoveMediaPort } from '../../../domain/media/port/usecase/RemoveMediaPort';
-import { EventBusPort } from '../../../shared/port/cqers/EventBusPort';
-import { MediaRemovedEvent } from '../../../shared/cqers/event/events/media/MediaRemovedEvent';
+import { EventBusPort } from '../../../common/port/cqers/EventBusPort';
+import { MediaRemovedEvent } from '../../../common/cqers/event/events/media/MediaRemovedEvent';
 
 export class RemoveMediaService implements RemoveMediaUseCase {
   

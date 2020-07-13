@@ -3,9 +3,9 @@ import { MediaUseCaseDto } from '../../../domain/media/usecase/dto/MediaUseCaseD
 import { Media } from '../../../domain/media/entity/Media';
 import { EditMediaUseCase } from '../../../domain/media/usecase/EditMediaUseCase';
 import { EditMediaPort } from '../../../domain/media/port/usecase/EditMediaPort';
-import { Optional } from '../../../shared/type/CommonTypes';
-import { Exception } from '../../../shared/exception/Exception';
-import { Code } from '../../../shared/code/Code';
+import { Optional } from '../../../common/type/CommonTypes';
+import { Exception } from '../../../common/exception/Exception';
+import { Code } from '../../../common/code/Code';
 
 export class EditMediaService implements EditMediaUseCase {
   

@@ -1,3 +1,3 @@
-export interface EventHandler<TEvent, TEventResult> {
-  handle(event: TEvent): Promise<TEventResult>;
+export interface EventHandler<TEvent> {
+  handle(event: TEvent): Promise<void>;
 }

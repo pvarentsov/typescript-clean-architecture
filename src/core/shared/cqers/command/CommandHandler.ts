@@ -1,3 +1,3 @@
-export interface CommandHandler<TCommand, TCommandResult> {
-  handle(command: TCommand): Promise<TCommandResult>;
+export interface CommandHandler<TCommand> {
+  handle(command: TCommand): Promise<void>;
 }

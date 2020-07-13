@@ -1,6 +1,6 @@
 import { QueryBusPort } from '../../../../shared/port/cqers/QueryBusPort';
-import { DoesMediaExistQuery } from '../../../../shared/cqers/query/media/DoesMediaExistQuery';
-import { DoesMediaExistQueryResult } from '../../../../shared/cqers/query/media/result/DoesMediaExistQueryResult';
+import { DoesMediaExistQuery } from '../../../../shared/cqers/query/queries/media/DoesMediaExistQuery';
+import { DoesMediaExistQueryResult } from '../../../../shared/cqers/query/queries/media/result/DoesMediaExistQueryResult';
 import { Exception } from '../../../../shared/exception/Exception';
 import { Code } from '../../../../shared/code/Code';
 

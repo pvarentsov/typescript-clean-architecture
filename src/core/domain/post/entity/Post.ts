@@ -111,7 +111,7 @@ export class Post extends Entity<string> implements RemovableEntity {
   public async edit(payload: EditPostEntityPayload): Promise<void> {
     const currentDate: Date = new Date();
   
-    if (typeof payload.title !== 'undefined') {
+    if (payload.title) {
       this.title = payload.title;
       this.editedAt = currentDate;
     }

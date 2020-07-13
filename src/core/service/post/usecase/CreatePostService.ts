@@ -32,7 +32,7 @@ export class CreatePostService implements CreatePostUseCase {
     const relations: PostValidationRelations = {};
     
     if (payload.imageId) {
-      relations.image = {id: payload.imageId, userId: payload.executorId};
+      relations.image = {id: payload.imageId, ownerId: payload.executorId};
     }
     
     await ExternalPostRelationsValidator.validate(relations, this.queryBus);

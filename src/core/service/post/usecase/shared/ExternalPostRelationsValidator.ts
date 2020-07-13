@@ -10,7 +10,7 @@ export type PostValidationRelations = {
 
 export type PostImageValidationInfo = {
   id: string,
-  userId: string
+  ownerId: string
 };
 
 export class ExternalPostRelationsValidator {
@@ -22,7 +22,7 @@ export class ExternalPostRelationsValidator {
   }
   
   private static async validateImage(image: PostImageValidationInfo, queryBus: QueryBusPort): Promise<void> {
-    const doesImageExistQuery: DoesMediaExistQuery = DoesMediaExistQuery.new({id: image.id, userId: image.userId});
+    const doesImageExistQuery: DoesMediaExistQuery = DoesMediaExistQuery.new({id: image.id, ownerId: image.ownerId});
     const doesImageExistQueryResult: DoesMediaExistQueryResult = await queryBus.sendQuery(doesImageExistQuery);
   
     if (!doesImageExistQueryResult.doesExist) {

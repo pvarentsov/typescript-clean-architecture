@@ -1,4 +1,4 @@
-import { MediaType } from '../../entity/enum/MediaEnums';
+import { MediaType } from '../../../../shared/enums/MediaEnums';
 import { Readable } from 'stream';
 
 export interface CreateMediaPort {

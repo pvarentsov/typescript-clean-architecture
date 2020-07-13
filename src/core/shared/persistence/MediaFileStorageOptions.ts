@@ -1,4 +1,4 @@
-import { MediaType } from '../../domain/media/entity/enum/MediaEnums';
+import { MediaType } from '../enums/MediaEnums';
 
 export type MediaFileStorageOptions = {
   type: MediaType,

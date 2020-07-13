@@ -1,4 +1,5 @@
 export interface EditMediaPort {
   executorId: string;
-  name: string;
+  mediaId: string;
+  name?: string;
 }

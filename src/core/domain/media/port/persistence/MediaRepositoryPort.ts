@@ -6,16 +6,18 @@ export interface MediaRepositoryPort {
 
   findMedia(by: {id?: string}, options?: RepositoryFindOptions): Promise<Optional<Media>>;
   
-  findManyMedias(by: {ownerId?: string}, options?: RepositoryFindOptions): Promise<Media[]>;
+  findMedias(by: {ownerId?: string}, options?: RepositoryFindOptions): Promise<Media[]>;
   
-  addMedia(post: Media): Promise<{id: string}>;
+  countMedia(by: {id?: string, ownerId?: string}, options?: RepositoryFindOptions): Promise<number>;
   
-  updateMedia(post: Media): Promise<void>;
+  addMedia(media: Media): Promise<{id: string}>;
   
-  updateManyMedias(values: {imageId?: Nullable<string>}, by: {imageId?: string}, options?: RepositoryUpdateManyOptions): Promise<void>;
+  updateMedia(media: Media): Promise<void>;
   
-  removeMedia(post: Media, options?: RepositoryRemoveOptions): Promise<void>;
+  updateMedias(values: {imageId?: Nullable<string>}, by: {imageId?: string}, options?: RepositoryUpdateManyOptions): Promise<void>;
   
-  removeManyMedias(by: {authorId?: string}, options?: RepositoryRemoveOptions): Promise<void>;
+  removeMedia(media: Media, options?: RepositoryRemoveOptions): Promise<void>;
+  
+  removeMedias(by: {authorId?: string}, options?: RepositoryRemoveOptions): Promise<void>;
 
 }

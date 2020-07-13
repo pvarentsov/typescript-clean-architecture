@@ -37,7 +37,7 @@ export class MediaUseCaseDto {
     return dto;
   }
   
-  public static newListFromMedia(medias: Media[]): MediaUseCaseDto[] {
+  public static newListFromMedias(medias: Media[]): MediaUseCaseDto[] {
     return medias.map(media => this.newFromMedia(media));
   }
   

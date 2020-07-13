@@ -2,16 +2,16 @@ import { RepositoryFindOptions } from '../../../../persistence/RepositoryOptions
 
 export class DoesMediaExistQuery {
   
-  by: {id?: string, userId?: string};
+  by: {id?: string, ownerId?: string};
   
   options?: RepositoryFindOptions;
   
-  private constructor(by: {id?: string, userId?: string}, options?: RepositoryFindOptions) {
+  private constructor(by: {id?: string, ownerId?: string}, options?: RepositoryFindOptions) {
     this.by = by;
     this.options = options;
   }
   
-  public static new(by: {id?: string, userId?: string}, options?: RepositoryFindOptions): DoesMediaExistQuery {
+  public static new(by: {id?: string, ownerId?: string}, options?: RepositoryFindOptions): DoesMediaExistQuery {
     return new DoesMediaExistQuery(by, options);
   }
   

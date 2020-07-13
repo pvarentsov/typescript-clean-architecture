@@ -11,7 +11,7 @@ export class HandlePostImageRemovedEventService implements PostImageRemovedEvent
   
   public async handle(event: MediaRemovedEvent): Promise<void> {
     if (event.type === MediaType.IMAGE) {
-      await this.postRepository.updateManyPosts({imageId: null}, {imageId: event.mediaId});
+      await this.postRepository.updatePosts({imageId: null}, {imageId: event.mediaId});
     }
   }
   

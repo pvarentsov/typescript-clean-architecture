@@ -38,10 +38,10 @@ export class FileMetadata extends ValueObject {
   }
   
   public static async new(payload: CreateFileMetadataValueObjectPayload): Promise<FileMetadata> {
-    const file: FileMetadata = new FileMetadata(payload);
-    await file.validate();
+    const fileMetadata: FileMetadata = new FileMetadata(payload);
+    await fileMetadata.validate();
     
-    return file;
+    return fileMetadata;
   }
   
 }

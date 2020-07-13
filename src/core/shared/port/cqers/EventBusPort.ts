@@ -1,3 +1,4 @@
 export interface EventBusPort {
-  sendEvent<TEvent extends Record<string, unknown>>(event: TEvent): Promise<void>;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  sendEvent<TEvent extends object>(event: TEvent): Promise<void>;
 }

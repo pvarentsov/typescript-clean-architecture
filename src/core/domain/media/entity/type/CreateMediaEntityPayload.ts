@@ -6,5 +6,4 @@ export type CreateMediaEntityPayload = {
   name: string,
   type: MediaType,
   metadata: FileMetadata
-  
-}
+};

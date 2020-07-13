@@ -5,7 +5,7 @@ export type CreateExceptionPayload<TData extends Record<string, unknown>> = {
   code: CodeDescription,
   overrideMessage?: string,
   data?: TData
-}
+};
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export class Exception<TData extends object> extends Error {

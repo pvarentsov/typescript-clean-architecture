@@ -16,7 +16,7 @@ export class PublishPostService implements PublishPostUseCase {
   public async execute(payload: PublishPostPort): Promise<PostUseCaseDto> {
     const post: Optional<Post> = await this.postRepository.findPost({id: payload.postId});
     if (!post) {
-      throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post not found.'})
+      throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post not found.'});
     }
     
     await post.publish();

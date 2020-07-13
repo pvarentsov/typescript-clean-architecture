@@ -6,12 +6,12 @@ import { Code } from '../../../../shared/code/Code';
 
 export type PostValidationRelations = {
   image?: PostImageValidationInfo,
-}
+};
 
 export type PostImageValidationInfo = {
   id: string,
   userId: string
-}
+};
 
 export class ExternalPostRelationsValidator {
   
@@ -22,11 +22,11 @@ export class ExternalPostRelationsValidator {
   }
   
   private static async validateImage(image: PostImageValidationInfo, queryBus: QueryBusPort): Promise<void> {
-    const doesImageExistQuery: DoesMediaExistQuery = DoesMediaExistQuery.new({id: image.id, userId: image.userId})
+    const doesImageExistQuery: DoesMediaExistQuery = DoesMediaExistQuery.new({id: image.id, userId: image.userId});
     const doesImageExistQueryResult: DoesMediaExistQueryResult = await queryBus.sendQuery(doesImageExistQuery);
   
     if (!doesImageExistQueryResult.doesExist) {
-      throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post image not found.'})
+      throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post image not found.'});
     }
   }
   

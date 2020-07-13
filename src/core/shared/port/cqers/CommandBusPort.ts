@@ -1,3 +1,4 @@
 export interface CommandBusPort {
-  sendCommand<TCommand extends Record<string, unknown>>(command: TCommand): Promise<void>;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  sendCommand<TCommand extends object>(command: TCommand): Promise<void>;
 }

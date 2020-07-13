@@ -5,4 +5,4 @@ export type CreatePostEntityPayload = {
   title: string,
   imageId?: Nullable<string>,
   content?: Nullable<string>,
-}
+};

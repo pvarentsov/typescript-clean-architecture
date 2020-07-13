@@ -15,7 +15,7 @@ export class RemovePostService implements RemovePostUseCase {
   public async execute(payload: RemovePostPort): Promise<void> {
     const post: Optional<Post> = await this.postRepository.findPost({id: payload.postId});
     if (!post) {
-      throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post not found.'})
+      throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post not found.'});
     }
     
     await this.postRepository.removePost(post);

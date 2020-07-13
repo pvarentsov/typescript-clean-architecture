@@ -24,7 +24,7 @@ export class FileMetadata extends ValueObject {
   @Expose()
   @IsOptional()
   @IsString()
-  public readonly mimetype: Nullable<string>
+  public readonly mimetype: Nullable<string>;
   
   constructor(payload?: CreateFileMetadataValueObjectPayload) {
     super();

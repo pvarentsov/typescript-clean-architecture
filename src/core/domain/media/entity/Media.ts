@@ -26,7 +26,7 @@ export class Media extends Entity<string> implements RemovableEntity {
   
   @Expose()
   @IsInstance(FileMetadata)
-  private metadata: FileMetadata
+  private metadata: FileMetadata;
   
   @Expose()
   @IsDate()

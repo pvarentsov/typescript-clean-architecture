@@ -2,7 +2,7 @@ import { RepositoryFindOptions } from '../../../persistence/RepositoryOptions';
 
 export class DoesMediaExistQuery {
   
-  by: {id?: string, userId?: string}
+  by: {id?: string, userId?: string};
   
   options?: RepositoryFindOptions;
   

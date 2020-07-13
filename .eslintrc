@@ -28,6 +28,7 @@
       "variableDeclarationIgnoreFunction": true,
       "arrowParameter": false
     }],
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/semi": ["error", "always"]
   }
 }

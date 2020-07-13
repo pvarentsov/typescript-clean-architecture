@@ -1,3 +1,4 @@
 export interface QueryBusPort {
-  sendQuery<TQuery extends Record<string, unknown>, TQueryResult>(query: TQuery): Promise<TQueryResult>;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  sendQuery<TQuery extends object, TQueryResult>(query: TQuery): Promise<TQueryResult>;
 }

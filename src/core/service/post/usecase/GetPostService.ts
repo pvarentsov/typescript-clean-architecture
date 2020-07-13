@@ -16,7 +16,7 @@ export class GetPostService implements GetPostUseCase {
   public async execute(payload: GetPostPort): Promise<PostUseCaseDto> {
     const post: Optional<Post> = await this.postRepository.findPost({id: payload.postId});
     if (!post) {
-      throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post not found.'})
+      throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post not found.'});
     }
     
     return PostUseCaseDto.newFromPost(post);

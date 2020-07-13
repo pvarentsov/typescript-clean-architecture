@@ -5,7 +5,7 @@ import { CreatePostEntityPayload } from './type/CreatePostEntityPayload';
 import { EditPostEntityPayload } from './type/EditPostEntityPayload';
 import { RemovableEntity } from '../../../shared/entity/RemovableEntity';
 import { Nullable } from '../../../shared/type/CommonTypes';
-import { PostStatus } from '../../../shared/enum/PostEnums';
+import { PostStatus } from './enum/PostEnums';
 import { v4 } from 'uuid';
 
 @Exclude()

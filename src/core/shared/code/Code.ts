@@ -22,4 +22,9 @@ export class Code {
     message: 'Use-case port validation error.'
   }
   
+  public static VALUE_OBJECT_VALIDATION_ERROR: CodeDescription = {
+    code: 103,
+    message: 'Value object validation error.'
+  }
+  
 }

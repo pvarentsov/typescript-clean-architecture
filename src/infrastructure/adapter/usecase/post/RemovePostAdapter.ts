@@ -21,11 +21,4 @@ export class RemovePostAdapter extends UseCaseValidatableAdapter implements Remo
     return adapter;
   }
   
-  public static async newFromRawPayload(rawPayload: Record<string, unknown>): Promise<RemovePostAdapter> {
-    const adapter: RemovePostAdapter = plainToClass(RemovePostAdapter, rawPayload);
-    await adapter.validate();
-    
-    return adapter;
-  }
-  
 }

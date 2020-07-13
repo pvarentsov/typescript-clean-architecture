@@ -22,11 +22,4 @@ export class GetPostListAdapter extends UseCaseValidatableAdapter implements Get
     return adapter;
   }
   
-  public static async newFromRawPayload(rawPayload: Record<string, unknown>): Promise<GetPostListAdapter> {
-    const adapter: GetPostListAdapter = plainToClass(GetPostListAdapter, rawPayload);
-    await adapter.validate();
-    
-    return adapter;
-  }
-  
 }

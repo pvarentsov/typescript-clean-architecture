@@ -21,11 +21,4 @@ export class PublishPostAdapter extends UseCaseValidatableAdapter implements Pub
     return adapter;
   }
   
-  public static async newFromRawPayload(rawPayload: Record<string, unknown>): Promise<PublishPostAdapter> {
-    const adapter: PublishPostAdapter = plainToClass(PublishPostAdapter, rawPayload);
-    await adapter.validate();
-    
-    return adapter;
-  }
-  
 }

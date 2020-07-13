@@ -1,10 +1,10 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { UseCaseValidatableAdapter } from '../../../../core/shared/adapter/usecase/UseCaseValidatableAdapter';
 import { IsUUID } from 'class-validator';
-import { GetPostPort } from '../../../../core/domain/post/port/usecase/GetPostPort';
+import { GetMediaPort } from '../../../../core/domain/media/port/usecase/GetMediaPort';
 
 @Exclude()
-export class GetPostAdapter extends UseCaseValidatableAdapter implements GetPostPort {
+export class GetMediaAdapter extends UseCaseValidatableAdapter implements GetMediaPort {
   
   @Expose()
   @IsUUID()
@@ -12,10 +12,10 @@ export class GetPostAdapter extends UseCaseValidatableAdapter implements GetPost
   
   @Expose()
   @IsUUID()
-  public postId: string;
+  public mediaId: string;
   
-  public static async new(payload: GetPostAdapter): Promise<GetPostAdapter> {
-    const adapter: GetPostAdapter = plainToClass(GetPostAdapter, payload);
+  public static async new(payload: GetMediaPort): Promise<GetMediaAdapter> {
+    const adapter: GetMediaAdapter = plainToClass(GetMediaAdapter, payload);
     await adapter.validate();
     
     return adapter;

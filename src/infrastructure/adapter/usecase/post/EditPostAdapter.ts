@@ -36,11 +36,4 @@ export class EditPostAdapter extends UseCaseValidatableAdapter implements EditPo
     return adapter;
   }
   
-  public static async newFromRawPayload(rawPayload: Record<string, unknown>): Promise<EditPostAdapter> {
-    const adapter: EditPostAdapter = plainToClass(EditPostAdapter, rawPayload);
-    await adapter.validate();
-    
-    return adapter;
-  }
-  
 }

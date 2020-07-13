@@ -31,11 +31,4 @@ export class CreatePostAdapter extends UseCaseValidatableAdapter implements Crea
     return adapter;
   }
   
-  public static async newFromRawPayload(rawPayload: Record<string, unknown>): Promise<CreatePostAdapter> {
-    const adapter: CreatePostAdapter = plainToClass(CreatePostAdapter, rawPayload);
-    await adapter.validate();
-  
-    return adapter;
-  }
-  
 }

@@ -29,7 +29,7 @@ export class EditPostAdapter extends UseCaseValidatableAdapter implements EditPo
   @IsString()
   public content?: string;
   
-  public static async new(payload: EditPostAdapter): Promise<EditPostAdapter> {
+  public static async new(payload: EditPostPort): Promise<EditPostAdapter> {
     const adapter: EditPostAdapter = plainToClass(EditPostAdapter, payload);
     await adapter.validate();
     

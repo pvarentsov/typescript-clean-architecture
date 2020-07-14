@@ -19,7 +19,7 @@ export class EditMediaAdapter extends UseCaseValidatableAdapter implements EditM
   @IsString()
   public name?: string;
   
-  public static async new(payload: EditMediaAdapter): Promise<EditMediaAdapter> {
+  public static async new(payload: EditMediaPort): Promise<EditMediaAdapter> {
     const adapter: EditMediaAdapter = plainToClass(EditMediaAdapter, payload);
     await adapter.validate();
     

@@ -1,3 +1,3 @@
 export interface UseCase<TUseCasePort, TUseCaseResult> {
-  execute(inPort?: TUseCasePort): Promise<TUseCaseResult>;
+  execute(port?: TUseCasePort): Promise<TUseCaseResult>;
 }

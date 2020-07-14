@@ -10,7 +10,7 @@ export class GetMediaListAdapter extends UseCaseValidatableAdapter implements Ge
   @IsUUID()
   public executorId: string;
   
-  public static async new(payload: GetMediaListAdapter): Promise<GetMediaListAdapter> {
+  public static async new(payload: GetMediaListPort): Promise<GetMediaListAdapter> {
     const adapter: GetMediaListAdapter = plainToClass(GetMediaListAdapter, payload);
     await adapter.validate();
     

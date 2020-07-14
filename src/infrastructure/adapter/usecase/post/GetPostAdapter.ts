@@ -14,7 +14,7 @@ export class GetPostAdapter extends UseCaseValidatableAdapter implements GetPost
   @IsUUID()
   public postId: string;
   
-  public static async new(payload: GetPostAdapter): Promise<GetPostAdapter> {
+  public static async new(payload: GetPostPort): Promise<GetPostAdapter> {
     const adapter: GetPostAdapter = plainToClass(GetPostAdapter, payload);
     await adapter.validate();
     

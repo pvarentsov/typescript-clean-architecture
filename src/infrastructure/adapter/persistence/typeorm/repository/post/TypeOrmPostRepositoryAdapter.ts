@@ -79,10 +79,12 @@ export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implem
   }
   
   public async updatePosts(values: {imageId?: Nullable<string>}, by: {imageId?: string}, options: RepositoryUpdateManyOptions = {}): Promise<void> {
+    type ValuesType = {imageId?: string};
+    
     const query: UpdateQueryBuilder<TypeOrmPost> = this
       .createQueryBuilder(this.postAlias)
       .update(TypeOrmPost)
-      .set(values)
+      .set(values as ValuesType)
       .where(by);
   
     if (!options.includeRemoved) {

@@ -45,7 +45,7 @@ const useCaseProviders: Provider[] = [
   {
     provide   : PostDITokens.PublishPostUseCase,
     useFactory: (postRepository) => new PublishPostService(postRepository),
-    inject    : [PostDITokens.PublishPostUseCase]
+    inject    : [PostDITokens.PostRepository]
   },
   {
     provide   : PostDITokens.RemovePostUseCase,

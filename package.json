@@ -4,6 +4,9 @@
   "description": "It is my attempt to create Clean Architecture based application in Typescript",
   "main": "index.js",
   "scripts": {
+    "build": "./scripts/build.sh",
+    "build:local": "./scripts/build-local.sh",
+    "start": "node ./dist/Main.js",
     "lib:check": "./node_modules/.bin/ncu",
     "lib:upgrade": "./node_modules/.bin/ncu -u && npm install",
     "lint": "eslint src/**/*.ts",
@@ -46,6 +49,7 @@
     "class-transformer": "0.2.3",
     "class-validator": "0.12.2",
     "minio": "7.0.16",
+    "pg": "8.3.0",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.6.0",
     "typeorm": "0.2.25",

@@ -1,6 +1,5 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { PostStatus } from '../../../../../../core/common/enums/PostEnums';
-import { Nullable } from '../../../../../../core/common/type/CommonTypes';
 
 @Entity('post')
 export class TypeOrmPost {
@@ -15,7 +14,7 @@ export class TypeOrmPost {
   public title: string;
   
   @Column()
-  public imageId: Nullable<string>;
+  public imageId: string;
   
   @Column()
   public content: string;

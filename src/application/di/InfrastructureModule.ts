@@ -22,7 +22,7 @@ import { NestExceptionFilter } from '../../infrastructure/exception/NestExceptio
       name     : 'default',
       type     : 'postgres',
       host     : 'localhost',
-      port     : 5432,
+      port     : 5454,
       username : 'iposter',
       password : 'souQu6ienug0ash9eeY9',
       database : 'iposter',
@@ -46,7 +46,12 @@ import { NestExceptionFilter } from '../../infrastructure/exception/NestExceptio
     {
       provide: CoreDITokens.EventBus,
       useClass: NestEventBusAdapter,
-    }
+    },
+  ],
+  exports: [
+    CoreDITokens.CommandBus,
+    CoreDITokens.QueryBus,
+    CoreDITokens.EventBus,
   ]
 })
 export class InfrastructureModule {}

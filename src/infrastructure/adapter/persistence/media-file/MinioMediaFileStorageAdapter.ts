@@ -22,26 +22,26 @@ export class MinioMediaFileStorageAdapter implements MediaFileStoragePort {
     useSSL   : false
   });
   
-  public async upload(file: Buffer|Readable, options: MediaFileStorageOptions): Promise<FileMetadata> {
+  public async upload(file: Buffer | Readable, options: MediaFileStorageOptions): Promise<FileMetadata> {
     const bucket: string = 'images';
-    const key: string = `${v4()}.png`;
+    const key: string    = `${v4()}.png`;
     
     await this.client.putObject(bucket, key, file, {
       'Content-Type': 'image/png',
-      'Public': options.public,
-      'Type': options.type
+      'Public'      : options.public,
+      'Type'        : options.type
     });
     
     const fileStat: BucketItemStat = await this.client.statObject(bucket, key);
     
     const fileMetadata: FileMetadata = await FileMetadata.new({
       relativePath: `${bucket}/${key}`,
-      size: fileStat.size,
-      mimetype: fileStat.metaData['Content-Type'],
-      ext: 'png'
+      size        : fileStat.size,
+      mimetype    : fileStat.metaData['Content-Type'],
+      ext         : 'png'
     });
     
     return fileMetadata;
   }
-
+  
 }

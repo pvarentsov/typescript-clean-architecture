@@ -2,15 +2,19 @@ export class PostDITokens {
   
   // Use-cases
   
-  public static readonly CreatePostPort: unique symbol  = Symbol('CreatePostPort');
-  public static readonly EditPostPort: unique symbol    = Symbol('EditPostPort');
-  public static readonly GetPostListPort: unique symbol = Symbol('GetPostListPort');
-  public static readonly GetPostPort: unique symbol     = Symbol('GetPostPort');
-  public static readonly PublishPostPort: unique symbol = Symbol('PublishPostPort');
-  public static readonly RemovePostPort: unique symbol  = Symbol('RemovePostPort');
+  public static readonly CreatePostUseCase: unique symbol  = Symbol('CreatePostUseCase');
+  public static readonly EditPostUseCase: unique symbol    = Symbol('EditPostUseCase');
+  public static readonly GetPostListUseCase: unique symbol = Symbol('GetPostListUseCase');
+  public static readonly GetPostUseCase: unique symbol     = Symbol('GetPostUseCase');
+  public static readonly PublishPostUseCase: unique symbol = Symbol('PublishPostUseCase');
+  public static readonly RemovePostUseCase: unique symbol  = Symbol('RemovePostUseCase');
   
   // Handlers
   
   public static readonly PostImageRemovedEventHandler: unique symbol = Symbol('PostImageRemovedEventHandler');
+  
+  // Repositories
+  
+  public static readonly PostRepository: unique symbol  = Symbol('PostRepository');
   
 }

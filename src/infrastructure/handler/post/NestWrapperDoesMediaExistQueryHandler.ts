@@ -7,7 +7,7 @@ import { MediaDITokens } from '../../../core/domain/media/di/MediaDITokens';
 
 @Injectable()
 @QueryHandler(DoesMediaExistQuery)
-export class NestDoesMediaExistQueryHandler implements IQueryHandler {
+export class NestWrapperDoesMediaExistQueryHandler implements IQueryHandler {
   
   constructor(
     @Inject(MediaDITokens.DoesMediaExistQueryHandler)

@@ -12,4 +12,9 @@ export class MediaDITokens {
   
   public static readonly DoesMediaExistQueryHandler: unique symbol = Symbol('DoesMediaExistQueryHandler');
   
+  // Repositories
+  
+  public static readonly MediaRepository: unique symbol  = Symbol('MediaRepository');
+  public static readonly MediaFileStorage: unique symbol = Symbol('MediaFileStorage');
+  
 }

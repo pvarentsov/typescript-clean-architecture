@@ -6,7 +6,7 @@ import { PostImageRemovedEventHandler } from '../../../core/domain/post/handler/
 
 @Injectable()
 @EventsHandler(MediaRemovedEvent)
-export class NestPostImageRemovedEventHandler implements IEventHandler {
+export class NestWrapperPostImageRemovedEventHandler implements IEventHandler {
   
   constructor(
     @Inject(PostDITokens.PostImageRemovedEventHandler)

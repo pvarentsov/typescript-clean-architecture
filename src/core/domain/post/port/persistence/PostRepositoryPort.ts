@@ -15,7 +15,5 @@ export interface PostRepositoryPort {
   updatePosts(values: {imageId?: Nullable<string>}, by: {imageId?: string}, options?: RepositoryUpdateManyOptions): Promise<void>;
   
   removePost(post: Post, options?: RepositoryRemoveOptions): Promise<void>;
-  
-  removePosts(by: {ownerId?: string}, options?: RepositoryRemoveOptions): Promise<void>;
 
 }

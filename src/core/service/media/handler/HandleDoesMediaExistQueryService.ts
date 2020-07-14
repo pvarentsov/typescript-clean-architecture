@@ -10,7 +10,7 @@ export class HandleDoesMediaExistQueryService implements DoesMediaExistQueryHand
   ) {}
 
   public async handle(query: DoesMediaExistQuery): Promise<DoesMediaExistQueryResult> {
-    const count: number = await this.mediaRepository.countMedia(query.by);
+    const count: number = await this.mediaRepository.countMedias(query.by);
     return DoesMediaExistQueryResult.new(!!count);
   }
   

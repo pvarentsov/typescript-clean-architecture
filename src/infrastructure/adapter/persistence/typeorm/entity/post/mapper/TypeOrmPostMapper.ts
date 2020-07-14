@@ -4,7 +4,7 @@ import { PostStatus } from '../../../../../../../core/common/enums/PostEnums';
 
 export class TypeOrmPostMapper {
   
-  public static createOrmEntity(domainPost: Post): TypeOrmPost {
+  public static toOrmEntity(domainPost: Post): TypeOrmPost {
     const ormPost: TypeOrmPost = new TypeOrmPost();
     
     ormPost.id          = domainPost.getId();
@@ -22,11 +22,11 @@ export class TypeOrmPostMapper {
     return ormPost;
   }
   
-  public static createOrmEntities(domainPosts: Post[]): TypeOrmPost[] {
-    return domainPosts.map(domainPost => this.createOrmEntity(domainPost));
+  public static toOrmEntities(domainPosts: Post[]): TypeOrmPost[] {
+    return domainPosts.map(domainPost => this.toOrmEntity(domainPost));
   }
   
-  public static async createDomainEntity(ormPost: TypeOrmPost): Promise<Post> {
+  public static async toDomainEntity(ormPost: TypeOrmPost): Promise<Post> {
     const domainPost: Post = await Post.new({
       ownerId    : ormPost.ownerId,
       title      : ormPost.title,
@@ -43,8 +43,8 @@ export class TypeOrmPostMapper {
     return domainPost;
   }
   
-  public static async createDomainEntities(ormPosts: TypeOrmPost[]): Promise<Post[]> {
-    return Promise.all(ormPosts.map(async ormPost => this.createDomainEntity(ormPost)));
+  public static async toDomainEntities(ormPosts: TypeOrmPost[]): Promise<Post[]> {
+    return Promise.all(ormPosts.map(async ormPost => this.toDomainEntity(ormPost)));
   }
   
 }

@@ -18,6 +18,6 @@ export interface MediaRepositoryPort {
   
   removeMedia(media: Media, options?: RepositoryRemoveOptions): Promise<void>;
   
-  removeMedias(by: {authorId?: string}, options?: RepositoryRemoveOptions): Promise<void>;
+  removeMedias(by: {ownerId?: string}, options?: RepositoryRemoveOptions): Promise<void>;
 
 }

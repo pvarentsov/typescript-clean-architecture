@@ -10,7 +10,7 @@ import { v4 } from 'uuid';
 export class Post extends Entity<string> implements RemovableEntity {
   
   @IsUUID()
-  private readonly authorId: string;
+  private readonly ownerId: string;
   
   @IsString()
   private title: string;
@@ -45,7 +45,7 @@ export class Post extends Entity<string> implements RemovableEntity {
   constructor(payload: CreatePostEntityPayload) {
     super();
   
-    this.authorId    = payload.authorId;
+    this.ownerId    = payload.ownerId;
     this.title       = payload.title;
     this.imageId     = payload.imageId || null;
     this.content     = payload.content || null;
@@ -58,8 +58,8 @@ export class Post extends Entity<string> implements RemovableEntity {
     this.removedAt   = payload.removedAt || null;
   }
   
-  public getAuthorId(): string {
-    return this.authorId;
+  public getOwnerId(): string {
+    return this.ownerId;
   }
   
   public getTitle(): string {

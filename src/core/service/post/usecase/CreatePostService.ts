@@ -17,7 +17,7 @@ export class CreatePostService implements CreatePostUseCase {
     await this.validateExternalRelations(payload);
     
     const post: Post = await Post.new({
-      authorId: payload.executorId,
+      ownerId: payload.executorId,
       title: payload.title,
       imageId: payload.imageId,
       content: payload.content,

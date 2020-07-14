@@ -10,7 +10,7 @@ export class PostUseCaseDto {
   public id: string;
   
   @Expose()
-  public authorId: string;
+  public ownerId: string;
   
   @Expose()
   public imageId: string;

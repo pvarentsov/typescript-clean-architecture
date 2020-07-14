@@ -6,7 +6,7 @@ export interface PostRepositoryPort {
 
   findPost(by: {id?: string}, options?: RepositoryFindOptions): Promise<Optional<Post>>;
   
-  findPosts(by: {authorId?: string}, options?: RepositoryFindOptions): Promise<Post[]>;
+  findPosts(by: {ownerId?: string}, options?: RepositoryFindOptions): Promise<Post[]>;
   
   addPost(post: Post): Promise<{id: string}>;
   
@@ -16,6 +16,6 @@ export interface PostRepositoryPort {
   
   removePost(post: Post, options?: RepositoryRemoveOptions): Promise<void>;
   
-  removePosts(by: {authorId?: string}, options?: RepositoryRemoveOptions): Promise<void>;
+  removePosts(by: {ownerId?: string}, options?: RepositoryRemoveOptions): Promise<void>;
 
 }

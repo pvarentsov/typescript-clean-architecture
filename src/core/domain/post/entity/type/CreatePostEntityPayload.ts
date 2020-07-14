@@ -2,7 +2,7 @@ import { Nullable } from '../../../../common/type/CommonTypes';
 import { PostStatus } from '../../../../common/enums/PostEnums';
 
 export type CreatePostEntityPayload = {
-  authorId: string,
+  ownerId: string,
   title: string,
   imageId?: Nullable<string>,
   content?: Nullable<string>,

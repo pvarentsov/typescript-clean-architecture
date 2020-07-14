@@ -8,7 +8,7 @@ export class TypeOrmPostMapper {
     const ormPost: TypeOrmPost = new TypeOrmPost();
     
     ormPost.id          = domainPost.getId();
-    ormPost.authorId    = domainPost.getAuthorId();
+    ormPost.ownerId    = domainPost.getOwnerId();
     ormPost.title       = domainPost.getTitle();
     ormPost.imageId     = domainPost.getImageId() as string;
     ormPost.content     = domainPost.getContent() as string;
@@ -28,7 +28,7 @@ export class TypeOrmPostMapper {
   
   public static async createDomainEntity(ormPost: TypeOrmPost): Promise<Post> {
     const domainPost: Post = await Post.new({
-      authorId   : ormPost.authorId,
+      ownerId   : ormPost.ownerId,
       title      : ormPost.title,
       imageId    : ormPost.imageId,
       content    : ormPost.content,

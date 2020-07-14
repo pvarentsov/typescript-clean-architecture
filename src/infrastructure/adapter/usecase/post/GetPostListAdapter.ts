@@ -13,7 +13,7 @@ export class GetPostListAdapter extends UseCaseValidatableAdapter implements Get
   @Expose()
   @IsOptional()
   @IsUUID()
-  public authorId?: string;
+  public ownerId?: string;
   
   public static async new(payload: GetPostListPort): Promise<GetPostListAdapter> {
     const adapter: GetPostListAdapter = plainToClass(GetPostListAdapter, payload);

@@ -8,7 +8,7 @@ export class TypeOrmPost {
   public id: string;
   
   @Column()
-  public authorId: string;
+  public ownerId: string;
   
   @Column()
   public title: string;

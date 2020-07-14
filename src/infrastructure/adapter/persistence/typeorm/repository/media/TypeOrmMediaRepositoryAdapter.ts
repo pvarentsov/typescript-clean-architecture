@@ -20,9 +20,6 @@ export class TypeOrmMediaRepositoryAdapter extends Repository<TypeOrmMedia> impl
   
     this.extendQueryWithByProperties(by, query);
     
-    if (by.id) {
-      query.andWhere(`${this.mediaAlias}.id = :id`, {id: by.id});
-    }
     if (!options.includeRemoved) {
       query.andWhere(this.excludeRemovedMediaClause);
     }

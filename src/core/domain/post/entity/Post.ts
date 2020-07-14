@@ -1,5 +1,4 @@
 import { Entity } from '../../../common/entity/Entity';
-import { Exclude, Expose } from 'class-transformer';
 import { IsDate, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import { CreatePostEntityPayload } from './type/CreatePostEntityPayload';
 import { EditPostEntityPayload } from './type/EditPostEntityPayload';
@@ -8,68 +7,55 @@ import { Nullable } from '../../../common/type/CommonTypes';
 import { PostStatus } from '../../../common/enums/PostEnums';
 import { v4 } from 'uuid';
 
-@Exclude()
 export class Post extends Entity<string> implements RemovableEntity {
   
-  @Expose()
   @IsUUID()
   private readonly authorId: string;
   
-  @Expose()
   @IsString()
   private title: string;
   
-  @Expose()
   @IsOptional()
   @IsUUID()
   private imageId: Nullable<string>;
   
-  @Expose()
   @IsOptional()
   @IsString()
   private content: Nullable<string>;
   
-  @Expose()
   @IsOptional()
   @IsEnum(PostStatus)
   private status: PostStatus;
-  
-  @Expose()
+
   @IsDate()
   private readonly createdAt: Date;
   
-  @Expose()
   @IsOptional()
   @IsDate()
   private editedAt: Nullable<Date>;
   
-  @Expose()
   @IsOptional()
   @IsDate()
   private publishedAt: Nullable<Date>;
   
-  @Expose()
   @IsOptional()
   @IsDate()
   private removedAt: Nullable<Date>;
   
-  constructor(payload?: CreatePostEntityPayload) {
+  constructor(payload: CreatePostEntityPayload) {
     super();
-    
-    if (payload) {
-      this.authorId = payload.authorId;
-      this.title = payload.title;
-      this.imageId = payload.imageId || null;
-      this.content = payload.content || null;
-    }
-    
-    this.id = v4();
-    this.status = PostStatus.DRAFT;
-    this.createdAt = new Date();
-    
-    this.editedAt = null;
-    this.publishedAt = null;
-    this.removedAt = null;
+  
+    this.authorId    = payload.authorId;
+    this.title       = payload.title;
+    this.imageId     = payload.imageId || null;
+    this.content     = payload.content || null;
+  
+    this.id          = payload.id || v4();
+    this.status      = payload.status || PostStatus.DRAFT;
+    this.createdAt   = payload.createdAt || new Date();
+    this.editedAt    = payload.editedAt || null;
+    this.publishedAt = payload.publishedAt || null;
+    this.removedAt   = payload.removedAt || null;
   }
   
   public getAuthorId(): string {

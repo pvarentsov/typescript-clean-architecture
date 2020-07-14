@@ -5,5 +5,9 @@ export type CreateMediaEntityPayload = {
   ownerId: string,
   name: string,
   type: MediaType,
-  metadata: FileMetadata
+  metadata: FileMetadata,
+  id?: string,
+  createdAt?: Date,
+  editedAt?: Date,
+  removedAt?: Date,
 };

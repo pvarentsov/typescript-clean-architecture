@@ -41,6 +41,7 @@
     "class-validator": "0.12.2",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.6.0",
+    "typeorm": "0.2.25",
     "uuid": "8.2.0"
   }
 }

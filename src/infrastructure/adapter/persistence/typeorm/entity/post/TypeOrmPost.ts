@@ -1,0 +1,37 @@
+import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { PostStatus } from '../../../../../../core/common/enums/PostEnums';
+
+@Entity('post')
+export class TypeOrmPost {
+  
+  @PrimaryColumn()
+  public id: string;
+  
+  @Column()
+  public authorId: string;
+  
+  @Column()
+  public title: string;
+  
+  @Column()
+  public imageId: string;
+  
+  @Column()
+  public content: string;
+  
+  @Column()
+  public status: PostStatus;
+  
+  @Column()
+  public createdAt: Date;
+  
+  @Column()
+  public editedAt: Date;
+  
+  @Column()
+  public publishedAt: Date;
+  
+  @Column()
+  public removedAt: Date;
+  
+}

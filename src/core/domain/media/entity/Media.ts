@@ -1,5 +1,4 @@
 import { Entity } from '../../../common/entity/Entity';
-import { Exclude, Expose } from 'class-transformer';
 import { IsDate, IsEnum, IsInstance, IsOptional, IsString, IsUUID } from 'class-validator';
 import { RemovableEntity } from '../../../common/entity/RemovableEntity';
 import { Nullable } from '../../../common/type/CommonTypes';
@@ -9,53 +8,43 @@ import { CreateMediaEntityPayload } from './type/CreateMediaEntityPayload';
 import { EditMediaEntityPayload } from './type/EditMediaEntityPayload';
 import { FileMetadata } from '../value-object/FileMetadata';
 
-@Exclude()
 export class Media extends Entity<string> implements RemovableEntity {
   
-  @Expose()
   @IsUUID()
   private readonly ownerId: string;
   
-  @Expose()
   @IsString()
   private name: string;
   
-  @Expose()
   @IsEnum(MediaType)
   private readonly type: MediaType;
   
-  @Expose()
   @IsInstance(FileMetadata)
   private metadata: FileMetadata;
   
-  @Expose()
   @IsDate()
   private readonly createdAt: Date;
-  
-  @Expose()
+
   @IsOptional()
   @IsDate()
   private editedAt: Nullable<Date>;
   
-  @Expose()
   @IsOptional()
   @IsDate()
   private removedAt: Nullable<Date>;
   
-  constructor(payload?: CreateMediaEntityPayload) {
+  constructor(payload: CreateMediaEntityPayload) {
     super();
+  
+    this.ownerId   = payload.ownerId;
+    this.name      = payload.name;
+    this.type      = payload.type;
+    this.metadata  = payload.metadata;
     
-    if (payload) {
-      this.ownerId = payload.ownerId;
-      this.name = payload.name;
-      this.type = payload.type;
-      this.metadata = payload.metadata;
-    }
-    
-    this.id = v4();
-    this.createdAt = new Date();
-    this.editedAt = null;
-    this.removedAt = null;
+    this.id        = payload.id || v4();
+    this.createdAt = payload.createdAt || new Date();
+    this.editedAt  = payload.editedAt || null;
+    this.removedAt = payload.removedAt || null;
   }
   
   public getOwnerId(): string {

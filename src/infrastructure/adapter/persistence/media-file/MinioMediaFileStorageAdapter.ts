@@ -17,8 +17,8 @@ export class MinioMediaFileStorageAdapter implements MediaFileStoragePort {
   private client: Minio.Client = new Minio.Client({
     endPoint : 'localhost',
     port     : 9000,
-    accessKey: 'accessKey',
-    secretKey: 'secretKey',
+    accessKey: 'aid6jaeng6IeWahv6hae',
+    secretKey: 'ri5aX5Meishi9haihooB',
     useSSL   : false
   });
   

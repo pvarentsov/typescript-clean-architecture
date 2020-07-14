@@ -5,6 +5,8 @@ import { CoreDITokens } from '../../core/common/di/CoreDITokens';
 import { NestCommandBusAdapter } from '../../infrastructure/adapter/cqers/NestCommandBusAdapter';
 import { NestEventBusAdapter } from '../../infrastructure/adapter/cqers/NestEventBusAdapter';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { APP_FILTER } from '@nestjs/core';
+import { NestExceptionFilter } from '../../infrastructure/exception/NestExceptionFilter';
 
 /**
  * TODO:
@@ -21,14 +23,18 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       type     : 'postgres',
       host     : 'localhost',
       port     : 5432,
-      username : 'poster',
-      password : 'poster',
-      database : 'poster',
+      username : 'iposter',
+      password : 'souQu6ienug0ash9eeY9',
+      database : 'iposter',
       logging  : 'all',
       entities : [`${TypeOrmEntityDirectory}/**/*{.ts,.js}`],
     })
   ],
   providers: [
+    {
+      provide : APP_FILTER,
+      useClass: NestExceptionFilter,
+    },
     {
       provide: CoreDITokens.CommandBus,
       useClass: NestCommandBusAdapter,

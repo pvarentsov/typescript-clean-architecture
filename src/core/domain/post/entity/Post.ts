@@ -45,7 +45,7 @@ export class Post extends Entity<string> implements RemovableEntity {
   constructor(payload: CreatePostEntityPayload) {
     super();
   
-    this.ownerId    = payload.ownerId;
+    this.ownerId     = payload.ownerId;
     this.title       = payload.title;
     this.imageId     = payload.imageId || null;
     this.content     = payload.content || null;

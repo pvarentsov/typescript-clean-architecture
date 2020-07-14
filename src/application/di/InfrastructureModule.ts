@@ -25,7 +25,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password : 'poster',
       database : 'poster',
       logging  : 'all',
-      entities : [`${TypeOrmEntityDirectory}/*{.ts,.js}`],
+      entities : [`${TypeOrmEntityDirectory}/**/*{.ts,.js}`],
     })
   ],
   providers: [

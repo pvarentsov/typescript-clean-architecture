@@ -12,6 +12,7 @@ import { NestWrapperDoesMediaExistQueryHandler } from '../../infrastructure/hand
 import { RemoveMediaService } from '../../core/service/media/usecase/RemoveMediaService';
 import { HandleDoesMediaExistQueryService } from '../../core/service/media/handler/HandleDoesMediaExistQueryService';
 import { CoreDITokens } from '../../core/common/di/CoreDITokens';
+import { MediaController } from '../api/http-rest/controller/MediaController';
 
 const persistenceProviders: Provider[] = [
   {
@@ -66,6 +67,9 @@ const handlerProviders: Provider[] = [
 ];
 
 @Module({
+  controllers: [
+    MediaController
+  ],
   providers: [
     ...persistenceProviders,
     ...useCaseProviders,

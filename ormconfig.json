@@ -1,0 +1,12 @@
+{
+  "name": "default",
+  "type": "postgres",
+  "host": "localhost",
+  "port": "5454",
+  "username": "iposter",
+  "password": "souQu6ienug0ash9eeY9",
+  "database": "iposter",
+  "cli": {
+    "migrationsDir": "src/infrastructure/adapter/persistence/typeorm/migration"
+  }
+}

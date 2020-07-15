@@ -12,6 +12,7 @@ import { CoreDITokens } from '../../core/common/di/CoreDITokens';
 import { PublishPostService } from '../../core/service/post/usecase/PublishPostService';
 import { NestWrapperPostImageRemovedEventHandler } from '../../infrastructure/handler/media/NestWrapperPostImageRemovedEventHandler';
 import { HandlePostImageRemovedEventService } from '../../core/service/post/handler/HandlePostImageRemovedEventService';
+import { PostController } from '../api/http-rest/controller/PostController';
 
 const persistenceProviders: Provider[] = [
   {
@@ -67,6 +68,9 @@ const handlerProviders: Provider[] = [
 ];
 
 @Module({
+  controllers: [
+    PostController
+  ],
   providers: [
     ...persistenceProviders,
     ...useCaseProviders,

@@ -14,6 +14,10 @@ import { GetPostAdapter } from '../../../../infrastructure/adapter/usecase/post/
 import { PublishPostAdapter } from '../../../../infrastructure/adapter/usecase/post/PublishPostAdapter';
 import { RemovePostAdapter } from '../../../../infrastructure/adapter/usecase/post/RemovePostAdapter';
 import { ApiResponse } from '../../../../core/common/api/ApiResponse';
+import { UserRole } from '../../../../core/common/enums/UserEnums';
+import { HttpUserPayload } from '../auth/type/HttpAuthTypes';
+import { HttpUser } from '../auth/decorator/HttpUser';
+import { HttpAuth } from '../auth/decorator/HttpAuth';
 
 @Controller('posts')
 export class PostController {
@@ -39,9 +43,10 @@ export class PostController {
   ) {}
   
   @Post()
-  public async createPost(@Body() body: Record<string, string>): Promise<ApiResponse<PostUseCaseDto>> {
+  @HttpAuth(UserRole.AUTHOR)
+  public async createPost(@HttpUser() user: HttpUserPayload, @Body() body: Record<string, string>): Promise<ApiResponse<PostUseCaseDto>> {
     const adapter: CreatePostAdapter = await CreatePostAdapter.new({
-      executorId: body.executorId,
+      executorId: user.id,
       title     : body.title,
       imageId   : body.imageId,
       content   : body.content,

@@ -7,8 +7,8 @@ import { AuthModule } from './AuthModule';
 
 @Module({
   imports: [
-    InfrastructureModule,
     AuthModule,
+    InfrastructureModule,
     MediaModule,
     PostModule,
     UserModule,

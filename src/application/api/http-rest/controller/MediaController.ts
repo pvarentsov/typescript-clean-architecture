@@ -16,7 +16,7 @@ import { Readable } from 'stream';
 import { CreateMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/CreateMediaAdapter';
 import { MediaType } from '../../../../core/common/enums/MediaEnums';
 import { ApiResponse } from '../../../../core/common/api/ApiResponse';
-import { Roles } from '../auth/decorator/Roles';
+import { HttpRoles } from '../auth/decorator/HttpRoles';
 import { UserRole } from '../../../../core/common/enums/UserEnums';
 import IBusboy = busboy.Busboy;
 
@@ -41,7 +41,7 @@ export class MediaController {
   ) {}
   
   @Post()
-  @Roles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
+  @HttpRoles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
   public async createMedia(@Req() request: Request): Promise<ApiResponse<MediaUseCaseDto>> {
     return new Promise((resolve, reject): void => {
       const busboy: IBusboy      = new Busboy({
@@ -77,7 +77,7 @@ export class MediaController {
   }
   
   @Put(':mediaId')
-  @Roles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
+  @HttpRoles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
   public async editMedia(@Body() body: Record<string, string>, @Param('mediaId') mediaId: string): Promise<ApiResponse<MediaUseCaseDto>> {
     const adapter: EditMediaAdapter = await EditMediaAdapter.new({
       mediaId    : mediaId,
@@ -91,7 +91,7 @@ export class MediaController {
   }
   
   @Get()
-  @Roles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
+  @HttpRoles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
   public async getMediaList(@Query() query: Record<string, string>): Promise<ApiResponse<MediaUseCaseDto[]>> {
     const adapter: GetMediaListAdapter = await GetMediaListAdapter.new({
       executorId: query.executorId
@@ -103,7 +103,7 @@ export class MediaController {
   }
   
   @Get(':mediaId')
-  @Roles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
+  @HttpRoles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
   public async getMedia(@Query() query: Record<string, string>, @Param('mediaId') mediaId: string): Promise<ApiResponse<MediaUseCaseDto>> {
     const adapter: GetMediaAdapter = await GetMediaAdapter.new({
       executorId: query.executorId,
@@ -116,7 +116,7 @@ export class MediaController {
   }
   
   @Delete(':mediaId')
-  @Roles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
+  @HttpRoles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
   public async removeMedia(@Body() body: Record<string, string>, @Param('mediaId') mediaId: string): Promise<ApiResponse<void>> {
     const adapter: RemoveMediaAdapter = await RemoveMediaAdapter.new({
       executorId: body.executorId,

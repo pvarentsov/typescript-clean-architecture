@@ -1,7 +1,8 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Logger } from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Logger, UnauthorizedException } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { Exception } from '../../../../core/common/exception/Exception';
 import { ApiResponse } from '../../../../core/common/api/ApiResponse';
+import { Code } from '../../../../core/common/code/Code';
 
 @Catch()
 export class NestHttpExceptionFilter implements ExceptionFilter {
@@ -28,6 +29,9 @@ export class NestHttpExceptionFilter implements ExceptionFilter {
   private handleNestError(error: Error, errorResponse: ApiResponse<unknown>): ApiResponse<unknown> {
     if (error instanceof HttpException) {
       errorResponse = ApiResponse.error(error.getStatus(), error.message, null);
+    }
+    if (error instanceof UnauthorizedException) {
+      errorResponse = ApiResponse.error(Code.UNAUTHORIZED_ERROR.code, Code.UNAUTHORIZED_ERROR.message, null);
     }
     
     return errorResponse;

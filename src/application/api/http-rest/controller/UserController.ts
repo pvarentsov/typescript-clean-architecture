@@ -1,6 +1,6 @@
 import { CreateUserUseCase } from '../../../../core/domain/user/usecase/CreateUserUseCase';
 import { GetUserUseCase } from '../../../../core/domain/user/usecase/GetUserUseCase';
-import { Body, Controller, Get, Inject, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, UseGuards } from '@nestjs/common';
 import { UserDITokens } from '../../../../core/domain/user/di/UserDITokens';
 import { UserUseCaseDto } from '../../../../core/domain/user/usecase/dto/UserUseCaseDto';
 import { CreateUserAdapter } from '../../../../infrastructure/adapter/usecase/user/CreateUserAdapter';
@@ -8,7 +8,8 @@ import { GetUserAdapter } from '../../../../infrastructure/adapter/usecase/user/
 import { ApiResponse } from '../../../../core/common/api/ApiResponse';
 import { UserRole } from '../../../../core/common/enums/UserEnums';
 import { HttpJwtAuthGuard } from '../auth/guard/HttpJwtAuthGuard';
-import { HttpRequestWithUser } from '../auth/type/AuthTypes';
+import { HttpUserPayload } from '../auth/type/HttpAuthTypes';
+import { HttpUser } from '../auth/decorator/HttpUser';
 
 @Controller('users')
 export class UserController {
@@ -38,8 +39,8 @@ export class UserController {
   
   @Get('me')
   @UseGuards(HttpJwtAuthGuard)
-  public async getMe(@Req() request: HttpRequestWithUser): Promise<ApiResponse<UserUseCaseDto>> {
-    const adapter: GetUserAdapter = await GetUserAdapter.new({userId: request.user.id});
+  public async getMe(@HttpUser() httpUser: HttpUserPayload): Promise<ApiResponse<UserUseCaseDto>> {
+    const adapter: GetUserAdapter = await GetUserAdapter.new({userId: httpUser.id});
     const user: UserUseCaseDto = await this.getUserUseCase.execute(adapter);
     
     return ApiResponse.success(user);

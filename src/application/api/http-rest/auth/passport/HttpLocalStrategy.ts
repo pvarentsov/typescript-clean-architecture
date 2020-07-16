@@ -1,9 +1,11 @@
 import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { HttpAuthService } from '../HttpAuthService';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Nullable } from '../../../../../core/common/type/CommonTypes';
-import { HttpUser } from '../type/AuthTypes';
+import { HttpUserPayload } from '../type/HttpAuthTypes';
+import { Exception } from '../../../../../core/common/exception/Exception';
+import { Code } from '../../../../../core/common/code/Code';
 
 @Injectable()
 export class HttpLocalStrategy extends PassportStrategy(Strategy) {
@@ -15,10 +17,10 @@ export class HttpLocalStrategy extends PassportStrategy(Strategy) {
     });
   }
   
-  public async validate(username: string, password: string): Promise<HttpUser> {
-    const user: Nullable<HttpUser> = await this.authService.validateUser(username, password);
+  public async validate(username: string, password: string): Promise<HttpUserPayload> {
+    const user: Nullable<HttpUserPayload> = await this.authService.validateUser(username, password);
     if (!user) {
-      throw new UnauthorizedException();
+      throw Exception.new({code: Code.WRONG_CREDENTIALS_ERROR});
     }
     
     return user;

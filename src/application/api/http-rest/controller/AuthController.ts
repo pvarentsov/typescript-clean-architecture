@@ -1,7 +1,7 @@
 import { Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { ApiResponse } from '../../../../core/common/api/ApiResponse';
 import { HttpAuthService } from '../auth/HttpAuthService';
-import { HttpLoggedInUser, HttpRequestWithUser } from '../auth/type/AuthTypes';
+import { HttpLoggedInUser, HttpRequestWithUser } from '../auth/type/HttpAuthTypes';
 import { HttpLocalAuthGuard } from '../auth/guard/HttpLocalAuthGuard';
 
 @Controller('auth')

@@ -16,6 +16,7 @@ import { AuthController } from '../api/http-rest/controller/AuthController';
     JwtModule.register({
       secret: 'secret',
       signOptions: { expiresIn: '5m' },
+      
     }),
     UserModule,
   ],

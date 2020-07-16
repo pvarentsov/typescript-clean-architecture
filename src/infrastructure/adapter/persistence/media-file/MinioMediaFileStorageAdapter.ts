@@ -26,13 +26,13 @@ export class MinioMediaFileStorageAdapter implements MediaFileStoragePort {
     const bucket: string = 'images';
     const key: string    = `${v4()}.png`;
   
-    await this.client.putObject(bucket, key, uploadFile);
+    await this.client.putObject(bucket, key, uploadFile, {'content-type': 'image/png'});
     const fileStat: BucketItemStat = await this.client.statObject(bucket, key);
     
     const fileMetadata: FileMetadata = await FileMetadata.new({
       relativePath: `${bucket}/${key}`,
       size        : fileStat.size,
-      mimetype    : fileStat.metaData['Content-Type'],
+      mimetype    : fileStat.metaData['content-type'],
       ext         : 'png'
     });
     

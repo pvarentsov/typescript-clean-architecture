@@ -28,15 +28,15 @@ export class TypeOrmMediaMapper {
     return domainMedias.map(domainMedia => this.toOrmEntity(domainMedia));
   }
   
-  public static async toDomainEntity(ormMedia: TypeOrmMedia): Promise<Media> {
-    const metadata: FileMetadata = await FileMetadata.new({
+  public static toDomainEntity(ormMedia: TypeOrmMedia): Media {
+    const metadata: FileMetadata = new FileMetadata({
       relativePath: ormMedia.relativePath,
       size        : ormMedia.size,
       ext         : ormMedia.ext,
       mimetype    : ormMedia.mimetype,
     });
     
-    const domainMedia: Media = await Media.new({
+    const domainMedia: Media = new Media({
       ownerId  : ormMedia.ownerId,
       name     : ormMedia.name,
       type     : ormMedia.type,
@@ -50,8 +50,8 @@ export class TypeOrmMediaMapper {
     return domainMedia;
   }
   
-  public static async toDomainEntities(ormMedias: TypeOrmMedia[]): Promise<Media[]> {
-    return Promise.all(ormMedias.map(async ormMedia => this.toDomainEntity(ormMedia)));
+  public static toDomainEntities(ormMedias: TypeOrmMedia[]): Media[] {
+    return ormMedias.map(ormMedia => this.toDomainEntity(ormMedia));
   }
   
 }

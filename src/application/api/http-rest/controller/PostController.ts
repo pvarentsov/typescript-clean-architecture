@@ -13,6 +13,7 @@ import { GetPostListAdapter } from '../../../../infrastructure/adapter/usecase/p
 import { GetPostAdapter } from '../../../../infrastructure/adapter/usecase/post/GetPostAdapter';
 import { PublishPostAdapter } from '../../../../infrastructure/adapter/usecase/post/PublishPostAdapter';
 import { RemovePostAdapter } from '../../../../infrastructure/adapter/usecase/post/RemovePostAdapter';
+import { ApiResponse } from '../../../../core/common/api/ApiResponse';
 
 @Controller('posts')
 export class PostController {
@@ -38,7 +39,7 @@ export class PostController {
   ) {}
   
   @Post()
-  public async createPost(@Body() body: Record<string, string>): Promise<PostUseCaseDto> {
+  public async createPost(@Body() body: Record<string, string>): Promise<ApiResponse<PostUseCaseDto>> {
     const adapter: CreatePostAdapter = await CreatePostAdapter.new({
       executorId: body.executorId,
       title     : body.title,
@@ -48,11 +49,11 @@ export class PostController {
     
     const createdPost: PostUseCaseDto = await this.createPostUseCase.execute(adapter);
     
-    return createdPost;
+    return ApiResponse.success(createdPost);
   }
   
   @Put(':postId')
-  public async editPost(@Body() body: Record<string, string>, @Param('postId') postId: string): Promise<PostUseCaseDto> {
+  public async editPost(@Body() body: Record<string, string>, @Param('postId') postId: string): Promise<ApiResponse<PostUseCaseDto>> {
     const adapter: EditPostAdapter = await EditPostAdapter.new({
       postId    : postId,
       executorId: body.executorId,
@@ -63,22 +64,22 @@ export class PostController {
     
     const editedPost: PostUseCaseDto = await this.editPostUseCase.execute(adapter);
     
-    return editedPost;
+    return ApiResponse.success(editedPost);
   }
   
   @Get()
-  public async getPostList(@Query() query: Record<string, string>): Promise<PostUseCaseDto[]> {
+  public async getPostList(@Query() query: Record<string, string>): Promise<ApiResponse<PostUseCaseDto[]>> {
     const adapter: GetPostListAdapter = await GetPostListAdapter.new({
       executorId: query.executorId
     });
     
     const posts: PostUseCaseDto[] = await this.getPostListUseCase.execute(adapter);
     
-    return posts;
+    return ApiResponse.success(posts);
   }
   
   @Get(':postId')
-  public async getPost(@Query() query: Record<string, string>, @Param('postId') postId: string): Promise<PostUseCaseDto> {
+  public async getPost(@Query() query: Record<string, string>, @Param('postId') postId: string): Promise<ApiResponse<PostUseCaseDto>> {
     const adapter: GetPostAdapter = await GetPostAdapter.new({
       executorId: query.executorId,
       postId    : postId,
@@ -86,11 +87,11 @@ export class PostController {
     
     const post: PostUseCaseDto = await this.getPostUseCase.execute(adapter);
     
-    return post;
+    return ApiResponse.success(post);
   }
   
   @Post(':postId/publish')
-  public async publishPost(@Body() body: Record<string, string>, @Param('postId') postId: string): Promise<PostUseCaseDto> {
+  public async publishPost(@Body() body: Record<string, string>, @Param('postId') postId: string): Promise<ApiResponse<PostUseCaseDto>> {
     const adapter: PublishPostAdapter = await PublishPostAdapter.new({
       executorId: body.executorId,
       postId    : postId,
@@ -98,11 +99,11 @@ export class PostController {
     
     const post: PostUseCaseDto = await this.publishPostUseCase.execute(adapter);
     
-    return post;
+    return ApiResponse.success(post);
   }
   
   @Delete(':postId')
-  public async removePost(@Body() body: Record<string, string>, @Param('postId') postId: string): Promise<Record<string, string>> {
+  public async removePost(@Body() body: Record<string, string>, @Param('postId') postId: string): Promise<ApiResponse<void>> {
     const adapter: RemovePostAdapter = await RemovePostAdapter.new({
       executorId: body.executorId,
       postId    : postId,
@@ -110,7 +111,7 @@ export class PostController {
     
     await this.removePostUseCase.execute(adapter);
     
-    return {};
+    return ApiResponse.success();
   }
   
 }

@@ -15,6 +15,7 @@ import { Request } from 'express';
 import { Readable } from 'stream';
 import { CreateMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/CreateMediaAdapter';
 import { MediaType } from '../../../../core/common/enums/MediaEnums';
+import { ApiResponse } from '../../../../core/common/api/ApiResponse';
 import IBusboy = busboy.Busboy;
 
 @Controller('medias')
@@ -38,7 +39,7 @@ export class MediaController {
   ) {}
   
   @Post()
-  public async createMedia(@Req() request: Request): Promise<MediaUseCaseDto> {
+  public async createMedia(@Req() request: Request): Promise<ApiResponse<MediaUseCaseDto>> {
     return new Promise((resolve, reject): void => {
       const busboy: IBusboy      = new Busboy({
         headers: request.headers,
@@ -58,7 +59,7 @@ export class MediaController {
           });
   
           const createdMedia: MediaUseCaseDto = await this.createMediaUseCase.execute(adapter);
-          resolve(createdMedia);
+          resolve(ApiResponse.success(createdMedia));
       
         } catch (err) {
           
@@ -73,7 +74,7 @@ export class MediaController {
   }
   
   @Put(':mediaId')
-  public async editMedia(@Body() body: Record<string, string>, @Param('mediaId') mediaId: string): Promise<MediaUseCaseDto> {
+  public async editMedia(@Body() body: Record<string, string>, @Param('mediaId') mediaId: string): Promise<ApiResponse<MediaUseCaseDto>> {
     const adapter: EditMediaAdapter = await EditMediaAdapter.new({
       mediaId    : mediaId,
       executorId : body.executorId,
@@ -82,22 +83,22 @@ export class MediaController {
     
     const editedMedia: MediaUseCaseDto = await this.editMediaUseCase.execute(adapter);
     
-    return editedMedia;
+    return ApiResponse.success(editedMedia);
   }
   
   @Get()
-  public async getMediaList(@Query() query: Record<string, string>): Promise<MediaUseCaseDto[]> {
+  public async getMediaList(@Query() query: Record<string, string>): Promise<ApiResponse<MediaUseCaseDto[]>> {
     const adapter: GetMediaListAdapter = await GetMediaListAdapter.new({
       executorId: query.executorId
     });
     
     const medias: MediaUseCaseDto[] = await this.getMediaListUseCase.execute(adapter);
     
-    return medias;
+    return ApiResponse.success(medias);
   }
   
   @Get(':mediaId')
-  public async getMedia(@Query() query: Record<string, string>, @Param('mediaId') mediaId: string): Promise<MediaUseCaseDto> {
+  public async getMedia(@Query() query: Record<string, string>, @Param('mediaId') mediaId: string): Promise<ApiResponse<MediaUseCaseDto>> {
     const adapter: GetMediaAdapter = await GetMediaAdapter.new({
       executorId: query.executorId,
       mediaId    : mediaId,
@@ -105,11 +106,11 @@ export class MediaController {
     
     const media: MediaUseCaseDto = await this.getMediaUseCase.execute(adapter);
     
-    return media;
+    return ApiResponse.success(media);
   }
   
   @Delete(':mediaId')
-  public async removeMedia(@Body() body: Record<string, string>, @Param('mediaId') mediaId: string): Promise<Record<string, string>> {
+  public async removeMedia(@Body() body: Record<string, string>, @Param('mediaId') mediaId: string): Promise<ApiResponse<void>> {
     const adapter: RemoveMediaAdapter = await RemoveMediaAdapter.new({
       executorId: body.executorId,
       mediaId    : mediaId,
@@ -117,7 +118,7 @@ export class MediaController {
     
     await this.removeMediaUseCase.execute(adapter);
     
-    return {};
+    return ApiResponse.success();
   }
   
   private handleBusboyFinishEvent = (

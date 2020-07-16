@@ -26,8 +26,8 @@ export class TypeOrmPostMapper {
     return domainPosts.map(domainPost => this.toOrmEntity(domainPost));
   }
   
-  public static async toDomainEntity(ormPost: TypeOrmPost): Promise<Post> {
-    const domainPost: Post = await Post.new({
+  public static toDomainEntity(ormPost: TypeOrmPost): Post {
+    const domainPost: Post = new Post({
       ownerId    : ormPost.ownerId,
       title      : ormPost.title,
       imageId    : ormPost.imageId,
@@ -43,8 +43,8 @@ export class TypeOrmPostMapper {
     return domainPost;
   }
   
-  public static async toDomainEntities(ormPosts: TypeOrmPost[]): Promise<Post[]> {
-    return Promise.all(ormPosts.map(async ormPost => this.toDomainEntity(ormPost)));
+  public static toDomainEntities(ormPosts: TypeOrmPost[]): Post[] {
+    return ormPosts.map(ormPost => this.toDomainEntity(ormPost));
   }
   
 }

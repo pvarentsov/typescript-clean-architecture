@@ -31,7 +31,7 @@ export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implem
     const ormEntity: Optional<TypeOrmPost> = await query.getOne();
     
     if (ormEntity) {
-      domainEntity = await TypeOrmPostMapper.toDomainEntity(ormEntity);
+      domainEntity = TypeOrmPostMapper.toDomainEntity(ormEntity);
     }
     
     return domainEntity;
@@ -53,7 +53,7 @@ export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implem
     }
     
     const ormPosts: TypeOrmPost[] = await query.getMany();
-    const domainPosts: Post[] = await TypeOrmPostMapper.toDomainEntities(ormPosts);
+    const domainPosts: Post[] = TypeOrmPostMapper.toDomainEntities(ormPosts);
     
     return domainPosts;
   }

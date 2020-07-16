@@ -1,0 +1,49 @@
+import { Module, Provider } from '@nestjs/common';
+import { UserDITokens } from '../../core/domain/user/di/UserDITokens';
+import { Connection } from 'typeorm';
+import { TypeOrmUserRepositoryAdapter } from '../../infrastructure/adapter/persistence/typeorm/repository/user/TypeOrmUserRepositoryAdapter';
+import { CreateUserService } from '../../core/service/user/usecase/CreateUserService';
+import { UserController } from '../api/http-rest/controller/UserController';
+import { GetUserService } from '../../core/service/user/usecase/GetUserService';
+import { HandleGetUserPreviewQueryService } from '../../core/service/user/handler/HandleGetUserPreviewQueryService';
+
+const persistenceProviders: Provider[] = [
+  {
+    provide   : UserDITokens.UserRepository,
+    useFactory: connection => connection.getCustomRepository(TypeOrmUserRepositoryAdapter),
+    inject    : [Connection]
+  }
+];
+
+const useCaseProviders: Provider[] = [
+  {
+    provide   : UserDITokens.CreateUserUseCase,
+    useFactory: (userRepository) => new CreateUserService(userRepository),
+    inject    : [UserDITokens.UserRepository]
+  },
+  {
+    provide   : UserDITokens.GetUserUseCase,
+    useFactory: (userRepository) => new GetUserService(userRepository),
+    inject    : [UserDITokens.UserRepository]
+  },
+];
+
+const handlerProviders: Provider[] = [
+  {
+    provide   : UserDITokens.GetUserPreviewQueryHandler,
+    useFactory: (userRepository) => new HandleGetUserPreviewQueryService(userRepository),
+    inject    : [UserDITokens.UserRepository]
+  }
+];
+
+@Module({
+  controllers: [
+    UserController
+  ],
+  providers: [
+    ...persistenceProviders,
+    ...useCaseProviders,
+    ...handlerProviders,
+  ]
+})
+export class UserModule {}

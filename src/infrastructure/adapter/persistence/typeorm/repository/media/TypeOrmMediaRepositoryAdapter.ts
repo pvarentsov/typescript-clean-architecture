@@ -27,7 +27,7 @@ export class TypeOrmMediaRepositoryAdapter extends Repository<TypeOrmMedia> impl
     const ormEntity: Optional<TypeOrmMedia> = await query.getOne();
     
     if (ormEntity) {
-      domainEntity = await TypeOrmMediaMapper.toDomainEntity(ormEntity);
+      domainEntity = TypeOrmMediaMapper.toDomainEntity(ormEntity);
     }
     
     return domainEntity;
@@ -49,7 +49,7 @@ export class TypeOrmMediaRepositoryAdapter extends Repository<TypeOrmMedia> impl
     }
     
     const ormMedias: TypeOrmMedia[] = await query.getMany();
-    const domainMedias: Media[] = await TypeOrmMediaMapper.toDomainEntities(ormMedias);
+    const domainMedias: Media[] = TypeOrmMediaMapper.toDomainEntities(ormMedias);
     
     return domainMedias;
   }

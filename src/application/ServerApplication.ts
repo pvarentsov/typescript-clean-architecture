@@ -1,6 +1,6 @@
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { NestFactory } from '@nestjs/core';
-import { RootModule } from './di/RootModule';
+import { RootModule } from './di/.RootModule';
 import { Logger } from '@nestjs/common';
 
 export class ServerApplication {

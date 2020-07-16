@@ -3,23 +3,34 @@ import { RemoveMediaUseCase } from '../../../../core/domain/media/usecase/Remove
 import { GetMediaUseCase } from '../../../../core/domain/media/usecase/GetMediaUseCase';
 import { GetMediaListUseCase } from '../../../../core/domain/media/usecase/GetMediaListUseCase';
 import { EditMediaUseCase } from '../../../../core/domain/media/usecase/EditMediaUseCase';
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Post, Put, Query, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Inject,
+  Param,
+  Post,
+  Put,
+  Query,
+  Req,
+  UploadedFile,
+  UseInterceptors
+} from '@nestjs/common';
 import { MediaDITokens } from '../../../../core/domain/media/di/MediaDITokens';
 import { MediaUseCaseDto } from '../../../../core/domain/media/usecase/dto/MediaUseCaseDto';
 import { EditMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/EditMediaAdapter';
 import { GetMediaListAdapter } from '../../../../infrastructure/adapter/usecase/media/GetMediaListAdapter';
 import { GetMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/GetMediaAdapter';
 import { RemoveMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/RemoveMediaAdapter';
-import * as Busboy from 'busboy';
-import { Readable } from 'stream';
 import { CreateMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/CreateMediaAdapter';
 import { CoreApiResponse } from '../../../../core/common/api/CoreApiResponse';
 import { UserRole } from '../../../../core/common/enums/UserEnums';
 import { HttpAuth } from '../auth/decorator/HttpAuth';
 import { HttpRequestWithUser, HttpUserPayload } from '../auth/type/HttpAuthTypes';
 import { HttpRestApiModelCreateMediaQuery } from './documentation/media/HttpRestApiModelCreateMediaQuery';
-import { Exception } from '../../../../core/common/exception/Exception';
-import { Code } from '../../../../core/common/code/Code';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { HttpRestApiModelCreateMediaBody } from './documentation/media/HttpRestApiModelCreateMediaBody';
 import { HttpRestApiResponseMedia } from './documentation/media/HttpRestApiResponseMedia';
@@ -28,7 +39,7 @@ import { parse } from 'path';
 import { HttpRestApiModelEditMediaBody } from './documentation/media/HttpRestApiModelEditMediaBody';
 import { HttpUser } from '../auth/decorator/HttpUser';
 import { HttpRestApiResponseMediaList } from './documentation/media/HttpRestApiResponseMediaList';
-import IBusboy = busboy.Busboy;
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('medias')
 @ApiTags('medias')
@@ -54,6 +65,7 @@ export class MediaController {
   @Post()
   @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
+  @UseInterceptors(FileInterceptor('file'))
   @ApiBearerAuth()
   @ApiConsumes('multipart/form-data')
   @ApiBody({type: HttpRestApiModelCreateMediaBody})
@@ -61,39 +73,19 @@ export class MediaController {
   @ApiQuery({name: 'type', enum: MediaType})
   @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponseMedia})
   public async createMedia(@Req() request: HttpRequestWithUser,
+                           @UploadedFile() file: MulterFile,
                            @Query() query: HttpRestApiModelCreateMediaQuery): Promise<CoreApiResponse<MediaUseCaseDto>> {
-    
-    return new Promise((resolve, reject): void => {
-      const busboy: IBusboy = new Busboy({
-        headers: request.headers,
-        limits : {files: 1}
-      });
-      const fieldNames: string[] = [];
   
-      busboy.on('file', async (fieldName: string, fileStream: Readable, fileName: string): Promise<void> => {
-        try {
-          fieldNames.push(fieldName);
-          
-          const adapter: CreateMediaAdapter = await CreateMediaAdapter.new({
-            executorId: request.user.id,
-            name      : query.name || parse(fileName).name,
-            type      : query.type,
-            file      : fileStream,
-          });
-  
-          const createdMedia: MediaUseCaseDto = await this.createMediaUseCase.execute(adapter);
-          resolve(CoreApiResponse.success(createdMedia));
-      
-        } catch (err) {
-          
-          fileStream.resume();
-          reject(err);
-        }
-      });
-  
-      this.handleBusboyFinishEvent(busboy, fieldNames, reject);
-      request.pipe(busboy);
+    const adapter: CreateMediaAdapter = await CreateMediaAdapter.new({
+      executorId: request.user.id,
+      name      : query.name || parse(file.originalname).name,
+      type      : query.type,
+      file      : file.buffer,
     });
+    
+    const createdMedia: MediaUseCaseDto = await this.createMediaUseCase.execute(adapter);
+    
+    return CoreApiResponse.success(createdMedia);
   }
   
   @Put(':mediaId')
@@ -153,12 +145,7 @@ export class MediaController {
     return CoreApiResponse.success();
   }
   
-  private handleBusboyFinishEvent = (busboy: IBusboy, fieldNames: string[], reject: (err: Error) => void): void => {
-    busboy.on('finish', (): void => {
-      if (fieldNames.length === 0) {
-        reject(Exception.new({code: Code.BAD_REQUEST_ERROR, overrideMessage: 'Request does not have file.'}));
-      }
-    });
-  };
-  
 }
+
+
+type MulterFile = { originalname: string, mimetype: string, size: number, buffer: Buffer };

@@ -11,7 +11,7 @@ export class NestHttpExceptionFilter implements ExceptionFilter {
     const request: Request = host.switchToHttp().getRequest();
     const response: Response = host.switchToHttp().getResponse<Response>();
     
-    let errorResponse: CoreApiResponse<unknown> = CoreApiResponse.error();
+    let errorResponse: CoreApiResponse<unknown> = CoreApiResponse.error(Code.INTERNAL_ERROR.code, error.message);
   
     errorResponse = this.handleNestError(error, errorResponse);
     errorResponse = this.handleCoreException(error, errorResponse);

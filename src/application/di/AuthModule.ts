@@ -15,7 +15,7 @@ import { AuthController } from '../api/http-rest/controller/AuthController';
     PassportModule,
     JwtModule.register({
       secret: 'secret',
-      signOptions: { expiresIn: '5m' },
+      signOptions: { expiresIn: '60m' },
       
     }),
     UserModule,

@@ -11,7 +11,7 @@ export class TypeOrmUserRepositoryAdapter extends Repository<TypeOrmUser> implem
   
   private readonly userAlias: string = 'user';
   
-  private readonly excludeRemovedUserClause: string = `${this.userAlias}.removedAt IS NULL`;
+  private readonly excludeRemovedUserClause: string = `"${this.userAlias}"."removedAt" IS NULL`;
   
   public async findUser(by: {id?: string, email?: string}, options: RepositoryFindOptions = {}): Promise<Optional<User>> {
     let domainEntity: Optional<User>;
@@ -73,10 +73,10 @@ export class TypeOrmUserRepositoryAdapter extends Repository<TypeOrmUser> implem
   
   private extendQueryWithByProperties(by: {id?: string, email?: string}, query: SelectQueryBuilder<TypeOrmUser>): void {
     if (by.id) {
-      query.andWhere(`${this.userAlias}.id = :id`, {id: by.id});
+      query.andWhere(`"${this.userAlias}"."id" = :id`, {id: by.id});
     }
     if (by.email) {
-      query.andWhere(`${this.userAlias}.email = :email`, {email: by.email});
+      query.andWhere(`"${this.userAlias}"."email" = :email`, {email: by.email});
     }
   }
   

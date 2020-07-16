@@ -3,7 +3,6 @@ import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { UseCaseValidatableAdapter } from '../../../../core/common/adapter/usecase/UseCaseValidatableAdapter';
 import { CreateMediaPort } from '../../../../core/domain/media/port/usecase/CreateMediaPort';
 import { MediaType } from '../../../../core/common/enums/MediaEnums';
-import { Readable } from 'stream';
 
 @Exclude()
 export class CreateMediaAdapter extends UseCaseValidatableAdapter implements CreateMediaPort {
@@ -22,7 +21,7 @@ export class CreateMediaAdapter extends UseCaseValidatableAdapter implements Cre
   
   @Expose()
   @IsDefined()
-  public file: Buffer|Readable;
+  public file: Buffer|NodeJS.ReadableStream;
   
   public static async new(payload: CreateMediaPort): Promise<CreateMediaAdapter> {
     const adapter: CreateMediaAdapter = plainToClass(CreateMediaAdapter, payload);

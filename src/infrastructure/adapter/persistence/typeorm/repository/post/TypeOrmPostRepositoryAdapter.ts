@@ -15,7 +15,7 @@ export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implem
   
   private readonly postAlias: string = 'post';
   
-  private readonly excludeRemovedPostClause: string = `${this.postAlias}.removedAt IS NULL`;
+  private readonly excludeRemovedPostClause: string = `"${this.postAlias}"."removedAt" IS NULL`;
   
   public async findPost(by: {id?: string}, options: RepositoryFindOptions = {}): Promise<Optional<Post>> {
     let domainEntity: Optional<Post>;
@@ -114,10 +114,10 @@ export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implem
   
   private extendQueryWithByProperties(by: {id?: string, ownerId?: string}, query: SelectQueryBuilder<TypeOrmPost>): void {
     if (by.id) {
-      query.andWhere(`${this.postAlias}.id = :id`, {id: by.id});
+      query.andWhere(`"${this.postAlias}"."id" = :id`, {id: by.id});
     }
     if (by.ownerId) {
-      query.andWhere(`${this.postAlias}.ownerId = :ownerId`, {ownerId: by.ownerId});
+      query.andWhere(`"${this.postAlias}"."ownerId" = :ownerId`, {ownerId: by.ownerId});
     }
   }
   

@@ -22,7 +22,7 @@ export class RemoveMediaService implements RemoveMediaUseCase {
     }
     
     await this.mediaRepository.removeMedia(media);
-    await this.eventBus.sendEvent(MediaRemovedEvent);
+    await this.eventBus.sendEvent(MediaRemovedEvent.new(media.getId(), media.getOwnerId(), media.getType()));
   }
   
 }

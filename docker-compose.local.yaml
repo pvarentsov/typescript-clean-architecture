@@ -16,7 +16,7 @@ services:
   minio:
     image: minio/minio
     entrypoint: sh
-    command: -c 'mkdir -p /export/media && /usr/bin/minio server /export'
+    command: -c 'mkdir -p /export/images && /usr/bin/minio server /export'
     env_file:
       - env/local.minio.env
     ports:

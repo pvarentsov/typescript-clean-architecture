@@ -11,7 +11,7 @@ export class TypeOrmMediaRepositoryAdapter extends Repository<TypeOrmMedia> impl
   
   private readonly mediaAlias: string = 'media';
   
-  private readonly excludeRemovedMediaClause: string = `${this.mediaAlias}.removedAt IS NULL`;
+  private readonly excludeRemovedMediaClause: string = `"${this.mediaAlias}"."removedAt" IS NULL`;
   
   public async findMedia(by: {id?: string}, options: RepositoryFindOptions = {}): Promise<Optional<Media>> {
     let domainEntity: Optional<Media>;
@@ -106,10 +106,10 @@ export class TypeOrmMediaRepositoryAdapter extends Repository<TypeOrmMedia> impl
   
   private extendQueryWithByProperties(by: {id?: string, ownerId?: string}, query: SelectQueryBuilder<TypeOrmMedia>): void {
     if (by.id) {
-      query.andWhere(`${this.mediaAlias}.id = :id`, {id: by.id});
+      query.andWhere(`"${this.mediaAlias}"."id" = :id`, {id: by.id});
     }
     if (by.ownerId) {
-      query.andWhere(`${this.mediaAlias}.ownerId = :ownerId`, {ownerId: by.ownerId});
+      query.andWhere(`"${this.mediaAlias}"."ownerId" = :ownerId`, {ownerId: by.ownerId});
     }
   }
   

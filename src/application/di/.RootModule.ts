@@ -7,11 +7,11 @@ import { AuthModule } from './AuthModule';
 
 @Module({
   imports: [
-    AuthModule,
     InfrastructureModule,
+    AuthModule,
+    UserModule,
     MediaModule,
     PostModule,
-    UserModule,
   ]
 })
 export class RootModule {}

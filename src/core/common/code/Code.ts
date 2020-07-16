@@ -12,6 +12,11 @@ export class Code {
     message: 'Success.'
   };
   
+  public static BAD_REQUEST_ERROR: CodeDescription = {
+    code: 400,
+    message: 'Bad request.'
+  };
+  
   public static UNAUTHORIZED_ERROR: CodeDescription = {
     code: 401,
     message: 'Unauthorized error.'

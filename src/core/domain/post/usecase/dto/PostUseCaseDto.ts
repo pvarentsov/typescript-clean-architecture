@@ -21,17 +21,20 @@ export class PostUseCaseDto {
   @Expose()
   public status: PostStatus;
   
-  @Expose()
-  public createdAt: Date;
+  public createdAt: number;
   
-  @Expose()
-  public editedAt: Nullable<Date>;
+  public editedAt: Nullable<number>;
   
-  @Expose()
-  public publishedAt: Nullable<Date>;
+  public publishedAt: Nullable<number>;
   
   public static newFromPost(post: Post): PostUseCaseDto {
-    return plainToClass(PostUseCaseDto, post);
+    const dto: PostUseCaseDto =  plainToClass(PostUseCaseDto, post);
+    
+    dto.createdAt = post.getCreatedAt().getTime();
+    dto.editedAt = post.getEditedAt()?.getTime() || null;
+    dto.publishedAt = post.getPublishedAt()?.getTime() || null;
+    
+    return dto;
   }
   
   public static newListFromPosts(posts: Post[]): PostUseCaseDto[] {

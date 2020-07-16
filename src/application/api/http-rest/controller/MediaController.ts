@@ -3,7 +3,7 @@ import { RemoveMediaUseCase } from '../../../../core/domain/media/usecase/Remove
 import { GetMediaUseCase } from '../../../../core/domain/media/usecase/GetMediaUseCase';
 import { GetMediaListUseCase } from '../../../../core/domain/media/usecase/GetMediaListUseCase';
 import { EditMediaUseCase } from '../../../../core/domain/media/usecase/EditMediaUseCase';
-import { Body, Controller, Delete, Get, Inject, Param, Post, Put, Query, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Post, Put, Query, Req } from '@nestjs/common';
 import { MediaDITokens } from '../../../../core/domain/media/di/MediaDITokens';
 import { MediaUseCaseDto } from '../../../../core/domain/media/usecase/dto/MediaUseCaseDto';
 import { EditMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/EditMediaAdapter';
@@ -11,16 +11,27 @@ import { GetMediaListAdapter } from '../../../../infrastructure/adapter/usecase/
 import { GetMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/GetMediaAdapter';
 import { RemoveMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/RemoveMediaAdapter';
 import * as Busboy from 'busboy';
-import { Request } from 'express';
 import { Readable } from 'stream';
 import { CreateMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/CreateMediaAdapter';
-import { MediaType } from '../../../../core/common/enums/MediaEnums';
-import { ApiResponse } from '../../../../core/common/api/ApiResponse';
-import { HttpRoles } from '../auth/decorator/HttpRoles';
+import { CoreApiResponse } from '../../../../core/common/api/CoreApiResponse';
 import { UserRole } from '../../../../core/common/enums/UserEnums';
+import { HttpAuth } from '../auth/decorator/HttpAuth';
+import { HttpRequestWithUser, HttpUserPayload } from '../auth/type/HttpAuthTypes';
+import { HttpRestApiModelCreateMediaQuery } from './documentation/media/HttpRestApiModelCreateMediaQuery';
+import { Exception } from '../../../../core/common/exception/Exception';
+import { Code } from '../../../../core/common/code/Code';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { HttpRestApiModelCreateMediaBody } from './documentation/media/HttpRestApiModelCreateMediaBody';
+import { HttpRestApiResponseMedia } from './documentation/media/HttpRestApiResponseMedia';
+import { MediaType } from '../../../../core/common/enums/MediaEnums';
+import { parse } from 'path';
+import { HttpRestApiModelEditMediaBody } from './documentation/media/HttpRestApiModelEditMediaBody';
+import { HttpUser } from '../auth/decorator/HttpUser';
+import { HttpRestApiResponseMediaList } from './documentation/media/HttpRestApiResponseMediaList';
 import IBusboy = busboy.Busboy;
 
 @Controller('medias')
+@ApiTags('medias')
 export class MediaController {
   
   constructor(
@@ -41,32 +52,41 @@ export class MediaController {
   ) {}
   
   @Post()
-  @HttpRoles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
-  public async createMedia(@Req() request: Request): Promise<ApiResponse<MediaUseCaseDto>> {
+  @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
+  @HttpCode(HttpStatus.OK)
+  @ApiBearerAuth()
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({type: HttpRestApiModelCreateMediaBody})
+  @ApiQuery({name: 'name', type: 'string', required: false})
+  @ApiQuery({name: 'type', enum: MediaType})
+  @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponseMedia})
+  public async createMedia(@Req() request: HttpRequestWithUser,
+                           @Query() query: HttpRestApiModelCreateMediaQuery): Promise<CoreApiResponse<MediaUseCaseDto>> {
+    
     return new Promise((resolve, reject): void => {
-      const busboy: IBusboy      = new Busboy({
+      const busboy: IBusboy = new Busboy({
         headers: request.headers,
         limits : {files: 1}
       });
       const fieldNames: string[] = [];
   
-      busboy.on('file', async (fieldName: string, fileInputStream: Readable): Promise<void> => {
+      busboy.on('file', async (fieldName: string, fileStream: Readable, fileName: string): Promise<void> => {
         try {
           fieldNames.push(fieldName);
           
           const adapter: CreateMediaAdapter = await CreateMediaAdapter.new({
-            executorId: request.query.executorId as string,
-            name      : request.query.name as string,
-            type      : request.query.type as MediaType,
-            file      : fileInputStream,
+            executorId: request.user.id,
+            name      : query.name || parse(fileName).name,
+            type      : query.type,
+            file      : fileStream,
           });
   
           const createdMedia: MediaUseCaseDto = await this.createMediaUseCase.execute(adapter);
-          resolve(ApiResponse.success(createdMedia));
+          resolve(CoreApiResponse.success(createdMedia));
       
         } catch (err) {
           
-          fileInputStream.resume();
+          fileStream.resume();
           reject(err);
         }
       });
@@ -77,67 +97,66 @@ export class MediaController {
   }
   
   @Put(':mediaId')
-  @HttpRoles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
-  public async editMedia(@Body() body: Record<string, string>, @Param('mediaId') mediaId: string): Promise<ApiResponse<MediaUseCaseDto>> {
+  @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
+  @HttpCode(HttpStatus.OK)
+  @ApiBearerAuth()
+  @ApiBody({type: HttpRestApiModelEditMediaBody})
+  @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponseMedia})
+  public async editMedia(@HttpUser() user: HttpUserPayload,
+                         @Body() body: HttpRestApiModelEditMediaBody,
+                         @Param('mediaId') mediaId: string): Promise<CoreApiResponse<MediaUseCaseDto>> {
+    
     const adapter: EditMediaAdapter = await EditMediaAdapter.new({
       mediaId    : mediaId,
-      executorId : body.executorId,
+      executorId : user.id,
       name       : body.name,
     });
     
     const editedMedia: MediaUseCaseDto = await this.editMediaUseCase.execute(adapter);
     
-    return ApiResponse.success(editedMedia);
+    return CoreApiResponse.success(editedMedia);
   }
   
   @Get()
-  @HttpRoles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
-  public async getMediaList(@Query() query: Record<string, string>): Promise<ApiResponse<MediaUseCaseDto[]>> {
-    const adapter: GetMediaListAdapter = await GetMediaListAdapter.new({
-      executorId: query.executorId
-    });
-    
+  @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
+  @HttpCode(HttpStatus.OK)
+  @ApiBearerAuth()
+  @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponseMediaList})
+  public async getMediaList(@HttpUser() user: HttpUserPayload): Promise<CoreApiResponse<MediaUseCaseDto[]>> {
+    const adapter: GetMediaListAdapter = await GetMediaListAdapter.new({executorId: user.id});
     const medias: MediaUseCaseDto[] = await this.getMediaListUseCase.execute(adapter);
     
-    return ApiResponse.success(medias);
+    return CoreApiResponse.success(medias);
   }
   
   @Get(':mediaId')
-  @HttpRoles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
-  public async getMedia(@Query() query: Record<string, string>, @Param('mediaId') mediaId: string): Promise<ApiResponse<MediaUseCaseDto>> {
-    const adapter: GetMediaAdapter = await GetMediaAdapter.new({
-      executorId: query.executorId,
-      mediaId    : mediaId,
-    });
-    
+  @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
+  @HttpCode(HttpStatus.OK)
+  @ApiBearerAuth()
+  @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponseMedia})
+  public async getMedia(@HttpUser() user: HttpUserPayload, @Param('mediaId') mediaId: string): Promise<CoreApiResponse<MediaUseCaseDto>> {
+    const adapter: GetMediaAdapter = await GetMediaAdapter.new({executorId: user.id, mediaId: mediaId,});
     const media: MediaUseCaseDto = await this.getMediaUseCase.execute(adapter);
     
-    return ApiResponse.success(media);
+    return CoreApiResponse.success(media);
   }
   
   @Delete(':mediaId')
-  @HttpRoles(UserRole.ADMIN, UserRole.AUTHOR, UserRole.GUEST)
-  public async removeMedia(@Body() body: Record<string, string>, @Param('mediaId') mediaId: string): Promise<ApiResponse<void>> {
-    const adapter: RemoveMediaAdapter = await RemoveMediaAdapter.new({
-      executorId: body.executorId,
-      mediaId    : mediaId,
-    });
-    
+  @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
+  @HttpCode(HttpStatus.OK)
+  @ApiBearerAuth()
+  @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponseMedia})
+  public async removeMedia(@HttpUser() user: HttpUserPayload, @Param('mediaId') mediaId: string): Promise<CoreApiResponse<void>> {
+    const adapter: RemoveMediaAdapter = await RemoveMediaAdapter.new({executorId: user.id, mediaId: mediaId,});
     await this.removeMediaUseCase.execute(adapter);
     
-    return ApiResponse.success();
+    return CoreApiResponse.success();
   }
   
-  private handleBusboyFinishEvent = (
-    busboy: IBusboy,
-    fieldNames: string[],
-    reject: (err: Error) => void
-  
-  ): void => {
-    
+  private handleBusboyFinishEvent = (busboy: IBusboy, fieldNames: string[], reject: (err: Error) => void): void => {
     busboy.on('finish', (): void => {
       if (fieldNames.length === 0) {
-        reject(new Error('Request does not have any files'));
+        reject(Exception.new({code: Code.BAD_REQUEST_ERROR, overrideMessage: 'Request does not have file.'}));
       }
     });
   };

@@ -1,7 +1,7 @@
 import { Code } from '../code/Code';
 import { Nullable } from '../type/CommonTypes';
 
-export class ApiResponse<TData> {
+export class CoreApiResponse<TData> {
   
   public readonly code: number;
   
@@ -18,17 +18,17 @@ export class ApiResponse<TData> {
     this.timestamp = Date.now();
   }
   
-  public static success<TData>(data?: TData, message?: string): ApiResponse<TData> {
+  public static success<TData>(data?: TData, message?: string): CoreApiResponse<TData> {
     const resultCode: number = Code.SUCCESS.code;
     const resultMessage: string = message || Code.SUCCESS.message;
     
-    return new ApiResponse(resultCode, resultMessage, data);
+    return new CoreApiResponse(resultCode, resultMessage, data);
   }
   
-  public static error<TData>(code?: number, message?: string, data?: TData): ApiResponse<TData> {
+  public static error<TData>(code?: number, message?: string, data?: TData): CoreApiResponse<TData> {
     const resultCode: number = code || Code.INTERNAL_ERROR.code;
     const resultMessage: string = message || Code.INTERNAL_ERROR.message;
     
-    return new ApiResponse(resultCode, resultMessage, data);
+    return new CoreApiResponse(resultCode, resultMessage, data);
   }
 }

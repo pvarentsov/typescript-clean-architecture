@@ -2,6 +2,7 @@ import { MediaType } from '../../../../common/enums/MediaEnums';
 import { Nullable } from '../../../../common/type/CommonTypes';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { Media } from '../../entity/Media';
+import { resolve } from 'url';
 
 @Exclude()
 export class MediaUseCaseDto {
@@ -18,27 +19,27 @@ export class MediaUseCaseDto {
   @Expose()
   public type: MediaType;
   
-  @Expose()
-  public relativePath: string;
+  public url: string;
   
-  @Expose()
-  public createdAt: Date;
+  public createdAt: number;
   
-  @Expose()
-  public editedAt: Nullable<Date>;
+  public editedAt: Nullable<number>;
   
-  @Expose()
-  public publishedAt: Nullable<Date>;
-  
-  public static newFromMedia(media: Media): MediaUseCaseDto {
+  public static newFromMedia(media: Media, options?: {storageBasePath?: string}): MediaUseCaseDto {
     const dto: MediaUseCaseDto = plainToClass(MediaUseCaseDto, media);
-    dto.relativePath = media.getMetadata().relativePath;
+    
+    dto.url = options?.storageBasePath
+      ? resolve(options?.storageBasePath, media.getMetadata().relativePath)
+      : media.getMetadata().relativePath;
+    
+    dto.createdAt = media.getCreatedAt().getTime();
+    dto.editedAt = media.getEditedAt()?.getTime() || null;
     
     return dto;
   }
   
-  public static newListFromMedias(medias: Media[]): MediaUseCaseDto[] {
-    return medias.map(media => this.newFromMedia(media));
+  public static newListFromMedias(medias: Media[],options?: {storageBasePath?: string}): MediaUseCaseDto[] {
+    return medias.map(media => this.newFromMedia(media, options));
   }
   
 }

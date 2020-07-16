@@ -5,9 +5,11 @@ import { CoreDITokens } from '../../core/common/di/CoreDITokens';
 import { NestCommandBusAdapter } from '../../infrastructure/adapter/cqers/NestCommandBusAdapter';
 import { NestEventBusAdapter } from '../../infrastructure/adapter/cqers/NestEventBusAdapter';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { NestHttpExceptionFilter } from '../api/http-rest/exception-filter/NestHttpExceptionFilter';
 import { NestQueryBusAdapter } from '../../infrastructure/adapter/cqers/NestQueryBusAdapter';
+import { LoggingInterceptor } from '../api/http-rest/interceptor/LoggingInterceptor';
+import { TypeOrmLogger } from '../../infrastructure/adapter/persistence/typeorm/logger/TypeOrmLogger';
 
 /**
  * TODO:
@@ -28,6 +30,7 @@ import { NestQueryBusAdapter } from '../../infrastructure/adapter/cqers/NestQuer
       password                 : 'souQu6ienug0ash9eeY9',
       database                 : 'iposter',
       logging                  : 'all',
+      logger                   : TypeOrmLogger.new(),
       entities                 : [`${TypeOrmDirectory}/entity/**/*{.ts,.js}`],
       migrationsRun            : true,
       migrations               : [`${TypeOrmDirectory}/migration/**/*{.ts,.js}`],
@@ -38,6 +41,10 @@ import { NestQueryBusAdapter } from '../../infrastructure/adapter/cqers/NestQuer
     {
       provide : APP_FILTER,
       useClass: NestHttpExceptionFilter,
+    },
+    {
+      provide : APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
     },
     {
       provide: CoreDITokens.CommandBus,

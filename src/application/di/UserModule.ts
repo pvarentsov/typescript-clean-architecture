@@ -44,6 +44,9 @@ const handlerProviders: Provider[] = [
     ...persistenceProviders,
     ...useCaseProviders,
     ...handlerProviders,
+  ],
+  exports: [
+    UserDITokens.UserRepository
   ]
 })
 export class UserModule {}

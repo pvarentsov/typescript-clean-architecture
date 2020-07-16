@@ -1,12 +1,14 @@
 import { CreateUserUseCase } from '../../../../core/domain/user/usecase/CreateUserUseCase';
 import { GetUserUseCase } from '../../../../core/domain/user/usecase/GetUserUseCase';
-import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, Req, UseGuards } from '@nestjs/common';
 import { UserDITokens } from '../../../../core/domain/user/di/UserDITokens';
 import { UserUseCaseDto } from '../../../../core/domain/user/usecase/dto/UserUseCaseDto';
 import { CreateUserAdapter } from '../../../../infrastructure/adapter/usecase/user/CreateUserAdapter';
 import { GetUserAdapter } from '../../../../infrastructure/adapter/usecase/user/GetUserAdapter';
 import { ApiResponse } from '../../../../core/common/api/ApiResponse';
 import { UserRole } from '../../../../core/common/enums/UserEnums';
+import { HttpJwtAuthGuard } from '../auth/guard/HttpJwtAuthGuard';
+import { HttpRequestWithUser } from '../auth/type/AuthTypes';
 
 @Controller('users')
 export class UserController {
@@ -19,8 +21,8 @@ export class UserController {
     private readonly getUserUseCase: GetUserUseCase,
   ) {}
   
-  @Post()
-  public async createUser(@Body() body: Record<string, string>): Promise<ApiResponse<UserUseCaseDto>> {
+  @Post('account')
+  public async createAccount(@Body() body: Record<string, string>): Promise<ApiResponse<UserUseCaseDto>> {
     const adapter: CreateUserAdapter = await CreateUserAdapter.new({
       firstName  : body.firstName,
       lastName   : body.lastName,
@@ -34,12 +36,10 @@ export class UserController {
     return ApiResponse.success(createdUser);
   }
   
-  @Get(':userId')
-  public async getUser(@Param('userId') userId: string): Promise<ApiResponse<UserUseCaseDto>> {
-    const adapter: GetUserAdapter = await GetUserAdapter.new({
-      userId    : userId,
-    });
-    
+  @Get('me')
+  @UseGuards(HttpJwtAuthGuard)
+  public async getMe(@Req() request: HttpRequestWithUser): Promise<ApiResponse<UserUseCaseDto>> {
+    const adapter: GetUserAdapter = await GetUserAdapter.new({userId: request.user.id});
     const user: UserUseCaseDto = await this.getUserUseCase.execute(adapter);
     
     return ApiResponse.success(user);

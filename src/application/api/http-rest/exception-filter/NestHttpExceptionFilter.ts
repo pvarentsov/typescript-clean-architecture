@@ -13,7 +13,7 @@ export class NestHttpExceptionFilter implements ExceptionFilter {
     let errorResponse: ApiResponse<unknown> = ApiResponse.error();
   
     errorResponse = this.handleNestError(error, errorResponse);
-    errorResponse = this.handleDomainException(error, errorResponse);
+    errorResponse = this.handleCoreException(error, errorResponse);
     
     const message: string =
       `Method: ${request.method}; ` +
@@ -33,7 +33,7 @@ export class NestHttpExceptionFilter implements ExceptionFilter {
     return errorResponse;
   }
   
-  private handleDomainException(error: Error, errorResponse: ApiResponse<unknown>): ApiResponse<unknown> {
+  private handleCoreException(error: Error, errorResponse: ApiResponse<unknown>): ApiResponse<unknown> {
     if (error instanceof Exception) {
       errorResponse = ApiResponse.error(error.code, error.message, error.data);
     }

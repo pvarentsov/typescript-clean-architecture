@@ -6,7 +6,7 @@ import { NestCommandBusAdapter } from '../../infrastructure/adapter/cqers/NestCo
 import { NestEventBusAdapter } from '../../infrastructure/adapter/cqers/NestEventBusAdapter';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_FILTER } from '@nestjs/core';
-import { NestHttpExceptionFilter } from '../api/http-rest/error-filter/NestHttpExceptionFilter';
+import { NestHttpExceptionFilter } from '../api/http-rest/exception-filter/NestHttpExceptionFilter';
 import { NestQueryBusAdapter } from '../../infrastructure/adapter/cqers/NestQueryBusAdapter';
 
 /**

@@ -6,6 +6,7 @@ import { UserModule } from './UserModule';
 import { HttpLocalStrategy } from '../api/http-rest/auth/passport/HttpLocalStrategy';
 import { HttpJwtStrategy } from '../api/http-rest/auth/passport/HttpJwtStrategy';
 import { AuthController } from '../api/http-rest/controller/AuthController';
+import { ApiServerConfig } from '../../infrastructure/config/ApiServerConfig';
 
 @Module({
   controllers: [
@@ -14,8 +15,8 @@ import { AuthController } from '../api/http-rest/controller/AuthController';
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: 'secret',
-      signOptions: { expiresIn: '60m' },
+      secret: ApiServerConfig.ACCESS_TOKEN_SECRET,
+      signOptions: {expiresIn: `${ApiServerConfig.ACCESS_TOKEN_TTL_IN_MINUTES}m`},
       
     }),
     UserModule,

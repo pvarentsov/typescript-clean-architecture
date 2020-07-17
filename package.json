@@ -6,7 +6,9 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "build:local": "./scripts/build-local.sh",
+    "copy:local-env": "cp ./env/local.app.env ./dist/.env",
     "start": "node ./dist/Main.js",
+    "start:local": "yarn copy:local-env && cd ./dist && node -r dotenv/config Main.js",
     "lib:check": "./node_modules/.bin/ncu",
     "lib:upgrade": "./node_modules/.bin/ncu -u && npm install",
     "lint": "eslint src/**/*.ts",
@@ -58,6 +60,7 @@
     "busboy": "0.3.1",
     "class-transformer": "0.2.3",
     "class-validator": "0.12.2",
+    "dotenv": "8.2.0",
     "env-var": "6.2.0",
     "minio": "7.0.16",
     "passport": "0.4.1",

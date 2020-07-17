@@ -12,7 +12,7 @@ import { CoreAssert } from '../../../../core/common/util/assert/CoreAssert';
 export class MinioMediaFileStorageAdapter implements MediaFileStoragePort {
   
   private client: Minio.Client = new Minio.Client({
-    endPoint : FileStorageConfig.ENDPOINT,
+    endPoint : CoreAssert.notEmpty(FileStorageConfig.ENDPOINT, new Error('Minio: port not set')),
     port     : FileStorageConfig.PORT,
     accessKey: FileStorageConfig.ACCESS_KEY,
     secretKey: FileStorageConfig.SECRET_KEY,

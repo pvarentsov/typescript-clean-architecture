@@ -10,12 +10,7 @@ import { NestHttpExceptionFilter } from '../api/http-rest/exception-filter/NestH
 import { NestQueryBusAdapter } from '../../infrastructure/adapter/cqers/NestQueryBusAdapter';
 import { LoggingInterceptor } from '../api/http-rest/interceptor/LoggingInterceptor';
 import { TypeOrmLogger } from '../../infrastructure/adapter/persistence/typeorm/logger/TypeOrmLogger';
-
-/**
- * TODO:
- * 1. Add config
- * 2. Remove hardcode
- */
+import { DatabaseConfig } from '../../infrastructure/config/DatabaseConfig';
 
 @Global()
 @Module({
@@ -24,11 +19,11 @@ import { TypeOrmLogger } from '../../infrastructure/adapter/persistence/typeorm/
     TypeOrmModule.forRoot({
       name                     : 'default',
       type                     : 'postgres',
-      host                     : 'localhost',
-      port                     : 5454,
-      username                 : 'iposter',
-      password                 : 'souQu6ienug0ash9eeY9',
-      database                 : 'iposter',
+      host                     : DatabaseConfig.DB_HOST,
+      port                     : DatabaseConfig.DB_PORT,
+      username                 : DatabaseConfig.DB_USERNAME,
+      password                 : DatabaseConfig.DB_PASSWORD,
+      database                 : DatabaseConfig.DB_NAME,
       logging                  : 'all',
       logger                   : TypeOrmLogger.new(),
       entities                 : [`${TypeOrmDirectory}/entity/**/*{.ts,.js}`],

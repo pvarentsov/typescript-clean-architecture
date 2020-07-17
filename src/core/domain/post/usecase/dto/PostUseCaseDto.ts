@@ -3,7 +3,6 @@ import { Nullable } from '../../../../common/type/CommonTypes';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { Post } from '../../entity/Post';
 import { PostOwner } from '../../entity/PostOwner';
-import { resolve } from 'url';
 import { PostImage } from '../../entity/PostImage';
 import { UserRole } from '../../../../common/enums/UserEnums';
 
@@ -29,7 +28,7 @@ export class PostUseCaseDto {
   
   public publishedAt: Nullable<number>;
   
-  public static newFromPost(post: Post, options?: {storageBasePath?: string}): PostUseCaseDto {
+  public static newFromPost(post: Post): PostUseCaseDto {
     const dto: PostUseCaseDto =  plainToClass(PostUseCaseDto, post);
     const postOwner: PostOwner = post.getOwner();
     const postImage: Nullable<PostImage> = post.getImage();
@@ -38,7 +37,7 @@ export class PostUseCaseDto {
     dto.image = null;
     
     if (postImage) {
-      dto.image = {id: postImage.getId(), url: this.buildImageUrl(postImage, options)};
+      dto.image = {id: postImage.getId(), url: postImage.getRelativePath()};
     }
     
     dto.createdAt = post.getCreatedAt().getTime();
@@ -48,14 +47,8 @@ export class PostUseCaseDto {
     return dto;
   }
   
-  public static newListFromPosts(posts: Post[], options?: {storageBasePath?: string}): PostUseCaseDto[] {
-    return posts.map(post => this.newFromPost(post, options));
-  }
-  
-  private static buildImageUrl(postImage: PostImage, options?: {storageBasePath?: string}): string {
-    return options?.storageBasePath
-      ? resolve(options?.storageBasePath, postImage.getRelativePath())
-      : postImage.getRelativePath();
+  public static newListFromPosts(posts: Post[]): PostUseCaseDto[] {
+    return posts.map(post => this.newFromPost(post));
   }
   
 }

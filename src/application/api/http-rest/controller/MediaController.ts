@@ -40,6 +40,8 @@ import { HttpRestApiModelEditMediaBody } from './documentation/media/HttpRestApi
 import { HttpUser } from '../auth/decorator/HttpUser';
 import { HttpRestApiResponseMediaList } from './documentation/media/HttpRestApiResponseMediaList';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { resolve } from 'url';
+import { FileStorageConfig } from '../../../../infrastructure/config/FileStorageConfig';
 
 @Controller('medias')
 @ApiTags('medias')
@@ -84,6 +86,7 @@ export class MediaController {
     });
     
     const createdMedia: MediaUseCaseDto = await this.createMediaUseCase.execute(adapter);
+    this.setFileStorageBasePath([createdMedia]);
     
     return CoreApiResponse.success(createdMedia);
   }
@@ -105,6 +108,7 @@ export class MediaController {
     });
     
     const editedMedia: MediaUseCaseDto = await this.editMediaUseCase.execute(adapter);
+    this.setFileStorageBasePath([editedMedia]);
     
     return CoreApiResponse.success(editedMedia);
   }
@@ -117,6 +121,7 @@ export class MediaController {
   public async getMediaList(@HttpUser() user: HttpUserPayload): Promise<CoreApiResponse<MediaUseCaseDto[]>> {
     const adapter: GetMediaListAdapter = await GetMediaListAdapter.new({executorId: user.id});
     const medias: MediaUseCaseDto[] = await this.getMediaListUseCase.execute(adapter);
+    this.setFileStorageBasePath(medias);
     
     return CoreApiResponse.success(medias);
   }
@@ -129,6 +134,7 @@ export class MediaController {
   public async getMedia(@HttpUser() user: HttpUserPayload, @Param('mediaId') mediaId: string): Promise<CoreApiResponse<MediaUseCaseDto>> {
     const adapter: GetMediaAdapter = await GetMediaAdapter.new({executorId: user.id, mediaId: mediaId,});
     const media: MediaUseCaseDto = await this.getMediaUseCase.execute(adapter);
+    this.setFileStorageBasePath([media]);
     
     return CoreApiResponse.success(media);
   }
@@ -143,6 +149,10 @@ export class MediaController {
     await this.removeMediaUseCase.execute(adapter);
     
     return CoreApiResponse.success();
+  }
+  
+  private setFileStorageBasePath(medias: MediaUseCaseDto[]): void {
+    medias.forEach((media: MediaUseCaseDto) => media.url = resolve(FileStorageConfig.BASE_PATH, media.url));
   }
   
 }

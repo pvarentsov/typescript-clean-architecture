@@ -7,6 +7,7 @@ import { Optional } from '../../../../../core/common/type/CommonTypes';
 import { User } from '../../../../../core/domain/user/entity/User';
 import { Exception } from '../../../../../core/common/exception/Exception';
 import { Code } from '../../../../../core/common/code/Code';
+import { ApiServerConfig } from '../../../../../infrastructure/config/ApiServerConfig';
 
 @Injectable()
 export class HttpJwtStrategy extends PassportStrategy(Strategy) {
@@ -15,7 +16,7 @@ export class HttpJwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromHeader('x-api-token'),
       ignoreExpiration: false,
-      secretOrKey: 'secret',
+      secretOrKey: ApiServerConfig.ACCESS_TOKEN_SECRET,
     });
   }
   

@@ -34,7 +34,7 @@ export class TypeOrmPostMapper {
   
   public static toDomainEntity(ormPost: TypeOrmPost): Post {
     const domainPost: Post = new Post({
-      owner      : new PostOwner(ormPost.owner.id, ormPost.owner.role, ormPost.owner.role),
+      owner      : new PostOwner(ormPost.owner.id, `${ormPost.owner.firstName} ${ormPost.owner.lastName}`, ormPost.owner.role),
       title      : ormPost.title,
       image      : ormPost.image ? new PostImage(ormPost.image.id, ormPost.image.relativePath) : null,
       content    : ormPost.content,

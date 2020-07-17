@@ -15,7 +15,7 @@ export class HttpRestApiModelUser {
   @ApiProperty({type: 'string'})
   public email: string;
   
-  @ApiProperty({type: 'string'})
+  @ApiProperty({enum: UserRole})
   public role: UserRole;
   
 }

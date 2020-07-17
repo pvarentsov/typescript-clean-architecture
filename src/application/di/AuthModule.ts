@@ -17,7 +17,6 @@ import { ApiServerConfig } from '../../infrastructure/config/ApiServerConfig';
     JwtModule.register({
       secret: ApiServerConfig.ACCESS_TOKEN_SECRET,
       signOptions: {expiresIn: `${ApiServerConfig.ACCESS_TOKEN_TTL_IN_MINUTES}m`},
-      
     }),
     UserModule,
   ],

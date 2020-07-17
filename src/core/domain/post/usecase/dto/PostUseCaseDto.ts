@@ -17,6 +17,9 @@ export class PostUseCaseDto {
   public image: Nullable<{id: string, url: string}>;
   
   @Expose()
+  public title: string;
+  
+  @Expose()
   public content: string;
   
   @Expose()

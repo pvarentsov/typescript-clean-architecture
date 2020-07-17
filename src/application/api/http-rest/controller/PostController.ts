@@ -25,6 +25,8 @@ import { HttpRestApiModelEditPostBody } from './documentation/post/HttpRestApiMo
 import { HttpRestApiResponsePostList } from './documentation/post/HttpRestApiResponsePostList';
 import { HttpRestApiModelGetPostListQuery } from './documentation/post/HttpRestApiModelGetPostListQuery';
 import { PostStatus } from '../../../../core/common/enums/PostEnums';
+import { resolve } from 'url';
+import { FileStorageConfig } from '../../../../infrastructure/config/FileStorageConfig';
 
 @Controller('posts')
 @ApiTags('posts')
@@ -65,6 +67,7 @@ export class PostController {
     });
     
     const createdPost: PostUseCaseDto = await this.createPostUseCase.execute(adapter);
+    this.setFileStorageBasePath([createdPost]);
     
     return CoreApiResponse.success(createdPost);
   }
@@ -88,6 +91,7 @@ export class PostController {
     });
     
     const editedPost: PostUseCaseDto = await this.editPostUseCase.execute(adapter);
+    this.setFileStorageBasePath([editedPost]);
     
     return CoreApiResponse.success(editedPost);
   }
@@ -107,6 +111,7 @@ export class PostController {
       status: PostStatus.PUBLISHED
     });
     const posts: PostUseCaseDto[] = await this.getPostListUseCase.execute(adapter);
+    this.setFileStorageBasePath(posts);
     
     return CoreApiResponse.success(posts);
   }
@@ -122,6 +127,7 @@ export class PostController {
       ownerId: user.id,
     });
     const posts: PostUseCaseDto[] = await this.getPostListUseCase.execute(adapter);
+    this.setFileStorageBasePath(posts);
     
     return CoreApiResponse.success(posts);
   }
@@ -134,6 +140,7 @@ export class PostController {
   public async getPost(@HttpUser() user: HttpUserPayload, @Param('postId') postId: string): Promise<CoreApiResponse<PostUseCaseDto>> {
     const adapter: GetPostAdapter = await GetPostAdapter.new({executorId: user.id, postId: postId});
     const post: PostUseCaseDto = await this.getPostUseCase.execute(adapter);
+    this.setFileStorageBasePath([post]);
     
     return CoreApiResponse.success(post);
   }
@@ -146,6 +153,7 @@ export class PostController {
   public async publishPost(@HttpUser() user: HttpUserPayload, @Param('postId') postId: string): Promise<CoreApiResponse<PostUseCaseDto>> {
     const adapter: PublishPostAdapter = await PublishPostAdapter.new({executorId: user.id, postId: postId});
     const post: PostUseCaseDto = await this.publishPostUseCase.execute(adapter);
+    this.setFileStorageBasePath([post]);
     
     return CoreApiResponse.success(post);
   }
@@ -160,6 +168,14 @@ export class PostController {
     await this.removePostUseCase.execute(adapter);
     
     return CoreApiResponse.success();
+  }
+  
+  private setFileStorageBasePath(posts: PostUseCaseDto[]): void {
+    posts.forEach((post: PostUseCaseDto) => {
+      if (post.image) {
+        post.image.url = resolve(FileStorageConfig.BASE_PATH, post.image.url);
+      }
+    });
   }
   
 }

@@ -15,6 +15,9 @@ export class HttpRestApiModelPost {
   public image: HttpRestApiModelPostImage;
   
   @ApiProperty({type: 'string'})
+  public title: string;
+  
+  @ApiProperty({type: 'string'})
   public content: string;
   
   @ApiProperty({enum: PostStatus})

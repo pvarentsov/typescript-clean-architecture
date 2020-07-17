@@ -9,6 +9,10 @@ SCRIPT_DIR=$(
   pwd
 )
 
+clear_dist() {
+    rm -rf ./dist/*
+}
+
 run_tsc() {
     ./node_modules/.bin/tsc --skipLibCheck
 }
@@ -25,6 +29,7 @@ install_dependencies() {
 }
 
 compile() {
+    clear_dist
     run_tsc
     copy_configuration_files
     install_dependencies

@@ -1,19 +1,20 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Expose } from 'class-transformer';
 import { PostStatus } from '../../../../../../core/common/enums/PostEnums';
+import { HttpRestApiModelPostImage } from './HttpRestApiModelPostImage';
+import { HttpRestApiModelPostOwner } from './HttpRestApiModelPostOwner';
 
 export class HttpRestApiModelPost {
   
   @ApiProperty({type: 'string'})
   public id: string;
   
+  @ApiProperty({type: HttpRestApiModelPostOwner})
+  public owner: HttpRestApiModelPostOwner;
+  
+  @ApiProperty({type: HttpRestApiModelPostImage})
+  public image: HttpRestApiModelPostImage;
+  
   @ApiProperty({type: 'string'})
-  public ownerId: string;
-  
-  @Expose()
-  public imageId: string;
-  
-  @Expose()
   public content: string;
   
   @ApiProperty({enum: PostStatus})

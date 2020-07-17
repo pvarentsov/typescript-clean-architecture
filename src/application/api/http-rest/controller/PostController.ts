@@ -24,6 +24,7 @@ import { HttpRestApiResponsePost } from './documentation/post/HttpRestApiRespons
 import { HttpRestApiModelEditPostBody } from './documentation/post/HttpRestApiModelEditPostBody';
 import { HttpRestApiResponsePostList } from './documentation/post/HttpRestApiResponsePostList';
 import { HttpRestApiModelGetPostListQuery } from './documentation/post/HttpRestApiModelGetPostListQuery';
+import { PostStatus } from '../../../../core/common/enums/PostEnums';
 
 @Controller('posts')
 @ApiTags('posts')
@@ -100,7 +101,26 @@ export class PostController {
   public async getPostList(@HttpUser() user: HttpUserPayload,
                            @Query() query: HttpRestApiModelGetPostListQuery): Promise<CoreApiResponse<PostUseCaseDto[]>> {
     
-    const adapter: GetPostListAdapter = await GetPostListAdapter.new({executorId: user.id, ownerId: query.authorId});
+    const adapter: GetPostListAdapter = await GetPostListAdapter.new({
+      executorId: user.id,
+      ownerId: query.authorId,
+      status: PostStatus.PUBLISHED
+    });
+    const posts: PostUseCaseDto[] = await this.getPostListUseCase.execute(adapter);
+    
+    return CoreApiResponse.success(posts);
+  }
+  
+  @Get('mine')
+  @HttpAuth(UserRole.AUTHOR, UserRole.ADMIN, UserRole.GUEST)
+  @HttpCode(HttpStatus.OK)
+  @ApiBearerAuth()
+  @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponsePostList})
+  public async getMinePostList(@HttpUser() user: HttpUserPayload): Promise<CoreApiResponse<PostUseCaseDto[]>> {
+    const adapter: GetPostListAdapter = await GetPostListAdapter.new({
+      executorId: user.id,
+      ownerId: user.id,
+    });
     const posts: PostUseCaseDto[] = await this.getPostListUseCase.execute(adapter);
     
     return CoreApiResponse.success(posts);

@@ -1,14 +1,13 @@
 import { CodeDescription } from '../code/Code';
 import { Optional } from '../type/CommonTypes';
 
-export type CreateExceptionPayload<TData extends Record<string, unknown>> = {
+export type CreateExceptionPayload<TData> = {
   code: CodeDescription,
   overrideMessage?: string,
   data?: TData
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export class Exception<TData extends object> extends Error {
+export class Exception<TData> extends Error {
   
   public readonly code: number;
   
@@ -25,7 +24,7 @@ export class Exception<TData extends object> extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
   
-  public static new<TData extends Record<string, unknown>>(payload: CreateExceptionPayload<TData>): Exception<TData> {
+  public static new<TData>(payload: CreateExceptionPayload<TData>): Exception<TData> {
     return new Exception(payload.code, payload.overrideMessage, payload.data);
   }
   

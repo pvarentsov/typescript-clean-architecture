@@ -11,7 +11,11 @@ export class GetPostListService implements GetPostListUseCase {
   ) {}
   
   public async execute(payload: GetPostListPort): Promise<PostUseCaseDto[]> {
-    const posts: Post[] = await this.postRepository.findPosts({ownerId: payload.ownerId});
+    const posts: Post[] = await this.postRepository.findPosts({
+      ownerId: payload.ownerId,
+      status: payload.status,
+    });
+    
     return PostUseCaseDto.newListFromPosts(posts);
   }
   

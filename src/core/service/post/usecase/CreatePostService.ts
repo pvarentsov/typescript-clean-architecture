@@ -13,6 +13,7 @@ import { Exception } from '../../../common/exception/Exception';
 import { Code } from '../../../common/code/Code';
 import { PostOwner } from '../../../domain/post/entity/PostOwner';
 import { PostImage } from '../../../domain/post/entity/PostImage';
+import { CoreAssert } from '../../../common/util/assert/CoreAssert';
 
 export class CreatePostService implements CreatePostUseCase {
   
@@ -22,19 +23,17 @@ export class CreatePostService implements CreatePostUseCase {
   ) {}
   
   public async execute(payload: CreatePostPort): Promise<PostUseCaseDto> {
+    const postOwner: GetUserPreviewQueryResult = CoreAssert.notEmpty(
+      await this.queryBus.sendQuery(GetUserPreviewQuery.new({id: payload.executorId})),
+      Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post owner not found.'})
+    );
+    
     const postImage: Optional<GetMediaPreviewQueryResult> = payload.imageId
       ? await this.queryBus.sendQuery(GetMediaPreviewQuery.new({id: payload.imageId, ownerId: payload.executorId}))
       : undefined;
     
-    const postOwner: Optional<GetUserPreviewQueryResult>
-      = await this.queryBus.sendQuery(GetUserPreviewQuery.new({id: payload.executorId}));
-    
-    if (!postImage && payload.imageId) {
-      throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post image not found.'});
-    }
-    if (!postOwner) {
-      throw Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post owner not found.'});
-    }
+    const imageNotFound: boolean = !! (!postImage && payload.imageId);
+    CoreAssert.isFalse(imageNotFound, Exception.new({code: Code.ENTITY_NOT_FOUND_ERROR, overrideMessage: 'Post image not found.'}));
     
     const post: Post = await Post.new({
       owner  : await PostOwner.new(postOwner.id, postOwner.name, postOwner.role),

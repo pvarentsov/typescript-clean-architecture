@@ -22,7 +22,7 @@ export class PostOwner extends Entity<string> {
     return this.name;
   }
   
-  public getRole(): string {
+  public getRole(): UserRole {
     return this.role;
   }
   

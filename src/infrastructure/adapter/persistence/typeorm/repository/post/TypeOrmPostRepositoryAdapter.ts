@@ -11,6 +11,7 @@ import { Post } from '../../../../../../core/domain/post/entity/Post';
 import { TypeOrmPostMapper } from '../../entity/post/mapper/TypeOrmPostMapper';
 import { TypeOrmUser } from '../../entity/user/TypeOrmUser';
 import { TypeOrmMedia } from '../../entity/media/TypeOrmMedia';
+import { PostStatus } from '../../../../../../core/common/enums/PostEnums';
 
 @EntityRepository(TypeOrmPost)
 export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implements PostRepositoryPort {
@@ -39,7 +40,7 @@ export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implem
     return domainEntity;
   }
   
-  public async findPosts(by: {ownerId?: string}, options: RepositoryFindOptions = {}): Promise<Post[]> {
+  public async findPosts(by: {ownerId?: string, status?: PostStatus}, options: RepositoryFindOptions = {}): Promise<Post[]> {
     const query: SelectQueryBuilder<TypeOrmPost> = this.buildPostQueryBuilder();
   
     this.extendQueryWithByProperties(by, query);
@@ -126,12 +127,15 @@ export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implem
       );
   }
   
-  private extendQueryWithByProperties(by: {id?: string, ownerId?: string}, query: SelectQueryBuilder<TypeOrmPost>): void {
+  private extendQueryWithByProperties(by: {id?: string, ownerId?: string, status?: PostStatus}, query: SelectQueryBuilder<TypeOrmPost>): void {
     if (by.id) {
       query.andWhere(`"${this.postAlias}"."id" = :id`, {id: by.id});
     }
     if (by.ownerId) {
       query.andWhere(`"${this.postAlias}"."ownerId" = :ownerId`, {ownerId: by.ownerId});
+    }
+    if (by.status) {
+      query.andWhere(`"${this.postAlias}"."status" = :status`, {status: by.status});
     }
   }
   

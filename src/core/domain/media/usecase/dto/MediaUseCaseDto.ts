@@ -28,10 +28,7 @@ export class MediaUseCaseDto {
   public static newFromMedia(media: Media, options?: {storageBasePath?: string}): MediaUseCaseDto {
     const dto: MediaUseCaseDto = plainToClass(MediaUseCaseDto, media);
     
-    dto.url = options?.storageBasePath
-      ? resolve(options?.storageBasePath, media.getMetadata().relativePath)
-      : media.getMetadata().relativePath;
-    
+    dto.url = this.buildUrl(media, options);
     dto.createdAt = media.getCreatedAt().getTime();
     dto.editedAt = media.getEditedAt()?.getTime() || null;
     
@@ -40,6 +37,12 @@ export class MediaUseCaseDto {
   
   public static newListFromMedias(medias: Media[],options?: {storageBasePath?: string}): MediaUseCaseDto[] {
     return medias.map(media => this.newFromMedia(media, options));
+  }
+  
+  private static buildUrl(media: Media, options?: {storageBasePath?: string}): string {
+    return options?.storageBasePath
+      ? resolve(options?.storageBasePath, media.getMetadata().relativePath)
+      : media.getMetadata().relativePath;
   }
   
 }

@@ -6,6 +6,7 @@ import { CreateUserService } from '../../core/service/user/usecase/CreateUserSer
 import { UserController } from '../api/http-rest/controller/UserController';
 import { GetUserService } from '../../core/service/user/usecase/GetUserService';
 import { HandleGetUserPreviewQueryService } from '../../core/service/user/handler/HandleGetUserPreviewQueryService';
+import { NestWrapperGetUserPreviewQueryHandler } from '../../infrastructure/handler/user/NestWrapperGetUserPreviewQueryHandler';
 
 const persistenceProviders: Provider[] = [
   {
@@ -29,6 +30,7 @@ const useCaseProviders: Provider[] = [
 ];
 
 const handlerProviders: Provider[] = [
+  NestWrapperGetUserPreviewQueryHandler,
   {
     provide   : UserDITokens.GetUserPreviewQueryHandler,
     useFactory: (userRepository) => new HandleGetUserPreviewQueryService(userRepository),

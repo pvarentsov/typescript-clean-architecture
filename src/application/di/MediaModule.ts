@@ -13,6 +13,8 @@ import { RemoveMediaService } from '../../core/service/media/usecase/RemoveMedia
 import { HandleDoesMediaExistQueryService } from '../../core/service/media/handler/HandleDoesMediaExistQueryService';
 import { CoreDITokens } from '../../core/common/di/CoreDITokens';
 import { MediaController } from '../api/http-rest/controller/MediaController';
+import { NestWrapperGetMediaPreviewQueryHandler } from '../../infrastructure/handler/media/NestWrapperGetMediaPreviewQueryHandler';
+import { HandleGetMediaPreviewQueryService } from '../../core/service/media/handler/HandleGetMediaPreviewQueryService';
 
 const persistenceProviders: Provider[] = [
   {
@@ -55,13 +57,16 @@ const useCaseProviders: Provider[] = [
 ];
 
 const handlerProviders: Provider[] = [
-  {
-    provide  : NestWrapperDoesMediaExistQueryHandler,
-    useClass : NestWrapperDoesMediaExistQueryHandler,
-  },
+  NestWrapperDoesMediaExistQueryHandler,
+  NestWrapperGetMediaPreviewQueryHandler,
   {
     provide   : MediaDITokens.DoesMediaExistQueryHandler,
     useFactory: (mediaRepository) => new HandleDoesMediaExistQueryService(mediaRepository),
+    inject    : [MediaDITokens.MediaRepository]
+  },
+  {
+    provide   : MediaDITokens.GetMediaPreviewQueryHandler,
+    useFactory: (mediaRepository) => new HandleGetMediaPreviewQueryService(mediaRepository),
     inject    : [MediaDITokens.MediaRepository]
   }
 ];

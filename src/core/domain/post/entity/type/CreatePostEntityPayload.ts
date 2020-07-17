@@ -1,10 +1,12 @@
 import { Nullable } from '../../../../common/type/CommonTypes';
 import { PostStatus } from '../../../../common/enums/PostEnums';
+import { PostOwner } from '../PostOwner';
+import { PostImage } from '../PostImage';
 
 export type CreatePostEntityPayload = {
-  ownerId: string,
+  owner: PostOwner,
   title: string,
-  imageId?: Nullable<string>,
+  image?: Nullable<PostImage>,
   content?: Nullable<string>,
   id?:string,
   status?: PostStatus,

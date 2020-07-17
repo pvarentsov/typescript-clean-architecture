@@ -1,7 +1,9 @@
 import { PostStatus } from '../../../../common/enums/PostEnums';
 import { Nullable } from '../../../../common/type/CommonTypes';
-import { Exclude, Expose, plainToClass } from 'class-transformer';
+import { Exclude, Expose, plainToClass, Type } from 'class-transformer';
 import { Post } from '../../entity/Post';
+import { PostImage } from '../../entity/PostImage';
+import { PostOwner } from '../../entity/PostOwner';
 
 @Exclude()
 export class PostUseCaseDto {
@@ -10,10 +12,12 @@ export class PostUseCaseDto {
   public id: string;
   
   @Expose()
-  public ownerId: string;
+  @Type(() => PostOwner)
+  public owner: PostOwner;
   
   @Expose()
-  public imageId: string;
+  @Type(() => PostImage)
+  public image: PostImage;
   
   @Expose()
   public content: string;

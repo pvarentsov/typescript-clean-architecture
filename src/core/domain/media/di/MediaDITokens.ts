@@ -11,6 +11,7 @@ export class MediaDITokens {
   // Handlers
   
   public static readonly DoesMediaExistQueryHandler: unique symbol = Symbol('DoesMediaExistQueryHandler');
+  public static readonly GetMediaPreviewQueryHandler: unique symbol = Symbol('GetMediaPreviewQueryHandler');
   
   // Repositories
   

@@ -1,23 +1,25 @@
 import { Entity } from '../../../common/entity/Entity';
-import { IsDate, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsDate, IsEnum, IsInstance, IsOptional, IsString } from 'class-validator';
 import { CreatePostEntityPayload } from './type/CreatePostEntityPayload';
 import { EditPostEntityPayload } from './type/EditPostEntityPayload';
 import { RemovableEntity } from '../../../common/entity/RemovableEntity';
 import { Nullable } from '../../../common/type/CommonTypes';
 import { PostStatus } from '../../../common/enums/PostEnums';
 import { v4 } from 'uuid';
+import { PostOwner } from './PostOwner';
+import { PostImage } from './PostImage';
 
 export class Post extends Entity<string> implements RemovableEntity {
   
-  @IsUUID()
-  private readonly ownerId: string;
+  @IsInstance(PostOwner)
+  private readonly owner: PostOwner;
   
   @IsString()
   private title: string;
   
   @IsOptional()
-  @IsUUID()
-  private imageId: Nullable<string>;
+  @IsInstance(PostImage)
+  private image: Nullable<PostImage>;
   
   @IsOptional()
   @IsString()
@@ -45,9 +47,9 @@ export class Post extends Entity<string> implements RemovableEntity {
   constructor(payload: CreatePostEntityPayload) {
     super();
   
-    this.ownerId     = payload.ownerId;
+    this.owner       = payload.owner;
     this.title       = payload.title;
-    this.imageId     = payload.imageId || null;
+    this.image       = payload.image || null;
     this.content     = payload.content || null;
   
     this.id          = payload.id || v4();
@@ -58,16 +60,16 @@ export class Post extends Entity<string> implements RemovableEntity {
     this.removedAt   = payload.removedAt || null;
   }
   
-  public getOwnerId(): string {
-    return this.ownerId;
+  public getOwner(): PostOwner {
+    return this.owner;
   }
   
   public getTitle(): string {
     return this.title;
   }
   
-  public getImageId(): Nullable<string> {
-    return this.imageId;
+  public getImage(): Nullable<PostImage> {
+    return this.image;
   }
   
   public getContent(): Nullable<string> {
@@ -101,8 +103,8 @@ export class Post extends Entity<string> implements RemovableEntity {
       this.title = payload.title;
       this.editedAt = currentDate;
     }
-    if (typeof payload.imageId !== 'undefined') {
-      this.imageId = payload.imageId;
+    if (typeof payload.image !== 'undefined') {
+      this.image = payload.image;
       this.editedAt = currentDate;
     }
     if (typeof payload.content !== 'undefined') {

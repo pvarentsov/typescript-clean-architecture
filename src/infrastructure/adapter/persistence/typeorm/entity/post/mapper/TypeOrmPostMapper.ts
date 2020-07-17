@@ -1,16 +1,22 @@
 import { Post } from '../../../../../../../core/domain/post/entity/Post';
 import { TypeOrmPost } from '../TypeOrmPost';
 import { PostStatus } from '../../../../../../../core/common/enums/PostEnums';
+import { Nullable } from '../../../../../../../core/common/type/CommonTypes';
+import { PostImage } from '../../../../../../../core/domain/post/entity/PostImage';
+import { PostOwner } from '../../../../../../../core/domain/post/entity/PostOwner';
 
 export class TypeOrmPostMapper {
   
   public static toOrmEntity(domainPost: Post): TypeOrmPost {
     const ormPost: TypeOrmPost = new TypeOrmPost();
+    const image: Nullable<PostImage> = domainPost.getImage();
     
     ormPost.id          = domainPost.getId();
-    ormPost.ownerId     = domainPost.getOwnerId();
+    ormPost.ownerId     = domainPost.getOwner().getId();
     ormPost.title       = domainPost.getTitle();
-    ormPost.imageId     = domainPost.getImageId() as string;
+    
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    ormPost.imageId     = image ? image.getId() : null!;
     ormPost.content     = domainPost.getContent() as string;
     ormPost.status      = domainPost.getStatus() as PostStatus;
     
@@ -28,9 +34,9 @@ export class TypeOrmPostMapper {
   
   public static toDomainEntity(ormPost: TypeOrmPost): Post {
     const domainPost: Post = new Post({
-      ownerId    : ormPost.ownerId,
+      owner      : new PostOwner(ormPost.owner.id, ormPost.owner.role, ormPost.owner.role),
       title      : ormPost.title,
-      imageId    : ormPost.imageId,
+      image      : ormPost.image ? new PostImage(ormPost.image.id, ormPost.image.relativePath) : null,
       content    : ormPost.content,
       id         : ormPost.id,
       status     : ormPost.status,

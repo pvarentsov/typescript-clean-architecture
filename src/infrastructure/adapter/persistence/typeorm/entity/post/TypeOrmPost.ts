@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { PostStatus } from '../../../../../../core/common/enums/PostEnums';
+import { UserRole } from '../../../../../../core/common/enums/UserEnums';
 
 @Entity('post')
 export class TypeOrmPost {
@@ -33,5 +34,9 @@ export class TypeOrmPost {
   
   @Column()
   public removedAt: Date;
+  
+  public owner: {id: string, name: string, role: UserRole};
+  
+  public image?: {id: string, relativePath: string};
   
 }

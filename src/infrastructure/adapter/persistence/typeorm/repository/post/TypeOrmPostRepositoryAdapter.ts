@@ -9,6 +9,8 @@ import {
 import { Nullable, Optional } from '../../../../../../core/common/type/CommonTypes';
 import { Post } from '../../../../../../core/domain/post/entity/Post';
 import { TypeOrmPostMapper } from '../../entity/post/mapper/TypeOrmPostMapper';
+import { TypeOrmUser } from '../../entity/user/TypeOrmUser';
+import { TypeOrmMedia } from '../../entity/media/TypeOrmMedia';
 
 @EntityRepository(TypeOrmPost)
 export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implements PostRepositoryPort {
@@ -109,7 +111,19 @@ export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implem
   private buildPostQueryBuilder(): SelectQueryBuilder<TypeOrmPost> {
     return this
       .createQueryBuilder(this.postAlias)
-      .select();
+      .select()
+      .leftJoinAndMapOne(
+        `${this.postAlias}.owner`,
+        TypeOrmUser,
+        'owner',
+        `${this.postAlias}."ownerId" = owner.id`
+      )
+      .leftJoinAndMapOne(
+        `${this.postAlias}.image`,
+        TypeOrmMedia,
+        'image',
+        `${this.postAlias}."imageId" = image.id`
+      );
   }
   
   private extendQueryWithByProperties(by: {id?: string, ownerId?: string}, query: SelectQueryBuilder<TypeOrmPost>): void {

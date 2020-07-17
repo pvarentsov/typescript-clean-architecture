@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { RootModule } from './di/.RootModule';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
+import { initializeTransactionalContext, patchTypeORMRepositoryWithBaseRepository } from 'typeorm-transactional-cls-hooked';
 
 export class ServerApplication {
   
@@ -14,6 +15,7 @@ export class ServerApplication {
     const app: NestExpressApplication = await NestFactory.create<NestExpressApplication>(RootModule);
     
     this.buildAPIDocumentation(app);
+    this.setupTypeOrmTransactionalContext();
     this.log();
   
     await app.listen(this.port, this.host);
@@ -39,6 +41,12 @@ export class ServerApplication {
     
     SwaggerModule.setup('documentation', app, document);
   }
+  
+  public setupTypeOrmTransactionalContext(): void {
+    initializeTransactionalContext();
+    patchTypeORMRepositoryWithBaseRepository();
+  }
+  
   
   public static new(): ServerApplication {
     return new ServerApplication();

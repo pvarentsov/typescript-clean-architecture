@@ -42,6 +42,7 @@ import { HttpRestApiResponseMediaList } from './documentation/media/HttpRestApiR
 import { FileInterceptor } from '@nestjs/platform-express';
 import { resolve } from 'url';
 import { FileStorageConfig } from '../../../../infrastructure/config/FileStorageConfig';
+import { Transactional } from 'typeorm-transactional-cls-hooked';
 
 @Controller('medias')
 @ApiTags('medias')
@@ -65,6 +66,7 @@ export class MediaController {
   ) {}
   
   @Post()
+  @Transactional()
   @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @UseInterceptors(FileInterceptor('file'))
@@ -92,6 +94,7 @@ export class MediaController {
   }
   
   @Put(':mediaId')
+  @Transactional()
   @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()
@@ -140,6 +143,7 @@ export class MediaController {
   }
   
   @Delete(':mediaId')
+  @Transactional()
   @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()

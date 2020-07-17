@@ -27,6 +27,7 @@ import { HttpRestApiModelGetPostListQuery } from './documentation/post/HttpRestA
 import { PostStatus } from '../../../../core/common/enums/PostEnums';
 import { resolve } from 'url';
 import { FileStorageConfig } from '../../../../infrastructure/config/FileStorageConfig';
+import { Transactional } from 'typeorm-transactional-cls-hooked';
 
 @Controller('posts')
 @ApiTags('posts')
@@ -53,6 +54,7 @@ export class PostController {
   ) {}
   
   @Post()
+  @Transactional()
   @HttpAuth(UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()
@@ -73,6 +75,7 @@ export class PostController {
   }
   
   @Put(':postId')
+  @Transactional()
   @HttpAuth(UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()
@@ -159,6 +162,7 @@ export class PostController {
   }
   
   @Delete(':postId')
+  @Transactional()
   @HttpAuth(UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()

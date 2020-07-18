@@ -12,12 +12,12 @@ It is my attempt to create Clean Architecture based application in Typescript
 
 IPoster is a simple fictional application that allows users to publish posts.
 
-##### Main Entities:
+#### Main Entities:
 1. User
 2. Post
 3. Media
 
-##### Use Cases:
+#### Use Cases:
 
 User -> IPoster:
 

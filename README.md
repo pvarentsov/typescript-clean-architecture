@@ -40,3 +40,44 @@ IPoster is a simple fictional application that allows users to publish posts.
   7. `Author User` can remove own `Post`
   8. `All users` can get published `Post`
   9. `All users` can get list with published `Posts`
+  
+## Local Development
+
+* **Docker**
+
+    All necessary external services are described in the [./docker-compose.local.yml](./docker-compose.local.yaml):
+    * Run `docker-compose -f docker-compose.local.yaml up -d`
+    * Stop `docker-compose -f docker-compose.local.yaml stop`
+    
+    Services:
+    1. PostgreSQL - [Credentials](./env/local.pg.env).
+    2. Minio - [Credentials](./env/local.minio.env).
+    
+* **Building**
+
+    1. Install libraries - `npm install`
+    2. Build application - `npm run build`
+    
+* **Configuring**: 
+  
+    Configuring is based on the environment variables. All environment variables must be exposed before starting the application.
+    See [all environment variables](./env/local.app.env).
+    
+* **Running**
+
+    * Start application - `npm run start`
+    * Expose [(./env/local.app.env)]((./env/local.app.env)) and start application - `npm run start:local`
+    
+    API documentation will be available on the endpoint [http://localhost:3005/documentation/](http://localhost:3005/documentation)
+    
+* **Linting**
+
+    * `npm run lint`
+    
+* **Libraries checking**    
+   
+    * Show new libraries' versions - `npm run lib:check`
+    * Upgrade libraries' versions - `npm run lib:upgrade`    
+
+* **IDE configuring**
+    * [Run application in the IntelliJ IDEA](./asset/IdeaConfiguration.png)

@@ -63,7 +63,7 @@ IPoster is a simple fictional application that allows users to publish posts.
 * **Running**
 
     * Start application - `npm run start`
-    * Expose [(./env/local.app.env)]((./env/local.app.env)) and start application - `npm run start:local`
+    * Expose [./env/local.app.env](./env/local.app.env) and start application - `npm run start:local`
     
     API documentation will be available on the endpoint [http://localhost:3005/documentation/](http://localhost:3005/documentation)
     

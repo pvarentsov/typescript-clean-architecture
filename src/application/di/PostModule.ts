@@ -10,7 +10,7 @@ import { Provider } from '@nestjs/common/interfaces/modules/provider.interface';
 import { RemovePostService } from '../../core/service/post/usecase/RemovePostService';
 import { CoreDITokens } from '../../core/common/di/CoreDITokens';
 import { PublishPostService } from '../../core/service/post/usecase/PublishPostService';
-import { NestWrapperPostImageRemovedEventHandler } from '../../infrastructure/handler/media/NestWrapperPostImageRemovedEventHandler';
+import { NestWrapperPostImageRemovedEventHandler } from '../../infrastructure/handler/post/NestWrapperPostImageRemovedEventHandler';
 import { HandlePostImageRemovedEventService } from '../../core/service/post/handler/HandlePostImageRemovedEventService';
 import { PostController } from '../api/http-rest/controller/PostController';
 

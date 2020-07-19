@@ -8,7 +8,7 @@ import { EditMediaService } from '../../core/service/media/usecase/EditMediaServ
 import { GetMediaListService } from '../../core/service/media/usecase/GetMediaListService';
 import { GetMediaService } from '../../core/service/media/usecase/GetMediaService';
 import { Provider } from '@nestjs/common/interfaces/modules/provider.interface';
-import { NestWrapperDoesMediaExistQueryHandler } from '../../infrastructure/handler/post/NestWrapperDoesMediaExistQueryHandler';
+import { NestWrapperDoesMediaExistQueryHandler } from '../../infrastructure/handler/media/NestWrapperDoesMediaExistQueryHandler';
 import { RemoveMediaService } from '../../core/service/media/usecase/RemoveMediaService';
 import { HandleDoesMediaExistQueryService } from '../../core/service/media/handler/HandleDoesMediaExistQueryService';
 import { CoreDITokens } from '../../core/common/di/CoreDITokens';

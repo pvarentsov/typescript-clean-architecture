@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { NestHttpExceptionFilter } from '../api/http-rest/exception-filter/NestHttpExceptionFilter';
 import { NestQueryBusAdapter } from '../../infrastructure/adapter/cqers/NestQueryBusAdapter';
-import { LoggingInterceptor } from '../api/http-rest/interceptor/LoggingInterceptor';
+import { NestHttpLoggingInterceptor } from '../api/http-rest/interceptor/NestHttpLoggingInterceptor';
 import { TypeOrmLogger } from '../../infrastructure/adapter/persistence/typeorm/logger/TypeOrmLogger';
 import { DatabaseConfig } from '../../infrastructure/config/DatabaseConfig';
 
@@ -39,7 +39,7 @@ import { DatabaseConfig } from '../../infrastructure/config/DatabaseConfig';
     },
     {
       provide : APP_INTERCEPTOR,
-      useClass: LoggingInterceptor,
+      useClass: NestHttpLoggingInterceptor,
     },
     {
       provide: CoreDITokens.CommandBus,

@@ -5,7 +5,7 @@ import { Request } from 'express';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class LoggingInterceptor implements NestInterceptor {
+export class NestHttpLoggingInterceptor implements NestInterceptor {
   
   public intercept(context: ExecutionContext, next: CallHandler): Observable<CoreApiResponse<void>> {
     const request: Request = context.switchToHttp().getRequest();
@@ -19,7 +19,7 @@ export class LoggingInterceptor implements NestInterceptor {
         `Path: ${request.path}; ` +
         `SpentTime: ${requestFinishDate - requestStartDate}ms`;
       
-      Logger.log(message, LoggingInterceptor.name);
+      Logger.log(message, NestHttpLoggingInterceptor.name);
     }));
   }
 }

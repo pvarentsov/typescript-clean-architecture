@@ -22,11 +22,7 @@ export class ServerApplication {
     await app.listen(this.port, this.host);
   }
   
-  public log(): void {
-    Logger.log(`Server started on host: ${this.host}; port: ${this.port};`, ServerApplication.name);
-  }
-  
-  public buildAPIDocumentation(app: NestExpressApplication): void {
+  private buildAPIDocumentation(app: NestExpressApplication): void {
     const title: string = 'IPoster';
     const description: string = 'IPoster API documentation';
     const version: string = '1.0.0';
@@ -43,11 +39,14 @@ export class ServerApplication {
     SwaggerModule.setup('documentation', app, document);
   }
   
-  public setupTypeOrmTransactionalContext(): void {
+  private setupTypeOrmTransactionalContext(): void {
     initializeTransactionalContext();
     patchTypeORMRepositoryWithBaseRepository();
   }
   
+  private log(): void {
+    Logger.log(`Server started on host: ${this.host}; port: ${this.port};`, ServerApplication.name);
+  }
   
   public static new(): ServerApplication {
     return new ServerApplication();

@@ -4,12 +4,13 @@ import { RootModule } from './di/.RootModule';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 import { initializeTransactionalContext, patchTypeORMRepositoryWithBaseRepository } from 'typeorm-transactional-cls-hooked';
+import { ApiServerConfig } from '../infrastructure/config/ApiServerConfig';
 
 export class ServerApplication {
   
-  private readonly port: number = 3005;
+  private readonly host: string = ApiServerConfig.HOST;
   
-  private readonly host: string = 'localhost';
+  private readonly port: number = ApiServerConfig.PORT;
   
   public async run(): Promise<void> {
     const app: NestExpressApplication = await NestFactory.create<NestExpressApplication>(RootModule);

@@ -55,7 +55,7 @@ IPoster is a simple fictional application that allows users to publish posts.
     1. Install libraries - `npm install`
     2. Build application - `npm run build`
     
-* **Configuring**: 
+* **Configuring**
   
     Configuring is based on the environment variables. All environment variables must be exposed before starting the application.
     See [all environment variables](./env/local.app.env).

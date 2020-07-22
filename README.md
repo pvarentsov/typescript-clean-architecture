@@ -1,6 +1,7 @@
 # Typescript Clean Architecture
 
 It is my attempt to create Clean Architecture based application in Typescript
+
 <p align="center"> 
     <img src="./asset/IPosterStructure.png">
 </p>
@@ -9,25 +10,25 @@ It is my attempt to create Clean Architecture based application in Typescript
 
 IPoster is a simple fictional application that allows users to publish posts.
 
-#### Main Entities:
+#### Main Entities
 1. User
 2. Post
 3. Media
 
-#### Use Cases:
+#### Use Cases
 
-* User -> IPoster:
+* User -> IPoster
   1. `User` can create `Guest` account in `IPoster`
   2. `User` can create `Author` account in `IPoster`
 
-* User -> Media:
+* User -> Media
   1. `Author User` can create own `Media`
   2. `Author User` can edit own `Media`
   3. `Author User` can get own `Media`
   4. `Author User` can get own `Media` list
   5. `Author User` can remove own `Media`
 
-* User -> Post:
+* User -> Post
   1. `Author User` can create own draft `Post`
   2. `Author User` can edit own `Post`
   3. `Author User` can attach an image `Media` to own `Post`

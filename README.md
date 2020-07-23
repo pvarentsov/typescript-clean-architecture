@@ -22,22 +22,22 @@ IPoster is a simple fictional application that allows users to publish posts.
   2. `User` can create `Author` account in `IPoster`
 
 * User -> Media
-  1. `Author User` can create own `Media`
-  2. `Author User` can edit own `Media`
-  3. `Author User` can get own `Media`
-  4. `Author User` can get own `Media` list
-  5. `Author User` can remove own `Media`
+  1. `Author` can create own `Media`
+  2. `Author` can edit own `Media`
+  3. `Author` can get own `Media`
+  4. `Author` can get own `Media` list
+  5. `Author` can remove own `Media`
 
 * User -> Post
-  1. `Author User` can create own draft `Post`
-  2. `Author User` can edit own `Post`
-  3. `Author User` can attach an image `Media` to own `Post`
-  4. `Author User` can publish own `Post`
-  5. `Author User` can get own `Post`
-  6. `Author User` can get own `Post` list
-  7. `Author User` can remove own `Post`
-  8. `All Users` can get published `Post`
-  9. `All Users` can get list with published `Posts`
+  1. `Author` can create own draft `Post`
+  2. `Author` can edit own `Post`
+  3. `Author` can attach an image `Media` to own `Post`
+  4. `Author` can publish own `Post`
+  5. `Author` can get own `Post`
+  6. `Author` can get own `Post` list
+  7. `Author` can remove own `Post`
+  8. `Author` and `Guest` can get published `Post`
+  9. `Author` and `Guest` can get list with published `Posts`
   
 ## Local Development
 

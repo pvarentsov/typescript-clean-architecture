@@ -36,8 +36,8 @@ IPoster is a simple fictional application that allows users to publish posts.
   5. `Author User` can get own `Post`
   6. `Author User` can get own `Post` list
   7. `Author User` can remove own `Post`
-  8. `All users` can get published `Post`
-  9. `All users` can get list with published `Posts`
+  8. `All Users` can get published `Post`
+  9. `All Users` can get list with published `Posts`
   
 ## Local Development
 

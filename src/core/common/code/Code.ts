@@ -37,8 +37,6 @@ export class Code {
     message: 'Internal error.'
   };
   
-  // Core
-  
   public static ENTITY_NOT_FOUND_ERROR: CodeDescription = {
     code: 1000,
     message: 'Entity not found.'

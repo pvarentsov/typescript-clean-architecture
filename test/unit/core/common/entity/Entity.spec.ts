@@ -20,14 +20,14 @@ describe('Entity', () => {
   
   describe('getId', () => {
     
-    it('When id is set, expect it return id', async () => {
+    it('When id is set, expect it returns id', async () => {
       const id: string = v4();
       const entity: MockEntity = new MockEntity(id, 'Triss');
       
       expect(entity.getId()).toBe(id);
     });
     
-    it('When id is not set, expect it trows Exception', async () => {
+    it('When id is not set, expect it throws Exception', async () => {
       const id: unknown = undefined;
       const entity: MockEntity = new MockEntity(id as string, 'Triss');
       

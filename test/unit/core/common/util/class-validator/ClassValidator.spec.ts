@@ -20,7 +20,7 @@ describe('ClassValidator', () => {
   describe('validate', () => {
     
     it('When MockClass is valid, expect it doesn\'t return validation details', async () => {
-      const validInstance: MockClass = new MockClass('string', 42);
+      const validInstance: MockClass = new MockClass('42', 42);
       await expect(ClassValidator.validate(validInstance)).resolves.toBeUndefined();
     });
   

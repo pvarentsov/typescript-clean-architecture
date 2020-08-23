@@ -11,7 +11,7 @@ describe('CoreAssert', () => {
     });
   
     test('When expression is FALSE, expect it throws error', () => {
-      expect.assertions(1);
+      expect.hasAssertions();
       
       try {
         CoreAssert.isTrue(false, AssertionError);
@@ -29,7 +29,7 @@ describe('CoreAssert', () => {
     });
     
     test('When expression is TRUE, expect it throws error', () => {
-      expect.assertions(1);
+      expect.hasAssertions();
       
       try {
         CoreAssert.isFalse(true, AssertionError);
@@ -47,7 +47,7 @@ describe('CoreAssert', () => {
     });
     
     test('When expression is NULL, expect it throws error', () => {
-      expect.assertions(1);
+      expect.hasAssertions();
       
       try {
         CoreAssert.notEmpty(null, AssertionError);
@@ -57,7 +57,7 @@ describe('CoreAssert', () => {
     });
   
     test('When expression is UNDEFINED, expect it throws error', () => {
-      expect.assertions(1);
+      expect.hasAssertions();
     
       try {
         CoreAssert.notEmpty(undefined, AssertionError);

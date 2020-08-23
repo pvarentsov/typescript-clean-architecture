@@ -1,6 +1,6 @@
 # Typescript Clean Architecture
 
-It is my attempt to create Clean Architecture based application in Typescript
+It is my attempt to create Clean Architecture based application in Typescript.
 
 <p align="center"> 
     <img src="./asset/IPosterStructure.png">
@@ -78,7 +78,8 @@ IPoster is a simple fictional application that allows users to publish posts.
     * Upgrade libraries' versions - `npm run lib:upgrade`    
 
 * **IDE configuring**
-    * [Run application in the IntelliJ IDEA](./asset/IdeaConfiguration.png)
+    * [Run application in the IntelliJ IDEA](./asset/IdeaApplicationLaunchConfiguration.png)
+    * [Run unit tests in the IntelliJ IDEA](./asset/IdeaUnitTestConfiguration.png)
     
  ## License
  [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](./LICENSE)   

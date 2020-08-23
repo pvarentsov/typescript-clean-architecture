@@ -1,4 +1,6 @@
 .idea/*
 .vscode/*
+.unit-test/*
 node_modules/*
 dist/*
+test-report.xml

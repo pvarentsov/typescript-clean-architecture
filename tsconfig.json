@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "target": "es2018",
+    "rootDirs": [
+      "./src",
+      "./test"
+    ],
+    "target": "ES2020",
     "module": "commonjs",
     "lib": [
-      "es2018",
-      "dom"
+      "ES2020"
     ],
     "types": [
       "reflect-metadata",
@@ -22,6 +24,7 @@
     "sourceMap": true
   },
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./test/**/*.ts"
   ]
 }

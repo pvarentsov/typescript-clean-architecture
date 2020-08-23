@@ -72,6 +72,12 @@ IPoster is a simple fictional application that allows users to publish posts.
 
     * `npm run lint`
     
+* **Testing**
+
+    * Run unit tests - `npm run test:unit`
+    * Run unit tests with coverage - `npm run test:unit:cov`
+    * Run unit tests in `watch` mode - `npm run test:unit:watch`    
+    
 * **Libraries checking**    
    
     * Show new libraries' versions - `npm run lib:check`

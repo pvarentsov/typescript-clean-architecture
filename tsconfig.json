@@ -2,8 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDirs": [
-      "./src",
-      "./test"
+      "./src"
     ],
     "target": "ES2020",
     "module": "commonjs",
@@ -15,6 +14,7 @@
       "jest",
       "node"
     ],
+    "alwaysStrict": true,
     "strict": true,
     "strictPropertyInitialization": false,
     "allowJs": false,
@@ -24,7 +24,6 @@
     "sourceMap": true
   },
   "include": [
-    "./src/**/*.ts",
-    "./test/**/*.ts"
+    "./src/**/*.ts"
   ]
 }

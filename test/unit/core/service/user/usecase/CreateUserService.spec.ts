@@ -75,6 +75,8 @@ describe('CreateUserService', () => {
   
     test('When user already exists, expect it throws Exception', async () => {
       jest.spyOn(userRepository, 'countUsers').mockImplementation(async () => 1);
+  
+      expect.hasAssertions();
       
       try {
         const createUserPort: CreateUserPort = createPort();

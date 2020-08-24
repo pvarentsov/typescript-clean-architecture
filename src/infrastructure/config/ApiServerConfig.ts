@@ -10,10 +10,10 @@ export class ApiServerConfig {
   
   public static readonly ACCESS_TOKEN_TTL_IN_MINUTES: number = get('API_ACCESS_TOKEN_TTL_IN_MINUTES').required().asInt();
   
-  public static readonly API_ACCESS_TOKEN_HEADER: string = get('API_ACCESS_TOKEN_HEADER').required().asString();
+  public static readonly ACCESS_TOKEN_HEADER: string = get('API_ACCESS_TOKEN_HEADER').required().asString();
   
-  public static readonly API_LOGIN_USERNAME_FIELD: string = get('API_LOGIN_USERNAME_FIELD').required().asString();
+  public static readonly LOGIN_USERNAME_FIELD: string = get('API_LOGIN_USERNAME_FIELD').required().asString();
   
-  public static readonly API_LOGIN_PASSWORD_FIELD: string = get('API_LOGIN_PASSWORD_FIELD').required().asString();
+  public static readonly LOGIN_PASSWORD_FIELD: string = get('API_LOGIN_PASSWORD_FIELD').required().asString();
   
 }

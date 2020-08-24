@@ -31,7 +31,7 @@ export class ServerApplication {
       .setTitle(title)
       .setDescription(description)
       .setVersion(version)
-      .addBearerAuth({ type: 'apiKey', in: 'header', name: ApiServerConfig.API_ACCESS_TOKEN_HEADER })
+      .addBearerAuth({ type: 'apiKey', in: 'header', name: ApiServerConfig.ACCESS_TOKEN_HEADER })
       .build();
     
     const document: OpenAPIObject = SwaggerModule.createDocument(app, options);

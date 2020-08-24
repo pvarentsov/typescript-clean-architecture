@@ -13,8 +13,8 @@ export class HttpLocalStrategy extends PassportStrategy(Strategy) {
   
   constructor(private authService: HttpAuthService) {
     super({
-      usernameField: ApiServerConfig.API_LOGIN_USERNAME_FIELD,
-      passwordField: ApiServerConfig.API_LOGIN_PASSWORD_FIELD,
+      usernameField: ApiServerConfig.LOGIN_USERNAME_FIELD,
+      passwordField: ApiServerConfig.LOGIN_PASSWORD_FIELD,
     });
   }
   

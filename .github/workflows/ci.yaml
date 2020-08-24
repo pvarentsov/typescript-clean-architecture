@@ -34,4 +34,4 @@ jobs:
         run: npm run build
 
       - name: Run unit tests
-        run: npm test:unit:cov
+        run: npm run test:unit:cov

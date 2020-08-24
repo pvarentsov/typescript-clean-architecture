@@ -9,7 +9,7 @@ describe('Media', () => {
   
   describe('new', () => {
     
-    test('When input optional args are empty, expect it created Media instance with default parameters', async () => {
+    test('When input optional args are empty, expect it creates Media instance with default parameters', async () => {
       const currentDate: number = Date.now();
       
       const createFileMetadataValueObjectPayload: CreateFileMetadataValueObjectPayload = {
@@ -43,7 +43,7 @@ describe('Media', () => {
       expect(media.getRemovedAt()).toBeNull();
     });
   
-    test('When input optional args are set, expect it created Media instance with custom parameters', async () => {
+    test('When input optional args are set, expect it creates Media instance with custom parameters', async () => {
       const customId: string = v4();
       const customCreatedAt: Date = new Date(Date.now() - 3000);
       const customEditedAt: Date = new Date(Date.now() - 2000);

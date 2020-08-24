@@ -7,7 +7,7 @@ describe('User', () => {
   
   describe('new', () => {
     
-    test('When input optional args are empty, expect it created User instance with default parameters', async () => {
+    test('When input optional args are empty, expect it creates User instance with default parameters', async () => {
       const currentDate: number = Date.now();
       
       const createUserEntityPayload: CreateUserEntityPayload = {
@@ -32,7 +32,7 @@ describe('User', () => {
       expect(user.getRemovedAt()).toBeNull();
     });
   
-    test('When input optional args are set, expect it created User instance with custom parameters', async () => {
+    test('When input optional args are set, expect it creates User instance with custom parameters', async () => {
       const customId: string = v4();
       const customCreatedAt: Date = new Date(Date.now() - 3000);
       const customEditedAt: Date = new Date(Date.now() - 2000);

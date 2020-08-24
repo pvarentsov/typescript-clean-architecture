@@ -1,18 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreateMediaUseCase } from '../../../../../src/core/domain/media/usecase/CreateMediaUseCase';
-import { MediaRepositoryPort } from '../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
-import { MediaFileStoragePort } from '../../../../../src/core/domain/media/port/persistence/MediaFileStoragePort';
-import { MediaDITokens } from '../../../../../src/core/domain/media/di/MediaDITokens';
-import { CreateMediaService } from '../../../../../src/core/service/media/usecase/CreateMediaService';
-import { TypeOrmMediaRepositoryAdapter } from '../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
-import { MinioMediaFileStorageAdapter } from '../../../../../src/infrastructure/adapter/persistence/media-file/MinioMediaFileStorageAdapter';
-import { FileMetadata } from '../../../../../src/core/domain/media/value-object/FileMetadata';
-import { CreateFileMetadataValueObjectPayload } from '../../../../../src/core/domain/media/value-object/type/CreateFileMetadataValueObjectPayload';
-import { Media } from '../../../../../src/core/domain/media/entity/Media';
+import { CreateMediaUseCase } from '../../../../../../src/core/domain/media/usecase/CreateMediaUseCase';
+import { MediaRepositoryPort } from '../../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
+import { MediaFileStoragePort } from '../../../../../../src/core/domain/media/port/persistence/MediaFileStoragePort';
+import { MediaDITokens } from '../../../../../../src/core/domain/media/di/MediaDITokens';
+import { CreateMediaService } from '../../../../../../src/core/service/media/usecase/CreateMediaService';
+import { TypeOrmMediaRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
+import { MinioMediaFileStorageAdapter } from '../../../../../../src/infrastructure/adapter/persistence/media-file/MinioMediaFileStorageAdapter';
+import { FileMetadata } from '../../../../../../src/core/domain/media/value-object/FileMetadata';
+import { CreateFileMetadataValueObjectPayload } from '../../../../../../src/core/domain/media/value-object/type/CreateFileMetadataValueObjectPayload';
+import { Media } from '../../../../../../src/core/domain/media/entity/Media';
 import { v4 } from 'uuid';
-import { MediaType } from '../../../../../src/core/common/enums/MediaEnums';
-import { CreateMediaPort } from '../../../../../src/core/domain/media/port/usecase/CreateMediaPort';
-import { MediaUseCaseDto } from '../../../../../src/core/domain/media/usecase/dto/MediaUseCaseDto';
+import { MediaType } from '../../../../../../src/core/common/enums/MediaEnums';
+import { CreateMediaPort } from '../../../../../../src/core/domain/media/port/usecase/CreateMediaPort';
+import { MediaUseCaseDto } from '../../../../../../src/core/domain/media/usecase/dto/MediaUseCaseDto';
 
 describe('CreateMediaService', () => {
   let createMediaService: CreateMediaUseCase;

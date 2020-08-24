@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { GetMediaListUseCase } from '../../../../../src/core/domain/media/usecase/GetMediaListUseCase';
-import { MediaRepositoryPort } from '../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
-import { MediaDITokens } from '../../../../../src/core/domain/media/di/MediaDITokens';
-import { GetMediaListService } from '../../../../../src/core/service/media/usecase/GetMediaListService';
-import { TypeOrmMediaRepositoryAdapter } from '../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
-import { FileMetadata } from '../../../../../src/core/domain/media/value-object/FileMetadata';
-import { Media } from '../../../../../src/core/domain/media/entity/Media';
+import { GetMediaListUseCase } from '../../../../../../src/core/domain/media/usecase/GetMediaListUseCase';
+import { MediaRepositoryPort } from '../../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
+import { MediaDITokens } from '../../../../../../src/core/domain/media/di/MediaDITokens';
+import { GetMediaListService } from '../../../../../../src/core/service/media/usecase/GetMediaListService';
+import { TypeOrmMediaRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
+import { FileMetadata } from '../../../../../../src/core/domain/media/value-object/FileMetadata';
+import { Media } from '../../../../../../src/core/domain/media/entity/Media';
 import { v4 } from 'uuid';
-import { MediaType } from '../../../../../src/core/common/enums/MediaEnums';
-import { GetMediaListPort } from '../../../../../src/core/domain/media/port/usecase/GetMediaListPort';
-import { MediaUseCaseDto } from '../../../../../src/core/domain/media/usecase/dto/MediaUseCaseDto';
+import { MediaType } from '../../../../../../src/core/common/enums/MediaEnums';
+import { GetMediaListPort } from '../../../../../../src/core/domain/media/port/usecase/GetMediaListPort';
+import { MediaUseCaseDto } from '../../../../../../src/core/domain/media/usecase/dto/MediaUseCaseDto';
 
 describe('GetMediaListService', () => {
   let getMediaListService: GetMediaListUseCase;

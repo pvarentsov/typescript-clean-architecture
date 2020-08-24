@@ -1,21 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { RemoveMediaUseCase } from '../../../../../src/core/domain/media/usecase/RemoveMediaUseCase';
-import { MediaRepositoryPort } from '../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
-import { MediaDITokens } from '../../../../../src/core/domain/media/di/MediaDITokens';
-import { RemoveMediaService } from '../../../../../src/core/service/media/usecase/RemoveMediaService';
-import { TypeOrmMediaRepositoryAdapter } from '../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
-import { FileMetadata } from '../../../../../src/core/domain/media/value-object/FileMetadata';
-import { Media } from '../../../../../src/core/domain/media/entity/Media';
+import { RemoveMediaUseCase } from '../../../../../../src/core/domain/media/usecase/RemoveMediaUseCase';
+import { MediaRepositoryPort } from '../../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
+import { MediaDITokens } from '../../../../../../src/core/domain/media/di/MediaDITokens';
+import { RemoveMediaService } from '../../../../../../src/core/service/media/usecase/RemoveMediaService';
+import { TypeOrmMediaRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
+import { FileMetadata } from '../../../../../../src/core/domain/media/value-object/FileMetadata';
+import { Media } from '../../../../../../src/core/domain/media/entity/Media';
 import { v4 } from 'uuid';
-import { MediaType } from '../../../../../src/core/common/enums/MediaEnums';
-import { RemoveMediaPort } from '../../../../../src/core/domain/media/port/usecase/RemoveMediaPort';
-import { Exception } from '../../../../../src/core/common/exception/Exception';
-import { ClassValidationDetails } from '../../../../../src/core/common/util/class-validator/ClassValidator';
-import { Code } from '../../../../../src/core/common/code/Code';
-import { EventBusPort } from '../../../../../src/core/common/port/cqers/EventBusPort';
-import { CoreDITokens } from '../../../../../src/core/common/di/CoreDITokens';
-import { NestEventBusAdapter } from '../../../../../src/infrastructure/adapter/cqers/NestEventBusAdapter';
-import { MediaRemovedEvent } from '../../../../../src/core/common/cqers/event/events/media/MediaRemovedEvent';
+import { MediaType } from '../../../../../../src/core/common/enums/MediaEnums';
+import { RemoveMediaPort } from '../../../../../../src/core/domain/media/port/usecase/RemoveMediaPort';
+import { Exception } from '../../../../../../src/core/common/exception/Exception';
+import { ClassValidationDetails } from '../../../../../../src/core/common/util/class-validator/ClassValidator';
+import { Code } from '../../../../../../src/core/common/code/Code';
+import { EventBusPort } from '../../../../../../src/core/common/port/cqers/EventBusPort';
+import { CoreDITokens } from '../../../../../../src/core/common/di/CoreDITokens';
+import { NestEventBusAdapter } from '../../../../../../src/infrastructure/adapter/cqers/NestEventBusAdapter';
+import { MediaRemovedEvent } from '../../../../../../src/core/common/cqers/event/events/media/MediaRemovedEvent';
 import { CqrsModule } from '@nestjs/cqrs';
 
 describe('RemoveMediaService', () => {

@@ -1,18 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { EditMediaUseCase } from '../../../../../src/core/domain/media/usecase/EditMediaUseCase';
-import { MediaRepositoryPort } from '../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
-import { MediaDITokens } from '../../../../../src/core/domain/media/di/MediaDITokens';
-import { EditMediaService } from '../../../../../src/core/service/media/usecase/EditMediaService';
-import { TypeOrmMediaRepositoryAdapter } from '../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
-import { FileMetadata } from '../../../../../src/core/domain/media/value-object/FileMetadata';
-import { Media } from '../../../../../src/core/domain/media/entity/Media';
+import { EditMediaUseCase } from '../../../../../../src/core/domain/media/usecase/EditMediaUseCase';
+import { MediaRepositoryPort } from '../../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
+import { MediaDITokens } from '../../../../../../src/core/domain/media/di/MediaDITokens';
+import { EditMediaService } from '../../../../../../src/core/service/media/usecase/EditMediaService';
+import { TypeOrmMediaRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
+import { FileMetadata } from '../../../../../../src/core/domain/media/value-object/FileMetadata';
+import { Media } from '../../../../../../src/core/domain/media/entity/Media';
 import { v4 } from 'uuid';
-import { MediaType } from '../../../../../src/core/common/enums/MediaEnums';
-import { EditMediaPort } from '../../../../../src/core/domain/media/port/usecase/EditMediaPort';
-import { MediaUseCaseDto } from '../../../../../src/core/domain/media/usecase/dto/MediaUseCaseDto';
-import { Exception } from '../../../../../src/core/common/exception/Exception';
-import { ClassValidationDetails } from '../../../../../src/core/common/util/class-validator/ClassValidator';
-import { Code } from '../../../../../src/core/common/code/Code';
+import { MediaType } from '../../../../../../src/core/common/enums/MediaEnums';
+import { EditMediaPort } from '../../../../../../src/core/domain/media/port/usecase/EditMediaPort';
+import { MediaUseCaseDto } from '../../../../../../src/core/domain/media/usecase/dto/MediaUseCaseDto';
+import { Exception } from '../../../../../../src/core/common/exception/Exception';
+import { ClassValidationDetails } from '../../../../../../src/core/common/util/class-validator/ClassValidator';
+import { Code } from '../../../../../../src/core/common/code/Code';
 
 describe('EditMediaService', () => {
   let editMediaService: EditMediaUseCase;

@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MediaRepositoryPort } from '../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
-import { MediaDITokens } from '../../../../../src/core/domain/media/di/MediaDITokens';
-import { TypeOrmMediaRepositoryAdapter } from '../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
-import { HandleDoesMediaExistQueryService } from '../../../../../src/core/service/media/handler/HandleDoesMediaExistQueryService';
-import { GetMediaPreviewQuery } from '../../../../../src/core/common/cqers/query/queries/media/GetMediaPreviewQuery';
-import { DoesMediaExistQueryHandler } from '../../../../../src/core/domain/media/handler/DoesMediaExistQueryHandler';
-import { DoesMediaExistQueryResult } from '../../../../../src/core/common/cqers/query/queries/media/result/DoesMediaExistQueryResult';
+import { MediaRepositoryPort } from '../../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
+import { MediaDITokens } from '../../../../../../src/core/domain/media/di/MediaDITokens';
+import { TypeOrmMediaRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
+import { HandleDoesMediaExistQueryService } from '../../../../../../src/core/service/media/handler/HandleDoesMediaExistQueryService';
+import { GetMediaPreviewQuery } from '../../../../../../src/core/common/cqers/query/queries/media/GetMediaPreviewQuery';
+import { DoesMediaExistQueryHandler } from '../../../../../../src/core/domain/media/handler/DoesMediaExistQueryHandler';
+import { DoesMediaExistQueryResult } from '../../../../../../src/core/common/cqers/query/queries/media/result/DoesMediaExistQueryResult';
 
 describe('HandleDoesMediaExistQueryService', () => {
   let doesMediaExistQueryHandler: DoesMediaExistQueryHandler;

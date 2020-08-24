@@ -19,15 +19,15 @@ class MockEntity extends Entity<string> {
 describe('Entity', () => {
   
   describe('getId', () => {
-    
-    it('When id is set, expect it returns id', async () => {
+  
+    test('When id is set, expect it returns id', async () => {
       const id: string = v4();
       const entity: MockEntity = new MockEntity(id, 'Triss');
       
       expect(entity.getId()).toBe(id);
     });
-    
-    it('When id is not set, expect it throws Exception', async () => {
+  
+    test('When id is not set, expect it throws Exception', async () => {
       const id: unknown = undefined;
       const entity: MockEntity = new MockEntity(id as string, 'Triss');
       
@@ -50,12 +50,12 @@ describe('Entity', () => {
   
   describe('validate', () => {
   
-    it('When MockEntity is valid, expect it doesn\'t throw Exception', async () => {
+    test('When MockEntity is valid, expect it doesn\'t throw Exception', async () => {
       const validEntity: MockEntity = new MockEntity(v4(), 'Cirilla');
       await expect(validEntity.validate()).resolves.toBeUndefined();
     });
   
-    it('When MockEntity is not valid, expect it throws Exception', async () => {
+    test('When MockEntity is not valid, expect it throws Exception', async () => {
       const name: unknown = 42;
       const invalidEntity: MockEntity = new MockEntity(v4(), name as string);
   

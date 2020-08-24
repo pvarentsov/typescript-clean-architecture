@@ -18,12 +18,12 @@ describe('UseCaseValidatableAdapter', () => {
   
   describe('validate', () => {
   
-    it('When MockAdapter is valid, expect it doesn\'t throw Exception', async () => {
+    test('When MockAdapter is valid, expect it doesn\'t throw Exception', async () => {
       const validInstance: MockAdapter = new MockAdapter('42');
       await expect(validInstance.validate()).resolves.toBeUndefined();
     });
   
-    it('When MockAdapter is not valid, expect it throws Exception', async () => {
+    test('When MockAdapter is not valid, expect it throws Exception', async () => {
       const stringProperty: unknown = 42;
       const invalidInstance: MockAdapter = new MockAdapter(stringProperty as string);
   

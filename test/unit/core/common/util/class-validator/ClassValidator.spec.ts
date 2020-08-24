@@ -18,13 +18,13 @@ class MockClass {
 describe('ClassValidator', () => {
   
   describe('validate', () => {
-    
-    it('When MockClass is valid, expect it doesn\'t return validation details', async () => {
+  
+    test('When MockClass is valid, expect it doesn\'t return validation details', async () => {
       const validInstance: MockClass = new MockClass('42', 42);
       await expect(ClassValidator.validate(validInstance)).resolves.toBeUndefined();
     });
   
-    it('When MockClass is not valid, expect it returns object with validation details', async () => {
+    test('When MockClass is not valid, expect it returns object with validation details', async () => {
       const stringProperty: unknown = 42;
       const numberProperty: unknown = '42';
       

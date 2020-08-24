@@ -18,12 +18,12 @@ describe('ValueObject', () => {
   
   describe('validate', () => {
   
-    it('When MockValueObject is valid, expect it doesn\'t throw Exception', async () => {
+    test('When MockValueObject is valid, expect it doesn\'t throw Exception', async () => {
       const validValueObject: MockValueObject = new MockValueObject('The Tower of the Swallow');
       await expect(validValueObject.validate()).resolves.toBeUndefined();
     });
   
-    it('When MockValueObject is not valid, expect it throws Exception', async () => {
+    test('When MockValueObject is not valid, expect it throws Exception', async () => {
       const address: unknown = 42;
       const invalidValueObject: MockValueObject = new MockValueObject(address as string);
   

@@ -14,7 +14,7 @@ export class HttpJwtStrategy extends PassportStrategy(Strategy) {
   
   constructor(private authService: HttpAuthService) {
     super({
-      jwtFromRequest: ExtractJwt.fromHeader('x-api-token'),
+      jwtFromRequest: ExtractJwt.fromHeader(ApiServerConfig.API_ACCESS_TOKEN_HEADER),
       ignoreExpiration: false,
       secretOrKey: ApiServerConfig.ACCESS_TOKEN_SECRET,
     });

@@ -6,14 +6,15 @@ import { Nullable } from '../../../../../core/common/type/CommonTypes';
 import { HttpUserPayload } from '../type/HttpAuthTypes';
 import { Exception } from '../../../../../core/common/exception/Exception';
 import { Code } from '../../../../../core/common/code/Code';
+import { ApiServerConfig } from '../../../../../infrastructure/config/ApiServerConfig';
 
 @Injectable()
 export class HttpLocalStrategy extends PassportStrategy(Strategy) {
   
   constructor(private authService: HttpAuthService) {
     super({
-      usernameField: 'email',
-      passwordField: 'password'
+      usernameField: ApiServerConfig.API_LOGIN_USERNAME_FIELD,
+      passwordField: ApiServerConfig.API_LOGIN_PASSWORD_FIELD,
     });
   }
   

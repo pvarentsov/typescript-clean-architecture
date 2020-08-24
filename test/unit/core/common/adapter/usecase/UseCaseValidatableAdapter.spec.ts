@@ -31,7 +31,9 @@ describe('UseCaseValidatableAdapter', () => {
   
       try {
         await invalidInstance.validate();
+        
       } catch (e) {
+        
         const exception: Exception<ClassValidationDetails> = e;
         
         expect(exception).toBeInstanceOf(Exception);

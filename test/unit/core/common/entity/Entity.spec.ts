@@ -35,7 +35,9 @@ describe('Entity', () => {
       
       try {
         await entity.getId();
+        
       } catch (e) {
+        
         const exception: Exception<void> = e;
         
         expect(exception).toBeInstanceOf(Exception);
@@ -61,7 +63,9 @@ describe('Entity', () => {
   
       try {
         await invalidEntity.validate();
+        
       } catch (e) {
+        
         const exception: Exception<ClassValidationDetails> = e;
         
         expect(exception).toBeInstanceOf(Exception);

@@ -38,7 +38,7 @@ describe('GetUserService', () => {
   
   describe('execute', () => {
   
-    test('Expect it gets user', async () => {
+    test('Expect it returns user', async () => {
       const mockUser: User = await createUser();
     
       jest.spyOn(userRepository, 'findUser').mockImplementation(async () => mockUser);

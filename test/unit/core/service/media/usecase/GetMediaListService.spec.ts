@@ -36,7 +36,7 @@ describe('GetMediaListService', () => {
   
   describe('execute', () => {
   
-    test('Expect it gets media list', async () => {
+    test('Expect it returns media list', async () => {
       const mockMedia: Media = await createMedia();
       
       jest.spyOn(mediaRepository, 'findMedias').mockImplementation(async () => [mockMedia]);

@@ -60,8 +60,6 @@ describe('EditMediaService', () => {
         type     : mockMedia.getType(),
         metadata : mockMedia.getMetadata(),
         createdAt: mockMedia.getCreatedAt(),
-        editedAt : mockMedia.getEditedAt()!,
-        removedAt: mockMedia.getRemovedAt()!,
       });
   
       const expectedMediaUseCaseDto: MediaUseCaseDto = await MediaUseCaseDto.newFromMedia(expectedMedia);

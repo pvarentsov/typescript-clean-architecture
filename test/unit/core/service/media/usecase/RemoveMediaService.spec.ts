@@ -51,8 +51,6 @@ describe('RemoveMediaService', () => {
   describe('execute', () => {
   
     test('Expect it removes media and sends event about it', async () => {
-      const currentDate: number = Date.now();
-      
       const mockMedia: Media = await createMedia();
       
       jest.spyOn(mediaRepository, 'findMedia').mockImplementation(async () => mockMedia);
@@ -72,7 +70,7 @@ describe('RemoveMediaService', () => {
       const removedMedia: Media = jest.spyOn(mediaRepository, 'removeMedia').mock.calls[0][0];
       const mediaRemovedEvent: MediaRemovedEvent = jest.spyOn(eventBus, 'sendEvent').mock.calls[0][0] as MediaRemovedEvent;
       
-      expect(removedMedia.getRemovedAt()!.getTime()).toBeGreaterThanOrEqual(currentDate - 5000);
+      expect(removedMedia).toEqual(mockMedia);
       expect(mediaRemovedEvent).toEqual(MediaRemovedEvent.new(mockMedia.getId(), mockMedia.getOwnerId(), mockMedia.getType()));
       
     });

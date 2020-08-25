@@ -3,6 +3,7 @@
 It is my attempt to create Clean Architecture based application in Typescript.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](./LICENSE)
+![CI](https://github.com/pvarentsov/typescript-clean-architecture/workflows/CI/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pvarentsov_typescript-clean-architecture&metric=alert_status)](https://sonarcloud.io/dashboard?id=pvarentsov_typescript-clean-architecture)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=pvarentsov_typescript-clean-architecture&metric=coverage)](https://sonarcloud.io/dashboard?id=pvarentsov_typescript-clean-architecture)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=pvarentsov_typescript-clean-architecture&metric=ncloc)](https://sonarcloud.io/dashboard?id=pvarentsov_typescript-clean-architecture)

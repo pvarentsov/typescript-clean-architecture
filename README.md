@@ -75,8 +75,9 @@ IPoster is a simple fictional application that allows users to publish posts.
         <summary>
           API documentation will be available on the endpoint <i>GET <a href="http://localhost:3005/documentation/" target="_blank" rel="noopener noreferrer">http://localhost:3005/documentation</a></i>
         </summary>
+        <br>
         
-        ![API documentation](./asset/ApiDocumentation.png)
+        ![API documentation](./asset/ApiDocumentation.svg)
       </details>
     
 * **Linting**

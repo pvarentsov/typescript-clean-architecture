@@ -79,7 +79,7 @@ IPoster is a simple fictional application that allows users to publish posts.
         <br>
         
         <p align="center"> 
-            <img src="./asset/ApiDocumentationWithoutBg.svg" width="816" height="900">
+            <img src="./asset/ApiDocumentationWithoutBg.png" width="600" height="800">
         </p>
       </details>
     

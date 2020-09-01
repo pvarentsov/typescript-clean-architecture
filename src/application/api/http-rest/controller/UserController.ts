@@ -1,18 +1,18 @@
-import { CreateUserUseCase } from '../../../../core/domain/user/usecase/CreateUserUseCase';
-import { GetUserUseCase } from '../../../../core/domain/user/usecase/GetUserUseCase';
 import { Body, Controller, Get, HttpCode, HttpStatus, Inject, Post } from '@nestjs/common';
-import { UserDITokens } from '../../../../core/domain/user/di/UserDITokens';
-import { UserUseCaseDto } from '../../../../core/domain/user/usecase/dto/UserUseCaseDto';
-import { CreateUserAdapter } from '../../../../infrastructure/adapter/usecase/user/CreateUserAdapter';
-import { GetUserAdapter } from '../../../../infrastructure/adapter/usecase/user/GetUserAdapter';
-import { CoreApiResponse } from '../../../../core/common/api/CoreApiResponse';
-import { UserRole } from '../../../../core/common/enums/UserEnums';
-import { HttpUserPayload } from '../auth/type/HttpAuthTypes';
-import { HttpUser } from '../auth/decorator/HttpUser';
 import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { HttpRestApiModelCreateUserBody } from './documentation/user/HttpRestApiModelCreateUserBody';
-import { HttpRestApiResponseUser } from './documentation/user/HttpRestApiResponseUser';
-import { HttpAuth } from '../auth/decorator/HttpAuth';
+import { UserDITokens } from '@core/domain/user/di/UserDITokens';
+import { CreateUserUseCase } from '@core/domain/user/usecase/CreateUserUseCase';
+import { GetUserUseCase } from '@core/domain/user/usecase/GetUserUseCase';
+import { CoreApiResponse } from '@core/common/api/CoreApiResponse';
+import { UserUseCaseDto } from '@core/domain/user/usecase/dto/UserUseCaseDto';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { GetUserAdapter } from '@infrastructure/adapter/usecase/user/GetUserAdapter';
+import { CreateUserAdapter } from '@infrastructure/adapter/usecase/user/CreateUserAdapter';
+import { HttpRestApiModelCreateUserBody } from '@application/api/http-rest/controller/documentation/user/HttpRestApiModelCreateUserBody';
+import { HttpRestApiResponseUser } from '@application/api/http-rest/controller/documentation/user/HttpRestApiResponseUser';
+import { HttpAuth } from '@application/api/http-rest/auth/decorator/HttpAuth';
+import { HttpUser } from '@application/api/http-rest/auth/decorator/HttpUser';
+import { HttpUserPayload } from '@application/api/http-rest/auth/type/HttpAuthTypes';
 
 @Controller('users')
 @ApiTags('users')

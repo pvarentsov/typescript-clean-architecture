@@ -1,5 +1,5 @@
-import { UseCase } from '../../../common/usecase/UseCase';
-import { GetPostPort } from '../port/usecase/GetPostPort';
-import { PostUseCaseDto } from './dto/PostUseCaseDto';
+import { UseCase } from '@core/common/usecase/UseCase';
+import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
+import { GetPostPort } from '@core/domain/post/port/usecase/GetPostPort';
 
 export interface GetPostUseCase extends UseCase<GetPostPort, PostUseCaseDto> {}

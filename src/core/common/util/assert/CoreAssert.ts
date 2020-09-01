@@ -1,4 +1,4 @@
-import { Nullable, Optional } from '../../type/CommonTypes';
+import { Nullable, Optional } from '@core/common/type/CommonTypes';
 
 export class CoreAssert {
   

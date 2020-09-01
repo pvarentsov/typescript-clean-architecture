@@ -1,11 +1,11 @@
-import { MediaRepositoryPort } from '../../../domain/media/port/persistence/MediaRepositoryPort';
-import { MediaUseCaseDto } from '../../../domain/media/usecase/dto/MediaUseCaseDto';
-import { Media } from '../../../domain/media/entity/Media';
-import { Exception } from '../../../common/exception/Exception';
-import { Code } from '../../../common/code/Code';
-import { GetMediaPort } from '../../../domain/media/port/usecase/GetMediaPort';
-import { GetMediaUseCase } from '../../../domain/media/usecase/GetMediaUseCase';
-import { CoreAssert } from '../../../common/util/assert/CoreAssert';
+import { GetMediaUseCase } from '@core/domain/media/usecase/GetMediaUseCase';
+import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
+import { GetMediaPort } from '@core/domain/media/port/usecase/GetMediaPort';
+import { MediaUseCaseDto } from '@core/domain/media/usecase/dto/MediaUseCaseDto';
+import { Media } from '@core/domain/media/entity/Media';
+import { CoreAssert } from '@core/common/util/assert/CoreAssert';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
 
 export class GetMediaService implements GetMediaUseCase {
   

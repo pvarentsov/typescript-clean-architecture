@@ -1,8 +1,8 @@
-import { MediaRepositoryPort } from '../../../domain/media/port/persistence/MediaRepositoryPort';
-import { MediaUseCaseDto } from '../../../domain/media/usecase/dto/MediaUseCaseDto';
-import { Media } from '../../../domain/media/entity/Media';
-import { GetMediaListUseCase } from '../../../domain/media/usecase/GetMediaListUseCase';
-import { GetMediaListPort } from '../../../domain/media/port/usecase/GetMediaListPort';
+import { GetMediaListUseCase } from '@core/domain/media/usecase/GetMediaListUseCase';
+import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
+import { GetMediaListPort } from '@core/domain/media/port/usecase/GetMediaListPort';
+import { MediaUseCaseDto } from '@core/domain/media/usecase/dto/MediaUseCaseDto';
+import { Media } from '@core/domain/media/entity/Media';
 
 export class GetMediaListService implements GetMediaListUseCase {
   

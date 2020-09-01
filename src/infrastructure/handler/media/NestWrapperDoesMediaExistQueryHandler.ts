@@ -1,9 +1,9 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { DoesMediaExistQuery } from '../../../core/common/cqers/query/queries/media/DoesMediaExistQuery';
-import { DoesMediaExistQueryResult } from '../../../core/common/cqers/query/queries/media/result/DoesMediaExistQueryResult';
-import { DoesMediaExistQueryHandler } from '../../../core/domain/media/handler/DoesMediaExistQueryHandler';
 import { Inject, Injectable } from '@nestjs/common';
-import { MediaDITokens } from '../../../core/domain/media/di/MediaDITokens';
+import { DoesMediaExistQuery } from '@core/common/cqers/query/queries/media/DoesMediaExistQuery';
+import { MediaDITokens } from '@core/domain/media/di/MediaDITokens';
+import { DoesMediaExistQueryHandler } from '@core/domain/media/handler/DoesMediaExistQueryHandler';
+import { DoesMediaExistQueryResult } from '@core/common/cqers/query/queries/media/result/DoesMediaExistQueryResult';
 
 @Injectable()
 @QueryHandler(DoesMediaExistQuery)

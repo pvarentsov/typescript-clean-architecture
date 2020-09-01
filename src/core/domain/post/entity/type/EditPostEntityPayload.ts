@@ -1,5 +1,5 @@
-import { Nullable } from '../../../../common/type/CommonTypes';
-import { PostImage } from '../PostImage';
+import { Nullable } from '@core/common/type/CommonTypes';
+import { PostImage } from '@core/domain/post/entity/PostImage';
 
 export type EditPostEntityPayload = {
   title?: string,

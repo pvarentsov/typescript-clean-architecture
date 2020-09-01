@@ -1,4 +1,4 @@
-import { UserRole } from '../../../../common/enums/UserEnums';
+import { UserRole } from '@core/common/enums/UserEnums';
 
 export type CreateUserEntityPayload = {
   firstName: string,

@@ -1,6 +1,6 @@
-import { Entity } from '../../../common/entity/Entity';
+import { Entity } from '@core/common/entity/Entity';
+import { UserRole } from '@core/common/enums/UserEnums';
 import { IsEnum, IsString } from 'class-validator';
-import { UserRole } from '../../../common/enums/UserEnums';
 
 export class PostOwner extends Entity<string> {
   

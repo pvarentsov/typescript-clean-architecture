@@ -1,5 +1,5 @@
-import { Code } from '../code/Code';
-import { Nullable } from '../type/CommonTypes';
+import { Nullable } from '@core/common/type/CommonTypes';
+import { Code } from '@core/common/code/Code';
 
 export class CoreApiResponse<TData> {
   

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { HttpRestApiResponse } from '../common/HttpRestApiResponse';
-import { HttpRestApiModelLoggedInUser } from './HttpRestApiModelLoggedInUser';
+import { HttpRestApiResponse } from '@application/api/http-rest/controller/documentation/common/HttpRestApiResponse';
+import { HttpRestApiModelLoggedInUser } from '@application/api/http-rest/controller/documentation/auth/HttpRestApiModelLoggedInUser';
 
 export class HttpRestApiResponseLoggedInUser extends HttpRestApiResponse {
   

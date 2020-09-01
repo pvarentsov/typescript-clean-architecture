@@ -1,16 +1,16 @@
-import { PostRepositoryPort } from '../../../domain/post/port/persistence/PostRepositoryPort';
-import { PostUseCaseDto } from '../../../domain/post/usecase/dto/PostUseCaseDto';
-import { Post } from '../../../domain/post/entity/Post';
-import { EditPostUseCase } from '../../../domain/post/usecase/EditPostUseCase';
-import { EditPostPort } from '../../../domain/post/port/usecase/EditPostPort';
-import { Nullable, Optional } from '../../../common/type/CommonTypes';
-import { Exception } from '../../../common/exception/Exception';
-import { Code } from '../../../common/code/Code';
-import { QueryBusPort } from '../../../common/port/cqers/QueryBusPort';
-import { GetMediaPreviewQueryResult } from '../../../common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
-import { GetMediaPreviewQuery } from '../../../common/cqers/query/queries/media/GetMediaPreviewQuery';
-import { PostImage } from '../../../domain/post/entity/PostImage';
-import { CoreAssert } from '../../../common/util/assert/CoreAssert';
+import { EditPostUseCase } from '@core/domain/post/usecase/EditPostUseCase';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { QueryBusPort } from '@core/common/port/cqers/QueryBusPort';
+import { EditPostPort } from '@core/domain/post/port/usecase/EditPostPort';
+import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
+import { Post } from '@core/domain/post/entity/Post';
+import { CoreAssert } from '@core/common/util/assert/CoreAssert';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
+import { Nullable, Optional } from '@core/common/type/CommonTypes';
+import { PostImage } from '@core/domain/post/entity/PostImage';
+import { GetMediaPreviewQuery } from '@core/common/cqers/query/queries/media/GetMediaPreviewQuery';
+import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
 
 export class EditPostService implements EditPostUseCase {
   

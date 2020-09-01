@@ -1,12 +1,12 @@
 import { Module, Provider } from '@nestjs/common';
-import { UserDITokens } from '../../core/domain/user/di/UserDITokens';
 import { Connection } from 'typeorm';
-import { TypeOrmUserRepositoryAdapter } from '../../infrastructure/adapter/persistence/typeorm/repository/user/TypeOrmUserRepositoryAdapter';
-import { CreateUserService } from '../../core/service/user/usecase/CreateUserService';
-import { UserController } from '../api/http-rest/controller/UserController';
-import { GetUserService } from '../../core/service/user/usecase/GetUserService';
-import { HandleGetUserPreviewQueryService } from '../../core/service/user/handler/HandleGetUserPreviewQueryService';
-import { NestWrapperGetUserPreviewQueryHandler } from '../../infrastructure/handler/user/NestWrapperGetUserPreviewQueryHandler';
+import { UserDITokens } from '@core/domain/user/di/UserDITokens';
+import { CreateUserService } from '@core/service/user/usecase/CreateUserService';
+import { GetUserService } from '@core/service/user/usecase/GetUserService';
+import { HandleGetUserPreviewQueryService } from '@core/service/user/handler/HandleGetUserPreviewQueryService';
+import { NestWrapperGetUserPreviewQueryHandler } from '@infrastructure/handler/user/NestWrapperGetUserPreviewQueryHandler';
+import { TypeOrmUserRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/user/TypeOrmUserRepositoryAdapter';
+import { UserController } from '@application/api/http-rest/controller/UserController';
 
 const persistenceProviders: Provider[] = [
   {

@@ -1,7 +1,7 @@
-import { Nullable, Optional } from '../../../../common/type/CommonTypes';
-import { Post } from '../../entity/Post';
-import { RepositoryFindOptions, RepositoryRemoveOptions, RepositoryUpdateManyOptions } from '../../../../common/persistence/RepositoryOptions';
-import { PostStatus } from '../../../../common/enums/PostEnums';
+import { RepositoryFindOptions, RepositoryRemoveOptions, RepositoryUpdateManyOptions } from '@core/common/persistence/RepositoryOptions';
+import { Nullable, Optional } from '@core/common/type/CommonTypes';
+import { Post } from '@core/domain/post/entity/Post';
+import { PostStatus } from '@core/common/enums/PostEnums';
 
 export interface PostRepositoryPort {
 

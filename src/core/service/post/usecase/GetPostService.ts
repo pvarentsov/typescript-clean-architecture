@@ -1,12 +1,12 @@
-import { PostRepositoryPort } from '../../../domain/post/port/persistence/PostRepositoryPort';
-import { PostUseCaseDto } from '../../../domain/post/usecase/dto/PostUseCaseDto';
-import { Post } from '../../../domain/post/entity/Post';
-import { Exception } from '../../../common/exception/Exception';
-import { Code } from '../../../common/code/Code';
-import { GetPostUseCase } from '../../../domain/post/usecase/GetPostUseCase';
-import { GetPostPort } from '../../../domain/post/port/usecase/GetPostPort';
-import { CoreAssert } from '../../../common/util/assert/CoreAssert';
-import { PostStatus } from '../../../common/enums/PostEnums';
+import { GetPostUseCase } from '@core/domain/post/usecase/GetPostUseCase';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { GetPostPort } from '@core/domain/post/port/usecase/GetPostPort';
+import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
+import { Post } from '@core/domain/post/entity/Post';
+import { CoreAssert } from '@core/common/util/assert/CoreAssert';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
+import { PostStatus } from '@core/common/enums/PostEnums';
 
 export class GetPostService implements GetPostUseCase {
   

@@ -74,6 +74,7 @@
     "dotenv": "8.2.0",
     "env-var": "6.3.0",
     "minio": "7.0.16",
+    "module-alias": "2.2.2",
     "passport": "0.4.1",
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
@@ -90,5 +91,10 @@
   },
   "jestSonar": {
     "sonar56x": true
+  },
+  "_moduleAliases": {
+    "@core": "core",
+    "@infrastructure": "infrastructure",
+    "@application": "application"
   }
 }

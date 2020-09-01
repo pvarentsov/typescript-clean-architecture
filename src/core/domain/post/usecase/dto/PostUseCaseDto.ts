@@ -1,10 +1,10 @@
-import { PostStatus } from '../../../../common/enums/PostEnums';
-import { Nullable } from '../../../../common/type/CommonTypes';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { Nullable } from '@core/common/type/CommonTypes';
+import { PostStatus } from '@core/common/enums/PostEnums';
+import { Post } from '@core/domain/post/entity/Post';
+import { PostOwner } from '@core/domain/post/entity/PostOwner';
+import { PostImage } from '@core/domain/post/entity/PostImage';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { Post } from '../../entity/Post';
-import { PostOwner } from '../../entity/PostOwner';
-import { PostImage } from '../../entity/PostImage';
-import { UserRole } from '../../../../common/enums/UserEnums';
 
 @Exclude()
 export class PostUseCaseDto {

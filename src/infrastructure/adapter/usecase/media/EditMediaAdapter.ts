@@ -1,7 +1,7 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { UseCaseValidatableAdapter } from '../../../../core/common/adapter/usecase/UseCaseValidatableAdapter';
 import { IsOptional, IsString, IsUUID } from 'class-validator';
-import { EditMediaPort } from '../../../../core/domain/media/port/usecase/EditMediaPort';
+import { EditMediaPort } from '@core/domain/media/port/usecase/EditMediaPort';
+import { UseCaseValidatableAdapter } from '@core/common/adapter/usecase/UseCaseValidatableAdapter';
 
 @Exclude()
 export class EditMediaAdapter extends UseCaseValidatableAdapter implements EditMediaPort {

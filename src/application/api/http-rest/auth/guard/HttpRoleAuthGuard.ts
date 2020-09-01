@@ -1,9 +1,10 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { UserRole } from '../../../../../core/common/enums/UserEnums';
 import { Reflector } from '@nestjs/core';
-import { HttpRequestWithUser } from '../type/HttpAuthTypes';
-import { Exception } from '../../../../../core/common/exception/Exception';
-import { Code } from '../../../../../core/common/code/Code';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
+import { HttpRequestWithUser } from '@application/api/http-rest/auth/type/HttpAuthTypes';
+
 
 @Injectable()
 export class HttpRoleAuthGuard implements CanActivate {

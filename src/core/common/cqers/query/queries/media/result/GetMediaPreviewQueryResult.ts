@@ -1,4 +1,4 @@
-import { MediaType } from '../../../../../enums/MediaEnums';
+import { MediaType } from '@core/common/enums/MediaEnums';
 
 export class GetMediaPreviewQueryResult {
   

@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { HttpRequestWithUser } from '../type/HttpAuthTypes';
+import { HttpRequestWithUser } from '@application/api/http-rest/auth/type/HttpAuthTypes';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const HttpUser: () => any = createParamDecorator((data: unknown, ctx: ExecutionContext) => {

@@ -1,4 +1,4 @@
-import { MediaType } from '../../../../common/enums/MediaEnums';
+import { MediaType } from '@core/common/enums/MediaEnums';
 
 export interface CreateMediaPort {
   executorId: string;

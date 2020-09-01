@@ -1,5 +1,5 @@
-import { UseCase } from '../../../common/usecase/UseCase';
-import { PublishPostPort } from '../port/usecase/PublishPostPort';
-import { PostUseCaseDto } from './dto/PostUseCaseDto';
+import { UseCase } from '@core/common/usecase/UseCase';
+import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
+import { PublishPostPort } from '@core/domain/post/port/usecase/PublishPostPort';
 
 export interface PublishPostUseCase extends UseCase<PublishPostPort, PostUseCaseDto> {}

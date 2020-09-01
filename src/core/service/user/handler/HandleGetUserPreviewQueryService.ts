@@ -1,9 +1,9 @@
-import { GetUserPreviewQueryHandler } from '../../../domain/user/handler/GetUserPreviewQueryHandler';
-import { GetUserPreviewQuery } from '../../../common/cqers/query/queries/user/GetUserPreviewQuery';
-import { UserRepositoryPort } from '../../../domain/user/port/persistence/UserRepositoryPort';
-import { Optional } from '../../../common/type/CommonTypes';
-import { User } from '../../../domain/user/entity/User';
-import { GetUserPreviewQueryResult } from '../../../common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
+import { GetUserPreviewQueryHandler } from '@core/domain/user/handler/GetUserPreviewQueryHandler';
+import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
+import { GetUserPreviewQuery } from '@core/common/cqers/query/queries/user/GetUserPreviewQuery';
+import { Optional } from '@core/common/type/CommonTypes';
+import { GetUserPreviewQueryResult } from '@core/common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
+import { User } from '@core/domain/user/entity/User';
 
 export class HandleGetUserPreviewQueryService implements GetUserPreviewQueryHandler {
   

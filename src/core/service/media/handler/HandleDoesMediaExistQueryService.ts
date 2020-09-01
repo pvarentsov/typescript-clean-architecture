@@ -1,7 +1,7 @@
-import { DoesMediaExistQueryHandler } from '../../../domain/media/handler/DoesMediaExistQueryHandler';
-import { MediaRepositoryPort } from '../../../domain/media/port/persistence/MediaRepositoryPort';
-import { DoesMediaExistQuery } from '../../../common/cqers/query/queries/media/DoesMediaExistQuery';
-import { DoesMediaExistQueryResult } from '../../../common/cqers/query/queries/media/result/DoesMediaExistQueryResult';
+import { DoesMediaExistQueryHandler } from '@core/domain/media/handler/DoesMediaExistQueryHandler';
+import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
+import { DoesMediaExistQuery } from '@core/common/cqers/query/queries/media/DoesMediaExistQuery';
+import { DoesMediaExistQueryResult } from '@core/common/cqers/query/queries/media/result/DoesMediaExistQueryResult';
 
 export class HandleDoesMediaExistQueryService implements DoesMediaExistQueryHandler {
   

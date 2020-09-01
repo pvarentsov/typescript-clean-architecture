@@ -1,10 +1,10 @@
-import { PostRepositoryPort } from '../../../domain/post/port/persistence/PostRepositoryPort';
-import { Post } from '../../../domain/post/entity/Post';
-import { Exception } from '../../../common/exception/Exception';
-import { Code } from '../../../common/code/Code';
-import { RemovePostUseCase } from '../../../domain/post/usecase/RemovePostUseCase';
-import { RemovePostPort } from '../../../domain/post/port/usecase/RemovePostPort';
-import { CoreAssert } from '../../../common/util/assert/CoreAssert';
+import { RemovePostUseCase } from '@core/domain/post/usecase/RemovePostUseCase';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { RemovePostPort } from '@core/domain/post/port/usecase/RemovePostPort';
+import { Post } from '@core/domain/post/entity/Post';
+import { CoreAssert } from '@core/common/util/assert/CoreAssert';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
 
 export class RemovePostService implements RemovePostUseCase {
   

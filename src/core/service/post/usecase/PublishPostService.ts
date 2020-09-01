@@ -1,11 +1,11 @@
-import { PostRepositoryPort } from '../../../domain/post/port/persistence/PostRepositoryPort';
-import { PostUseCaseDto } from '../../../domain/post/usecase/dto/PostUseCaseDto';
-import { Post } from '../../../domain/post/entity/Post';
-import { Exception } from '../../../common/exception/Exception';
-import { Code } from '../../../common/code/Code';
-import { PublishPostUseCase } from '../../../domain/post/usecase/PublishPostUseCase';
-import { PublishPostPort } from '../../../domain/post/port/usecase/PublishPostPort';
-import { CoreAssert } from '../../../common/util/assert/CoreAssert';
+import { PublishPostUseCase } from '@core/domain/post/usecase/PublishPostUseCase';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { PublishPostPort } from '@core/domain/post/port/usecase/PublishPostPort';
+import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
+import { Post } from '@core/domain/post/entity/Post';
+import { CoreAssert } from '@core/common/util/assert/CoreAssert';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
 
 export class PublishPostService implements PublishPostUseCase {
   

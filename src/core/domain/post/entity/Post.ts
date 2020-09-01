@@ -1,13 +1,13 @@
-import { Entity } from '../../../common/entity/Entity';
+import { Entity } from '@core/common/entity/Entity';
+import { RemovableEntity } from '@core/common/entity/RemovableEntity';
+import { PostOwner } from '@core/domain/post/entity/PostOwner';
+import { PostImage } from '@core/domain/post/entity/PostImage';
+import { Nullable } from '@core/common/type/CommonTypes';
+import { PostStatus } from '@core/common/enums/PostEnums';
+import { CreatePostEntityPayload } from '@core/domain/post/entity/type/CreatePostEntityPayload';
+import { EditPostEntityPayload } from '@core/domain/post/entity/type/EditPostEntityPayload';
 import { IsDate, IsEnum, IsInstance, IsOptional, IsString } from 'class-validator';
-import { CreatePostEntityPayload } from './type/CreatePostEntityPayload';
-import { EditPostEntityPayload } from './type/EditPostEntityPayload';
-import { RemovableEntity } from '../../../common/entity/RemovableEntity';
-import { Nullable } from '../../../common/type/CommonTypes';
-import { PostStatus } from '../../../common/enums/PostEnums';
 import { v4 } from 'uuid';
-import { PostOwner } from './PostOwner';
-import { PostImage } from './PostImage';
 
 export class Post extends Entity<string> implements RemovableEntity {
   

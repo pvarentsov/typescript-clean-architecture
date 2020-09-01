@@ -1,4 +1,4 @@
-import { Entity } from '../../../common/entity/Entity';
+import { Entity } from '@core/common/entity/Entity';
 import { IsString } from 'class-validator';
 
 export class PostImage extends Entity<string> {

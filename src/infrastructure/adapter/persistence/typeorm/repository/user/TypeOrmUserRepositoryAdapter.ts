@@ -1,10 +1,10 @@
-import { UserRepositoryPort } from '../../../../../../core/domain/user/port/persistence/UserRepositoryPort';
 import { EntityRepository, InsertResult, Repository, SelectQueryBuilder } from 'typeorm';
-import { TypeOrmUser } from '../../entity/user/TypeOrmUser';
-import { RepositoryFindOptions } from '../../../../../../core/common/persistence/RepositoryOptions';
-import { Optional } from '../../../../../../core/common/type/CommonTypes';
-import { User } from '../../../../../../core/domain/user/entity/User';
-import { TypeOrmUserMapper } from '../../entity/user/mapper/TypeOrmUserMapper';
+import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
+import { RepositoryFindOptions } from '@core/common/persistence/RepositoryOptions';
+import { Optional } from '@core/common/type/CommonTypes';
+import { User } from '@core/domain/user/entity/User';
+import { TypeOrmUserMapper } from '@infrastructure/adapter/persistence/typeorm/entity/user/mapper/TypeOrmUserMapper';
+import { TypeOrmUser } from '@infrastructure/adapter/persistence/typeorm/entity/user/TypeOrmUser';
 
 @EntityRepository(TypeOrmUser)
 export class TypeOrmUserRepositoryAdapter extends Repository<TypeOrmUser> implements UserRepositoryPort {

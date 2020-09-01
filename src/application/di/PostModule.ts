@@ -1,18 +1,17 @@
-import { Module } from '@nestjs/common';
-import { PostDITokens } from '../../core/domain/post/di/PostDITokens';
+import { Module, Provider } from '@nestjs/common';
 import { Connection } from 'typeorm';
-import { TypeOrmPostRepositoryAdapter } from '../../infrastructure/adapter/persistence/typeorm/repository/post/TypeOrmPostRepositoryAdapter';
-import { CreatePostService } from '../../core/service/post/usecase/CreatePostService';
-import { EditPostService } from '../../core/service/post/usecase/EditPostService';
-import { GetPostListService } from '../../core/service/post/usecase/GetPostListService';
-import { GetPostService } from '../../core/service/post/usecase/GetPostService';
-import { Provider } from '@nestjs/common/interfaces/modules/provider.interface';
-import { RemovePostService } from '../../core/service/post/usecase/RemovePostService';
-import { CoreDITokens } from '../../core/common/di/CoreDITokens';
-import { PublishPostService } from '../../core/service/post/usecase/PublishPostService';
-import { NestWrapperPostImageRemovedEventHandler } from '../../infrastructure/handler/post/NestWrapperPostImageRemovedEventHandler';
-import { HandlePostImageRemovedEventService } from '../../core/service/post/handler/HandlePostImageRemovedEventService';
-import { PostController } from '../api/http-rest/controller/PostController';
+import { PostDITokens } from '@core/domain/post/di/PostDITokens';
+import { CreatePostService } from '@core/service/post/usecase/CreatePostService';
+import { CoreDITokens } from '@core/common/di/CoreDITokens';
+import { EditPostService } from '@core/service/post/usecase/EditPostService';
+import { GetPostListService } from '@core/service/post/usecase/GetPostListService';
+import { GetPostService } from '@core/service/post/usecase/GetPostService';
+import { PublishPostService } from '@core/service/post/usecase/PublishPostService';
+import { RemovePostService } from '@core/service/post/usecase/RemovePostService';
+import { HandlePostImageRemovedEventService } from '@core/service/post/handler/HandlePostImageRemovedEventService';
+import { PostController } from '@application/api/http-rest/controller/PostController';
+import { NestWrapperPostImageRemovedEventHandler } from '@infrastructure/handler/post/NestWrapperPostImageRemovedEventHandler';
+import { TypeOrmPostRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/post/TypeOrmPostRepositoryAdapter';
 
 const persistenceProviders: Provider[] = [
   {

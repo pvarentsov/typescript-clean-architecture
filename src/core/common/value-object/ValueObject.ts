@@ -1,7 +1,7 @@
-import { Optional } from '../type/CommonTypes';
-import { ClassValidationDetails, ClassValidator } from '../util/class-validator/ClassValidator';
-import { Exception } from '../exception/Exception';
-import { Code } from '../code/Code';
+import { Optional } from '@core/common/type/CommonTypes';
+import { ClassValidationDetails, ClassValidator } from '@core/common/util/class-validator/ClassValidator';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
 
 export class ValueObject {
   

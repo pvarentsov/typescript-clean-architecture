@@ -1,7 +1,7 @@
+import { ValueObject } from '@core/common/value-object/ValueObject';
+import { Nullable } from '@core/common/type/CommonTypes';
+import { CreateFileMetadataValueObjectPayload } from '@core/domain/media/value-object/type/CreateFileMetadataValueObjectPayload';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
-import { Nullable } from '../../../common/type/CommonTypes';
-import { CreateFileMetadataValueObjectPayload } from './type/CreateFileMetadataValueObjectPayload';
-import { ValueObject } from '../../../common/value-object/ValueObject';
 
 export class FileMetadata extends ValueObject {
   

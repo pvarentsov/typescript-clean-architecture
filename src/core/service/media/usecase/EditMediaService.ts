@@ -1,11 +1,11 @@
-import { MediaRepositoryPort } from '../../../domain/media/port/persistence/MediaRepositoryPort';
-import { MediaUseCaseDto } from '../../../domain/media/usecase/dto/MediaUseCaseDto';
-import { Media } from '../../../domain/media/entity/Media';
-import { EditMediaUseCase } from '../../../domain/media/usecase/EditMediaUseCase';
-import { EditMediaPort } from '../../../domain/media/port/usecase/EditMediaPort';
-import { Exception } from '../../../common/exception/Exception';
-import { Code } from '../../../common/code/Code';
-import { CoreAssert } from '../../../common/util/assert/CoreAssert';
+import { EditMediaUseCase } from '@core/domain/media/usecase/EditMediaUseCase';
+import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
+import { EditMediaPort } from '@core/domain/media/port/usecase/EditMediaPort';
+import { MediaUseCaseDto } from '@core/domain/media/usecase/dto/MediaUseCaseDto';
+import { Media } from '@core/domain/media/entity/Media';
+import { CoreAssert } from '@core/common/util/assert/CoreAssert';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
 
 export class EditMediaService implements EditMediaUseCase {
   

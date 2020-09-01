@@ -1,6 +1,6 @@
-import { Media } from '../../../../../../../core/domain/media/entity/Media';
-import { FileMetadata } from '../../../../../../../core/domain/media/value-object/FileMetadata';
-import { TypeOrmMedia } from '../TypeOrmMedia';
+import { Media } from '@core/domain/media/entity/Media';
+import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
+import { TypeOrmMedia } from '@infrastructure/adapter/persistence/typeorm/entity/media/TypeOrmMedia';
 
 export class TypeOrmMediaMapper {
   

@@ -1,5 +1,5 @@
+import { Optional } from '@core/common/type/CommonTypes';
 import { validate, ValidationError } from 'class-validator';
-import { Optional } from '../../type/CommonTypes';
 
 export type ClassValidationDetails = {
   context: string;

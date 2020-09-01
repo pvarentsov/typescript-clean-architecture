@@ -1,11 +1,11 @@
-import { Optional } from '../../../common/type/CommonTypes';
-import { Exception } from '../../../common/exception/Exception';
-import { Code } from '../../../common/code/Code';
-import { GetUserUseCase } from '../../../domain/user/usecase/GetUserUseCase';
-import { UserRepositoryPort } from '../../../domain/user/port/persistence/UserRepositoryPort';
-import { GetUserPort } from '../../../domain/user/port/usecase/GetUserPort';
-import { UserUseCaseDto } from '../../../domain/user/usecase/dto/UserUseCaseDto';
-import { User } from '../../../domain/user/entity/User';
+import { GetUserUseCase } from '@core/domain/user/usecase/GetUserUseCase';
+import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
+import { GetUserPort } from '@core/domain/user/port/usecase/GetUserPort';
+import { UserUseCaseDto } from '@core/domain/user/usecase/dto/UserUseCaseDto';
+import { Optional } from '@core/common/type/CommonTypes';
+import { User } from '@core/domain/user/entity/User';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
 
 export class GetUserService implements GetUserUseCase {
   

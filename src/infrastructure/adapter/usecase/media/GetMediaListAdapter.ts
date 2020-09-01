@@ -1,7 +1,7 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { UseCaseValidatableAdapter } from '../../../../core/common/adapter/usecase/UseCaseValidatableAdapter';
 import { IsUUID } from 'class-validator';
-import { GetMediaListPort } from '../../../../core/domain/media/port/usecase/GetMediaListPort';
+import { GetMediaListPort } from '@core/domain/media/port/usecase/GetMediaListPort';
+import { UseCaseValidatableAdapter } from '@core/common/adapter/usecase/UseCaseValidatableAdapter';
 
 @Exclude()
 export class GetMediaListAdapter extends UseCaseValidatableAdapter implements GetMediaListPort {

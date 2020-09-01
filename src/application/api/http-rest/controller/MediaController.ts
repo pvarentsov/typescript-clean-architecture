@@ -1,8 +1,3 @@
-import { CreateMediaUseCase } from '../../../../core/domain/media/usecase/CreateMediaUseCase';
-import { RemoveMediaUseCase } from '../../../../core/domain/media/usecase/RemoveMediaUseCase';
-import { GetMediaUseCase } from '../../../../core/domain/media/usecase/GetMediaUseCase';
-import { GetMediaListUseCase } from '../../../../core/domain/media/usecase/GetMediaListUseCase';
-import { EditMediaUseCase } from '../../../../core/domain/media/usecase/EditMediaUseCase';
 import {
   Body,
   Controller,
@@ -19,30 +14,35 @@ import {
   UploadedFile,
   UseInterceptors
 } from '@nestjs/common';
-import { MediaDITokens } from '../../../../core/domain/media/di/MediaDITokens';
-import { MediaUseCaseDto } from '../../../../core/domain/media/usecase/dto/MediaUseCaseDto';
-import { EditMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/EditMediaAdapter';
-import { GetMediaListAdapter } from '../../../../infrastructure/adapter/usecase/media/GetMediaListAdapter';
-import { GetMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/GetMediaAdapter';
-import { RemoveMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/RemoveMediaAdapter';
-import { CreateMediaAdapter } from '../../../../infrastructure/adapter/usecase/media/CreateMediaAdapter';
-import { CoreApiResponse } from '../../../../core/common/api/CoreApiResponse';
-import { UserRole } from '../../../../core/common/enums/UserEnums';
-import { HttpAuth } from '../auth/decorator/HttpAuth';
-import { HttpRequestWithUser, HttpUserPayload } from '../auth/type/HttpAuthTypes';
-import { HttpRestApiModelCreateMediaQuery } from './documentation/media/HttpRestApiModelCreateMediaQuery';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { HttpRestApiModelCreateMediaBody } from './documentation/media/HttpRestApiModelCreateMediaBody';
-import { HttpRestApiResponseMedia } from './documentation/media/HttpRestApiResponseMedia';
-import { MediaType } from '../../../../core/common/enums/MediaEnums';
 import { parse } from 'path';
-import { HttpRestApiModelEditMediaBody } from './documentation/media/HttpRestApiModelEditMediaBody';
-import { HttpUser } from '../auth/decorator/HttpUser';
-import { HttpRestApiResponseMediaList } from './documentation/media/HttpRestApiResponseMediaList';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { resolve } from 'url';
-import { FileStorageConfig } from '../../../../infrastructure/config/FileStorageConfig';
 import { Transactional } from 'typeorm-transactional-cls-hooked';
+import { MediaDITokens } from '@core/domain/media/di/MediaDITokens';
+import { CreateMediaUseCase } from '@core/domain/media/usecase/CreateMediaUseCase';
+import { EditMediaUseCase } from '@core/domain/media/usecase/EditMediaUseCase';
+import { GetMediaListUseCase } from '@core/domain/media/usecase/GetMediaListUseCase';
+import { GetMediaUseCase } from '@core/domain/media/usecase/GetMediaUseCase';
+import { RemoveMediaUseCase } from '@core/domain/media/usecase/RemoveMediaUseCase';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { MediaType } from '@core/common/enums/MediaEnums';
+import { MediaUseCaseDto } from '@core/domain/media/usecase/dto/MediaUseCaseDto';
+import { CoreApiResponse } from '@core/common/api/CoreApiResponse';
+import { CreateMediaAdapter } from '@infrastructure/adapter/usecase/media/CreateMediaAdapter';
+import { EditMediaAdapter } from '@infrastructure/adapter/usecase/media/EditMediaAdapter';
+import { GetMediaListAdapter } from '@infrastructure/adapter/usecase/media/GetMediaListAdapter';
+import { GetMediaAdapter } from '@infrastructure/adapter/usecase/media/GetMediaAdapter';
+import { RemoveMediaAdapter } from '@infrastructure/adapter/usecase/media/RemoveMediaAdapter';
+import { FileStorageConfig } from '@infrastructure/config/FileStorageConfig';
+import { HttpRestApiModelEditMediaBody } from '@application/api/http-rest/controller/documentation/media/HttpRestApiModelEditMediaBody';
+import { HttpUser } from '@application/api/http-rest/auth/decorator/HttpUser';
+import { HttpRestApiResponseMedia } from '@application/api/http-rest/controller/documentation/media/HttpRestApiResponseMedia';
+import { HttpRequestWithUser, HttpUserPayload } from '@application/api/http-rest/auth/type/HttpAuthTypes';
+import { HttpRestApiModelCreateMediaQuery } from '@application/api/http-rest/controller/documentation/media/HttpRestApiModelCreateMediaQuery';
+import { HttpRestApiModelCreateMediaBody } from '@application/api/http-rest/controller/documentation/media/HttpRestApiModelCreateMediaBody';
+import { HttpAuth } from '@application/api/http-rest/auth/decorator/HttpAuth';
+import { HttpRestApiResponseMediaList } from '@application/api/http-rest/controller/documentation/media/HttpRestApiResponseMediaList';
 
 @Controller('medias')
 @ApiTags('medias')

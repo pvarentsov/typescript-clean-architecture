@@ -1,5 +1,5 @@
-import { UserRole } from '../../../../../core/common/enums/UserEnums';
 import { Request } from 'express';
+import { UserRole } from '@core/common/enums/UserEnums';
 
 export type HttpUserPayload = {
   id: string,

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { MediaType } from '../../../../../../core/common/enums/MediaEnums';
+import { MediaType } from '@core/common/enums/MediaEnums';
 
 export class HttpRestApiModelMedia {
   

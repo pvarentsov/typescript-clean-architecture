@@ -1,7 +1,7 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { UseCaseValidatableAdapter } from '../../../../core/common/adapter/usecase/UseCaseValidatableAdapter';
 import { IsUUID } from 'class-validator';
-import { GetUserPort } from '../../../../core/domain/user/port/usecase/GetUserPort';
+import { UseCaseValidatableAdapter } from '@core/common/adapter/usecase/UseCaseValidatableAdapter';
+import { GetUserPort } from '@core/domain/user/port/usecase/GetUserPort';
 
 @Exclude()
 export class GetUserAdapter extends UseCaseValidatableAdapter implements GetUserPort {

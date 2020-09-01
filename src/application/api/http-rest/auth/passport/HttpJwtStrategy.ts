@@ -1,13 +1,13 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { HttpJwtPayload, HttpUserPayload } from '../type/HttpAuthTypes';
-import { HttpAuthService } from '../HttpAuthService';
-import { Optional } from '../../../../../core/common/type/CommonTypes';
-import { User } from '../../../../../core/domain/user/entity/User';
-import { Exception } from '../../../../../core/common/exception/Exception';
-import { Code } from '../../../../../core/common/code/Code';
-import { ApiServerConfig } from '../../../../../infrastructure/config/ApiServerConfig';
+import { Optional } from '@core/common/type/CommonTypes';
+import { User } from '@core/domain/user/entity/User';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
+import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
+import { HttpAuthService } from '@application/api/http-rest/auth/HttpAuthService';
+import { HttpJwtPayload, HttpUserPayload } from '@application/api/http-rest/auth/type/HttpAuthTypes';
 
 @Injectable()
 export class HttpJwtStrategy extends PassportStrategy(Strategy) {

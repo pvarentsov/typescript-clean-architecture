@@ -1,7 +1,7 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { UseCaseValidatableAdapter } from '../../../../core/common/adapter/usecase/UseCaseValidatableAdapter';
 import { IsUUID } from 'class-validator';
-import { RemovePostPort } from '../../../../core/domain/post/port/usecase/RemovePostPort';
+import { UseCaseValidatableAdapter } from '@core/common/adapter/usecase/UseCaseValidatableAdapter';
+import { RemovePostPort } from '@core/domain/post/port/usecase/RemovePostPort';
 
 @Exclude()
 export class RemovePostAdapter extends UseCaseValidatableAdapter implements RemovePostPort {

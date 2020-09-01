@@ -1,8 +1,8 @@
-import { CreateUserPort } from '../../../../core/domain/user/port/usecase/CreateUserPort';
 import { IsEmail, IsIn, IsString } from 'class-validator';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { UseCaseValidatableAdapter } from '../../../../core/common/adapter/usecase/UseCaseValidatableAdapter';
-import { UserRole } from '../../../../core/common/enums/UserEnums';
+import { UseCaseValidatableAdapter } from '@core/common/adapter/usecase/UseCaseValidatableAdapter';
+import { CreateUserPort } from '@core/domain/user/port/usecase/CreateUserPort';
+import { UserRole } from '@core/common/enums/UserEnums';
 
 @Exclude()
 export class CreateUserAdapter extends UseCaseValidatableAdapter implements CreateUserPort {

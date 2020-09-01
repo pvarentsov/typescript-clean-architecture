@@ -1,4 +1,4 @@
-import { RepositoryFindOptions } from '../../../../persistence/RepositoryOptions';
+import { RepositoryFindOptions } from '@core/common/persistence/RepositoryOptions';
 
 export class DoesMediaExistQuery {
   

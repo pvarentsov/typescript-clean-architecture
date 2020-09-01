@@ -1,5 +1,5 @@
-import { MediaType } from '../../../../common/enums/MediaEnums';
-import { FileMetadata } from '../../value-object/FileMetadata';
+import { MediaType } from '@core/common/enums/MediaEnums';
+import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
 
 export type CreateMediaEntityPayload = {
   ownerId: string,

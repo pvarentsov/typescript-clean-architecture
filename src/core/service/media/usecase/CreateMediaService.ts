@@ -1,10 +1,10 @@
-import { CreateMediaUseCase } from '../../../domain/media/usecase/CreateMediaUseCase';
-import { MediaRepositoryPort } from '../../../domain/media/port/persistence/MediaRepositoryPort';
-import { CreateMediaPort } from '../../../domain/media/port/usecase/CreateMediaPort';
-import { MediaUseCaseDto } from '../../../domain/media/usecase/dto/MediaUseCaseDto';
-import { FileMetadata } from '../../../domain/media/value-object/FileMetadata';
-import { MediaFileStoragePort } from '../../../domain/media/port/persistence/MediaFileStoragePort';
-import { Media } from '../../../domain/media/entity/Media';
+import { CreateMediaUseCase } from '@core/domain/media/usecase/CreateMediaUseCase';
+import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
+import { MediaFileStoragePort } from '@core/domain/media/port/persistence/MediaFileStoragePort';
+import { CreateMediaPort } from '@core/domain/media/port/usecase/CreateMediaPort';
+import { MediaUseCaseDto } from '@core/domain/media/usecase/dto/MediaUseCaseDto';
+import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
+import { Media } from '@core/domain/media/entity/Media';
 
 export class CreateMediaService implements CreateMediaUseCase {
   

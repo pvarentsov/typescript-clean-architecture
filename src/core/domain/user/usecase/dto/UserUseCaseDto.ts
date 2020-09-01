@@ -1,6 +1,6 @@
+import { UserRole } from '@core/common/enums/UserEnums';
+import { User } from '@core/domain/user/entity/User';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
-import { User } from '../../entity/User';
-import { UserRole } from '../../../../common/enums/UserEnums';
 
 @Exclude()
 export class UserUseCaseDto {

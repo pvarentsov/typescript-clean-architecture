@@ -1,7 +1,7 @@
-import { Nullable } from '../../../../common/type/CommonTypes';
-import { PostStatus } from '../../../../common/enums/PostEnums';
-import { PostOwner } from '../PostOwner';
-import { PostImage } from '../PostImage';
+import { PostOwner } from '@core/domain/post/entity/PostOwner';
+import { PostImage } from '@core/domain/post/entity/PostImage';
+import { Nullable } from '@core/common/type/CommonTypes';
+import { PostStatus } from '@core/common/enums/PostEnums';
 
 export type CreatePostEntityPayload = {
   owner: PostOwner,

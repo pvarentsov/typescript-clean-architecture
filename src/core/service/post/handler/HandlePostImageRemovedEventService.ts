@@ -1,7 +1,7 @@
-import { PostImageRemovedEventHandler } from '../../../domain/post/handler/PostImageRemovedEventHandler';
-import { PostRepositoryPort } from '../../../domain/post/port/persistence/PostRepositoryPort';
-import { MediaRemovedEvent } from '../../../common/cqers/event/events/media/MediaRemovedEvent';
-import { MediaType } from '../../../common/enums/MediaEnums';
+import { PostImageRemovedEventHandler } from '@core/domain/post/handler/PostImageRemovedEventHandler';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { MediaRemovedEvent } from '@core/common/cqers/event/events/media/MediaRemovedEvent';
+import { MediaType } from '@core/common/enums/MediaEnums';
 
 export class HandlePostImageRemovedEventService implements PostImageRemovedEventHandler {
   

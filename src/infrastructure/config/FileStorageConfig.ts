@@ -1,5 +1,5 @@
 import { get } from 'env-var';
-import { Optional } from '../../core/common/type/CommonTypes';
+import { Optional } from '@core/common/type/CommonTypes';
 
 export class FileStorageConfig {
 

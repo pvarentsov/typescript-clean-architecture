@@ -1,16 +1,16 @@
 import { Global, Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { TypeOrmDirectory } from '../../infrastructure/adapter/persistence/typeorm/TypeOrmDirectory';
-import { CoreDITokens } from '../../core/common/di/CoreDITokens';
-import { NestCommandBusAdapter } from '../../infrastructure/adapter/cqers/NestCommandBusAdapter';
-import { NestEventBusAdapter } from '../../infrastructure/adapter/cqers/NestEventBusAdapter';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { NestHttpExceptionFilter } from '../api/http-rest/exception-filter/NestHttpExceptionFilter';
-import { NestQueryBusAdapter } from '../../infrastructure/adapter/cqers/NestQueryBusAdapter';
-import { NestHttpLoggingInterceptor } from '../api/http-rest/interceptor/NestHttpLoggingInterceptor';
-import { TypeOrmLogger } from '../../infrastructure/adapter/persistence/typeorm/logger/TypeOrmLogger';
-import { DatabaseConfig } from '../../infrastructure/config/DatabaseConfig';
+import { CoreDITokens } from '@core/common/di/CoreDITokens';
+import { DatabaseConfig } from '@infrastructure/config/DatabaseConfig';
+import { TypeOrmLogger } from '@infrastructure/adapter/persistence/typeorm/logger/TypeOrmLogger';
+import { TypeOrmDirectory } from '@infrastructure/adapter/persistence/typeorm/TypeOrmDirectory';
+import { NestCommandBusAdapter } from '@infrastructure/adapter/cqers/NestCommandBusAdapter';
+import { NestQueryBusAdapter } from '@infrastructure/adapter/cqers/NestQueryBusAdapter';
+import { NestEventBusAdapter } from '@infrastructure/adapter/cqers/NestEventBusAdapter';
+import { NestHttpExceptionFilter } from '@application/api/http-rest/exception-filter/NestHttpExceptionFilter';
+import { NestHttpLoggingInterceptor } from '@application/api/http-rest/interceptor/NestHttpLoggingInterceptor';
 
 @Global()
 @Module({

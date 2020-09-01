@@ -1,5 +1,5 @@
-import { MediaType } from '../../../../../../core/common/enums/MediaEnums';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { MediaType } from '@core/common/enums/MediaEnums';
 
 @Entity('media')
 export class TypeOrmMedia {

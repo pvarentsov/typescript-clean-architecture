@@ -1,5 +1,5 @@
-import { ValueObject } from '@core/common/value-object/ValueObject';
 import { Nullable } from '@core/common/type/CommonTypes';
+import { ValueObject } from '@core/common/value-object/ValueObject';
 import { CreateFileMetadataValueObjectPayload } from '@core/domain/media/value-object/type/CreateFileMetadataValueObjectPayload';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 

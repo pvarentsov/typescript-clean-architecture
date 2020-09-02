@@ -1,12 +1,12 @@
-import { Module } from '@nestjs/common';
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
-import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
+import { HttpAuthService } from '@application/api/http-rest/auth/HttpAuthService';
+import { HttpJwtStrategy } from '@application/api/http-rest/auth/passport/HttpJwtStrategy';
+import { HttpLocalStrategy } from '@application/api/http-rest/auth/passport/HttpLocalStrategy';
 import { AuthController } from '@application/api/http-rest/controller/AuthController';
 import { UserModule } from '@application/di/UserModule';
-import { HttpAuthService } from '@application/api/http-rest/auth/HttpAuthService';
-import { HttpLocalStrategy } from '@application/api/http-rest/auth/passport/HttpLocalStrategy';
-import { HttpJwtStrategy } from '@application/api/http-rest/auth/passport/HttpJwtStrategy';
+import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
+import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   controllers: [

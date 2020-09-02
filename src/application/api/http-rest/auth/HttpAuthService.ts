@@ -1,10 +1,10 @@
+import { HttpJwtPayload, HttpLoggedInUser, HttpUserPayload } from '@application/api/http-rest/auth/type/HttpAuthTypes';
+import { Nullable, Optional } from '@core/common/type/CommonTypes';
+import { UserDITokens } from '@core/domain/user/di/UserDITokens';
+import { User } from '@core/domain/user/entity/User';
+import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
 import { Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserDITokens } from '@core/domain/user/di/UserDITokens';
-import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
-import { Nullable, Optional } from '@core/common/type/CommonTypes';
-import { User } from '@core/domain/user/entity/User';
-import { HttpJwtPayload, HttpLoggedInUser, HttpUserPayload } from '@application/api/http-rest/auth/type/HttpAuthTypes';
 
 @Injectable()
 export class HttpAuthService {

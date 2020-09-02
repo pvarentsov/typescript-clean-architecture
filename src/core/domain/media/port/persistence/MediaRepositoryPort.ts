@@ -1,6 +1,6 @@
 import { RepositoryFindOptions, RepositoryRemoveOptions } from '@core/common/persistence/RepositoryOptions';
-import { Media } from '@core/domain/media/entity/Media';
 import { Optional } from '@core/common/type/CommonTypes';
+import { Media } from '@core/domain/media/entity/Media';
 
 export interface MediaRepositoryPort {
 

@@ -1,9 +1,9 @@
-import { v4 } from 'uuid';
 import { MediaType } from '@core/common/enums/MediaEnums';
-import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
-import { MediaUseCaseDto } from '@core/domain/media/usecase/dto/MediaUseCaseDto';
 import { Media } from '@core/domain/media/entity/Media';
 import { CreateMediaEntityPayload } from '@core/domain/media/entity/type/CreateMediaEntityPayload';
+import { MediaUseCaseDto } from '@core/domain/media/usecase/dto/MediaUseCaseDto';
+import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
+import { v4 } from 'uuid';
 
 describe('MediaUseCaseDto', () => {
 

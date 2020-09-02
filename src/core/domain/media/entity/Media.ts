@@ -1,12 +1,12 @@
 import { Entity } from '@core/common/entity/Entity';
 import { RemovableEntity } from '@core/common/entity/RemovableEntity';
-import { Nullable } from '@core/common/type/CommonTypes';
 import { MediaType } from '@core/common/enums/MediaEnums';
-import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
+import { Nullable } from '@core/common/type/CommonTypes';
 import { CreateMediaEntityPayload } from '@core/domain/media/entity/type/CreateMediaEntityPayload';
 import { EditMediaEntityPayload } from '@core/domain/media/entity/type/EditMediaEntityPayload';
-import { v4 } from 'uuid';
+import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
 import { IsDate, IsEnum, IsInstance, IsOptional, IsString, IsUUID } from 'class-validator';
+import { v4 } from 'uuid';
 
 export class Media extends Entity<string> implements RemovableEntity {
   

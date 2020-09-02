@@ -1,9 +1,9 @@
+import { PostStatus } from '@core/common/enums/PostEnums';
 import { UserRole } from '@core/common/enums/UserEnums';
 import { Nullable } from '@core/common/type/CommonTypes';
-import { PostStatus } from '@core/common/enums/PostEnums';
 import { Post } from '@core/domain/post/entity/Post';
-import { PostOwner } from '@core/domain/post/entity/PostOwner';
 import { PostImage } from '@core/domain/post/entity/PostImage';
+import { PostOwner } from '@core/domain/post/entity/PostOwner';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 
 @Exclude()

@@ -1,7 +1,7 @@
-import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { MediaType } from '@core/common/enums/MediaEnums';
 import { Nullable } from '@core/common/type/CommonTypes';
 import { Media } from '@core/domain/media/entity/Media';
+import { Exclude, Expose, plainToClass } from 'class-transformer';
 
 @Exclude()
 export class MediaUseCaseDto {

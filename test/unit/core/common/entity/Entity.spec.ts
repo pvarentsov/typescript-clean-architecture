@@ -1,9 +1,9 @@
-import { v4 } from 'uuid';
-import { IsString } from 'class-validator';
+import { Code } from '@core/common/code/Code';
 import { Entity } from '@core/common/entity/Entity';
 import { Exception } from '@core/common/exception/Exception';
 import { ClassValidationDetails } from '@core/common/util/class-validator/ClassValidator';
-import { Code } from '@core/common/code/Code';
+import { IsString } from 'class-validator';
+import { v4 } from 'uuid';
 
 class MockEntity extends Entity<string> {
   @IsString()

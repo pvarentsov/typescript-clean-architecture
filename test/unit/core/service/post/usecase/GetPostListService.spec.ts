@@ -1,15 +1,15 @@
-import { v4 } from 'uuid';
-import { Test, TestingModule } from '@nestjs/testing';
-import { GetPostListUseCase } from '@core/domain/post/usecase/GetPostListUseCase';
-import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { UserRole } from '@core/common/enums/UserEnums';
 import { PostDITokens } from '@core/domain/post/di/PostDITokens';
-import { GetPostListService } from '@core/service/post/usecase/GetPostListService';
 import { Post } from '@core/domain/post/entity/Post';
+import { PostOwner } from '@core/domain/post/entity/PostOwner';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
 import { GetPostListPort } from '@core/domain/post/port/usecase/GetPostListPort';
 import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
-import { PostOwner } from '@core/domain/post/entity/PostOwner';
-import { UserRole } from '@core/common/enums/UserEnums';
+import { GetPostListUseCase } from '@core/domain/post/usecase/GetPostListUseCase';
+import { GetPostListService } from '@core/service/post/usecase/GetPostListService';
 import { TypeOrmPostRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/post/TypeOrmPostRepositoryAdapter';
+import { Test, TestingModule } from '@nestjs/testing';
+import { v4 } from 'uuid';
 
 describe('GetPostListService', () => {
   let getPostListService: GetPostListUseCase;

@@ -1,6 +1,6 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { PostStatus } from '@core/common/enums/PostEnums';
 import { UserRole } from '@core/common/enums/UserEnums';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('post')
 export class TypeOrmPost {

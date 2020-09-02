@@ -1,10 +1,10 @@
-import { NestExpressApplication } from '@nestjs/platform-express';
-import { NestFactory } from '@nestjs/core';
+import { RootModule } from '@application/di/.RootModule';
+import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
 import { Logger } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 import { initializeTransactionalContext, patchTypeORMRepositoryWithBaseRepository } from 'typeorm-transactional-cls-hooked';
-import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
-import { RootModule } from '@application/di/.RootModule';
 
 export class ServerApplication {
   

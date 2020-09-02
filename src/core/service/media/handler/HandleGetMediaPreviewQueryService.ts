@@ -1,9 +1,9 @@
+import { GetMediaPreviewQuery } from '@core/common/cqers/query/queries/media/GetMediaPreviewQuery';
+import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
+import { Optional } from '@core/common/type/CommonTypes';
+import { Media } from '@core/domain/media/entity/Media';
 import { GetMediaPreviewQueryHandler } from '@core/domain/media/handler/GetMediaPreviewQueryHandler';
 import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
-import { GetMediaPreviewQuery } from '@core/common/cqers/query/queries/media/GetMediaPreviewQuery';
-import { Optional } from '@core/common/type/CommonTypes';
-import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
-import { Media } from '@core/domain/media/entity/Media';
 
 export class HandleGetMediaPreviewQueryService implements GetMediaPreviewQueryHandler {
   

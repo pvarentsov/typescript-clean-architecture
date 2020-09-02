@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { UserRole } from '@core/common/enums/UserEnums';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class HttpRestApiModelCreateUserBody {
   

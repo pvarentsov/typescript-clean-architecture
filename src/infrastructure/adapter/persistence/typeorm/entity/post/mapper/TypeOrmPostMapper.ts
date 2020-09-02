@@ -1,7 +1,7 @@
+import { PostStatus } from '@core/common/enums/PostEnums';
+import { Nullable } from '@core/common/type/CommonTypes';
 import { Post } from '@core/domain/post/entity/Post';
 import { PostImage } from '@core/domain/post/entity/PostImage';
-import { Nullable } from '@core/common/type/CommonTypes';
-import { PostStatus } from '@core/common/enums/PostEnums';
 import { PostOwner } from '@core/domain/post/entity/PostOwner';
 import { TypeOrmPost } from '@infrastructure/adapter/persistence/typeorm/entity/post/TypeOrmPost';
 

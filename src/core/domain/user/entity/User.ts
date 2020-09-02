@@ -4,9 +4,9 @@ import { UserRole } from '@core/common/enums/UserEnums';
 import { Nullable } from '@core/common/type/CommonTypes';
 import { CreateUserEntityPayload } from '@core/domain/user/entity/type/CreateUserEntityPayload';
 import { EditUserEntityPayload } from '@core/domain/user/entity/type/EditUserEntityPayload';
-import { v4 } from 'uuid';
 import { compare, genSalt, hash } from 'bcryptjs';
 import { IsDate, IsEmail, IsEnum, IsOptional, IsString } from 'class-validator';
+import { v4 } from 'uuid';
 
 export class User extends Entity<string> implements RemovableEntity {
   

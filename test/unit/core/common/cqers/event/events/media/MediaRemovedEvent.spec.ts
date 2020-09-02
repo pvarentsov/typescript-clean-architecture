@@ -1,6 +1,6 @@
-import { v4 } from 'uuid';
-import { MediaType } from '@core/common/enums/MediaEnums';
 import { MediaRemovedEvent } from '@core/common/cqers/event/events/media/MediaRemovedEvent';
+import { MediaType } from '@core/common/enums/MediaEnums';
+import { v4 } from 'uuid';
 
 describe('MediaRemovedEvent', () => {
 

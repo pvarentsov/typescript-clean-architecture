@@ -1,8 +1,8 @@
-import { GetPostListUseCase } from '@core/domain/post/usecase/GetPostListUseCase';
+import { Post } from '@core/domain/post/entity/Post';
 import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
 import { GetPostListPort } from '@core/domain/post/port/usecase/GetPostListPort';
 import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
-import { Post } from '@core/domain/post/entity/Post';
+import { GetPostListUseCase } from '@core/domain/post/usecase/GetPostListUseCase';
 
 export class GetPostListService implements GetPostListUseCase {
   

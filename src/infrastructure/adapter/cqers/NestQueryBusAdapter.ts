@@ -1,6 +1,6 @@
-import { QueryBus } from '@nestjs/cqrs';
-import { Injectable } from '@nestjs/common';
 import { QueryBusPort } from '@core/common/port/cqers/QueryBusPort';
+import { Injectable } from '@nestjs/common';
+import { QueryBus } from '@nestjs/cqrs';
 
 @Injectable()
 export class NestQueryBusAdapter implements QueryBusPort {

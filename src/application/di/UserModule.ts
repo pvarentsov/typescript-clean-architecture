@@ -1,12 +1,12 @@
-import { Module, Provider } from '@nestjs/common';
-import { Connection } from 'typeorm';
+import { UserController } from '@application/api/http-rest/controller/UserController';
 import { UserDITokens } from '@core/domain/user/di/UserDITokens';
+import { HandleGetUserPreviewQueryService } from '@core/service/user/handler/HandleGetUserPreviewQueryService';
 import { CreateUserService } from '@core/service/user/usecase/CreateUserService';
 import { GetUserService } from '@core/service/user/usecase/GetUserService';
-import { HandleGetUserPreviewQueryService } from '@core/service/user/handler/HandleGetUserPreviewQueryService';
-import { NestWrapperGetUserPreviewQueryHandler } from '@infrastructure/handler/user/NestWrapperGetUserPreviewQueryHandler';
 import { TypeOrmUserRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/user/TypeOrmUserRepositoryAdapter';
-import { UserController } from '@application/api/http-rest/controller/UserController';
+import { NestWrapperGetUserPreviewQueryHandler } from '@infrastructure/handler/user/NestWrapperGetUserPreviewQueryHandler';
+import { Module, Provider } from '@nestjs/common';
+import { Connection } from 'typeorm';
 
 const persistenceProviders: Provider[] = [
   {

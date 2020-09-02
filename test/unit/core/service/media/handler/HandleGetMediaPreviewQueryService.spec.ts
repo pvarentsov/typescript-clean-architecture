@@ -1,16 +1,16 @@
-import { v4 } from 'uuid';
-import { Test, TestingModule } from '@nestjs/testing';
-import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
-import { MediaDITokens } from '@core/domain/media/di/MediaDITokens';
-import { TypeOrmMediaRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
-import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
-import { Media } from '@core/domain/media/entity/Media';
-import { MediaType } from '@core/common/enums/MediaEnums';
-import { HandleGetMediaPreviewQueryService } from '@core/service/media/handler/HandleGetMediaPreviewQueryService';
-import { GetMediaPreviewQueryHandler } from '@core/domain/media/handler/GetMediaPreviewQueryHandler';
-import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
 import { GetMediaPreviewQuery } from '@core/common/cqers/query/queries/media/GetMediaPreviewQuery';
+import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
+import { MediaType } from '@core/common/enums/MediaEnums';
 import { Optional } from '@core/common/type/CommonTypes';
+import { MediaDITokens } from '@core/domain/media/di/MediaDITokens';
+import { Media } from '@core/domain/media/entity/Media';
+import { GetMediaPreviewQueryHandler } from '@core/domain/media/handler/GetMediaPreviewQueryHandler';
+import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
+import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
+import { HandleGetMediaPreviewQueryService } from '@core/service/media/handler/HandleGetMediaPreviewQueryService';
+import { TypeOrmMediaRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
+import { Test, TestingModule } from '@nestjs/testing';
+import { v4 } from 'uuid';
 
 describe('HandleGetMediaPreviewQueryService', () => {
   let getMediaPreviewQueryHandler: GetMediaPreviewQueryHandler;

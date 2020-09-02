@@ -1,6 +1,6 @@
-import { v4 } from 'uuid';
-import { RepositoryFindOptions } from '@core/common/persistence/RepositoryOptions';
 import { DoesMediaExistQuery } from '@core/common/cqers/query/queries/media/DoesMediaExistQuery';
+import { RepositoryFindOptions } from '@core/common/persistence/RepositoryOptions';
+import { v4 } from 'uuid';
 
 describe('DoesMediaExistQuery', () => {
 

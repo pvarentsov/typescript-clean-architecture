@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { InfrastructureModule } from '@application/di/InfrastructureModule';
-import { PostModule } from '@application/di/PostModule';
-import { MediaModule } from '@application/di/MediaModule';
-import { UserModule } from '@application/di/UserModule';
 import { AuthModule } from '@application/di/AuthModule';
+import { InfrastructureModule } from '@application/di/InfrastructureModule';
+import { MediaModule } from '@application/di/MediaModule';
+import { PostModule } from '@application/di/PostModule';
+import { UserModule } from '@application/di/UserModule';
+import { Module } from '@nestjs/common';
 
 @Module({
   imports: [

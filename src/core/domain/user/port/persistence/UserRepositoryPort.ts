@@ -1,6 +1,6 @@
 import { RepositoryFindOptions } from '@core/common/persistence/RepositoryOptions';
-import { User } from '@core/domain/user/entity/User';
 import { Optional } from '@core/common/type/CommonTypes';
+import { User } from '@core/domain/user/entity/User';
 
 export interface UserRepositoryPort {
 

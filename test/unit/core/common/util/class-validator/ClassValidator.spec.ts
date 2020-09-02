@@ -1,6 +1,6 @@
-import { IsNumber, IsString } from 'class-validator';
-import { ClassValidationDetails, ClassValidator } from '@core/common/util/class-validator/ClassValidator';
 import { Optional } from '@core/common/type/CommonTypes';
+import { ClassValidationDetails, ClassValidator } from '@core/common/util/class-validator/ClassValidator';
+import { IsNumber, IsString } from 'class-validator';
 
 class MockClass {
   @IsString()

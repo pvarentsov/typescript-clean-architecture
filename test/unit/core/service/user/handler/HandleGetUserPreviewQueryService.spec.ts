@@ -1,15 +1,15 @@
-import { v4 } from 'uuid';
-import { Test, TestingModule } from '@nestjs/testing';
-import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
+import { GetUserPreviewQuery } from '@core/common/cqers/query/queries/user/GetUserPreviewQuery';
+import { GetUserPreviewQueryResult } from '@core/common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { Optional } from '@core/common/type/CommonTypes';
 import { UserDITokens } from '@core/domain/user/di/UserDITokens';
 import { User } from '@core/domain/user/entity/User';
-import { HandleGetUserPreviewQueryService } from '@core/service/user/handler/HandleGetUserPreviewQueryService';
 import { GetUserPreviewQueryHandler } from '@core/domain/user/handler/GetUserPreviewQueryHandler';
-import { GetUserPreviewQueryResult } from '@core/common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
-import { GetUserPreviewQuery } from '@core/common/cqers/query/queries/user/GetUserPreviewQuery';
-import { Optional } from '@core/common/type/CommonTypes';
-import { UserRole } from '@core/common/enums/UserEnums';
+import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
+import { HandleGetUserPreviewQueryService } from '@core/service/user/handler/HandleGetUserPreviewQueryService';
 import { TypeOrmUserRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/user/TypeOrmUserRepositoryAdapter';
+import { Test, TestingModule } from '@nestjs/testing';
+import { v4 } from 'uuid';
 
 describe('HandleGetUserPreviewQueryService', () => {
   let getUserPreviewQueryHandler: GetUserPreviewQueryHandler;

@@ -1,8 +1,8 @@
+import { UseCaseValidatableAdapter } from '@core/common/adapter/usecase/UseCaseValidatableAdapter';
+import { PostStatus } from '@core/common/enums/PostEnums';
+import { GetPostListPort } from '@core/domain/post/port/usecase/GetPostListPort';
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { IsEnum, IsOptional, IsUUID } from 'class-validator';
-import { UseCaseValidatableAdapter } from '@core/common/adapter/usecase/UseCaseValidatableAdapter';
-import { GetPostListPort } from '@core/domain/post/port/usecase/GetPostListPort';
-import { PostStatus } from '@core/common/enums/PostEnums';
 
 @Exclude()
 export class GetPostListAdapter extends UseCaseValidatableAdapter implements GetPostListPort {

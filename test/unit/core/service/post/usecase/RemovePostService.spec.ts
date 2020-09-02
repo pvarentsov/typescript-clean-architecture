@@ -1,18 +1,18 @@
-import { v4 } from 'uuid';
-import { Test, TestingModule } from '@nestjs/testing';
-import { RemovePostUseCase } from '@core/domain/post/usecase/RemovePostUseCase';
-import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
-import { PostDITokens } from '@core/domain/post/di/PostDITokens';
-import { RemovePostService } from '@core/service/post/usecase/RemovePostService';
-import { Post } from '@core/domain/post/entity/Post';
-import { RemovePostPort } from '@core/domain/post/port/usecase/RemovePostPort';
+import { Code } from '@core/common/code/Code';
+import { UserRole } from '@core/common/enums/UserEnums';
 import { Exception } from '@core/common/exception/Exception';
 import { ClassValidationDetails } from '@core/common/util/class-validator/ClassValidator';
-import { Code } from '@core/common/code/Code';
-import { CqrsModule } from '@nestjs/cqrs';
+import { PostDITokens } from '@core/domain/post/di/PostDITokens';
+import { Post } from '@core/domain/post/entity/Post';
 import { PostOwner } from '@core/domain/post/entity/PostOwner';
-import { UserRole } from '@core/common/enums/UserEnums';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { RemovePostPort } from '@core/domain/post/port/usecase/RemovePostPort';
+import { RemovePostUseCase } from '@core/domain/post/usecase/RemovePostUseCase';
+import { RemovePostService } from '@core/service/post/usecase/RemovePostService';
 import { TypeOrmPostRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/post/TypeOrmPostRepositoryAdapter';
+import { CqrsModule } from '@nestjs/cqrs';
+import { Test, TestingModule } from '@nestjs/testing';
+import { v4 } from 'uuid';
 
 describe('RemovePostService', () => {
   let removePostService: RemovePostUseCase;

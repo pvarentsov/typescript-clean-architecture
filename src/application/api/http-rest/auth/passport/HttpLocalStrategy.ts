@@ -1,12 +1,12 @@
-import { Strategy } from 'passport-local';
-import { PassportStrategy } from '@nestjs/passport';
-import { Injectable } from '@nestjs/common';
-import { Nullable } from '@core/common/type/CommonTypes';
-import { Exception } from '@core/common/exception/Exception';
-import { Code } from '@core/common/code/Code';
-import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
-import { HttpUserPayload } from '@application/api/http-rest/auth/type/HttpAuthTypes';
 import { HttpAuthService } from '@application/api/http-rest/auth/HttpAuthService';
+import { HttpUserPayload } from '@application/api/http-rest/auth/type/HttpAuthTypes';
+import { Code } from '@core/common/code/Code';
+import { Exception } from '@core/common/exception/Exception';
+import { Nullable } from '@core/common/type/CommonTypes';
+import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
+import { Injectable } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { Strategy } from 'passport-local';
 
 @Injectable()
 export class HttpLocalStrategy extends PassportStrategy(Strategy) {

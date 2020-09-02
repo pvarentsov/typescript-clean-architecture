@@ -1,17 +1,17 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { UserRepositoryPort } from '../../../../../../src/core/domain/user/port/persistence/UserRepositoryPort';
-import { UserDITokens } from '../../../../../../src/core/domain/user/di/UserDITokens';
-import { GetUserService } from '../../../../../../src/core/service/user/usecase/GetUserService';
-import { TypeOrmUserRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/user/TypeOrmUserRepositoryAdapter';
-import { User } from '../../../../../../src/core/domain/user/entity/User';
 import { v4 } from 'uuid';
-import { UserUseCaseDto } from '../../../../../../src/core/domain/user/usecase/dto/UserUseCaseDto';
-import { UserRole } from '../../../../../../src/core/common/enums/UserEnums';
-import { Exception } from '../../../../../../src/core/common/exception/Exception';
-import { ClassValidationDetails } from '../../../../../../src/core/common/util/class-validator/ClassValidator';
-import { Code } from '../../../../../../src/core/common/code/Code';
-import { GetUserPort } from '../../../../../../src/core/domain/user/port/usecase/GetUserPort';
-import { GetUserUseCase } from '../../../../../../src/core/domain/user/usecase/GetUserUseCase';
+import { Test, TestingModule } from '@nestjs/testing';
+import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
+import { UserDITokens } from '@core/domain/user/di/UserDITokens';
+import { GetUserService } from '@core/service/user/usecase/GetUserService';
+import { User } from '@core/domain/user/entity/User';
+import { UserUseCaseDto } from '@core/domain/user/usecase/dto/UserUseCaseDto';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { Exception } from '@core/common/exception/Exception';
+import { ClassValidationDetails } from '@core/common/util/class-validator/ClassValidator';
+import { Code } from '@core/common/code/Code';
+import { GetUserPort } from '@core/domain/user/port/usecase/GetUserPort';
+import { GetUserUseCase } from '@core/domain/user/usecase/GetUserUseCase';
+import { TypeOrmUserRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/user/TypeOrmUserRepositoryAdapter';
 
 describe('GetUserService', () => {
   let getUserService: GetUserUseCase;

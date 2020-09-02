@@ -1,4 +1,4 @@
-import { CoreAssert } from '../../../../../../src/core/common/util/assert/CoreAssert';
+import { CoreAssert } from '@core/common/util/assert/CoreAssert';
 
 describe('CoreAssert', () => {
   

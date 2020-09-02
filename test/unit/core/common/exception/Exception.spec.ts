@@ -1,5 +1,5 @@
-import { Exception } from '../../../../../src/core/common/exception/Exception';
-import { Code } from '../../../../../src/core/common/code/Code';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
 
 describe('Exception', () => {
 

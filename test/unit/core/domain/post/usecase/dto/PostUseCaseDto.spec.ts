@@ -1,10 +1,10 @@
-import { PostUseCaseDto } from '../../../../../../../src/core/domain/post/usecase/dto/PostUseCaseDto';
-import { Post } from '../../../../../../../src/core/domain/post/entity/Post';
 import { v4 } from 'uuid';
-import { PostOwner } from '../../../../../../../src/core/domain/post/entity/PostOwner';
-import { UserRole } from '../../../../../../../src/core/common/enums/UserEnums';
-import { PostImage } from '../../../../../../../src/core/domain/post/entity/PostImage';
-import { PostStatus } from '../../../../../../../src/core/common/enums/PostEnums';
+import { PostOwner } from '@core/domain/post/entity/PostOwner';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { PostImage } from '@core/domain/post/entity/PostImage';
+import { PostStatus } from '@core/common/enums/PostEnums';
+import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
+import { Post } from '@core/domain/post/entity/Post';
 
 describe('PostUseCaseDto', () => {
 

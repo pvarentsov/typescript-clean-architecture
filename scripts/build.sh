@@ -14,7 +14,7 @@ clear_dist() {
 }
 
 run_tsc() {
-    ./node_modules/.bin/tsc --skipLibCheck
+    ./node_modules/.bin/tsc --project tsconfig.build.json --skipLibCheck
 }
 
 copy_configuration_files() {

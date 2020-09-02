@@ -1,12 +1,12 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { PostRepositoryPort } from '../../../../../../src/core/domain/post/port/persistence/PostRepositoryPort';
-import { PostDITokens } from '../../../../../../src/core/domain/post/di/PostDITokens';
-import { TypeOrmPostRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/post/TypeOrmPostRepositoryAdapter';
 import { v4 } from 'uuid';
-import { PostImageRemovedEventHandler } from '../../../../../../src/core/domain/post/handler/PostImageRemovedEventHandler';
-import { HandlePostImageRemovedEventService } from '../../../../../../src/core/service/post/handler/HandlePostImageRemovedEventService';
-import { MediaRemovedEvent } from '../../../../../../src/core/common/cqers/event/events/media/MediaRemovedEvent';
-import { MediaType } from '../../../../../../src/core/common/enums/MediaEnums';
+import { Test, TestingModule } from '@nestjs/testing';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { PostDITokens } from '@core/domain/post/di/PostDITokens';
+import { PostImageRemovedEventHandler } from '@core/domain/post/handler/PostImageRemovedEventHandler';
+import { HandlePostImageRemovedEventService } from '@core/service/post/handler/HandlePostImageRemovedEventService';
+import { MediaRemovedEvent } from '@core/common/cqers/event/events/media/MediaRemovedEvent';
+import { MediaType } from '@core/common/enums/MediaEnums';
+import { TypeOrmPostRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/post/TypeOrmPostRepositoryAdapter';
 
 describe('HandlePostImageRemovedEventService', () => {
   let postImageRemovedEventHandler: PostImageRemovedEventHandler;

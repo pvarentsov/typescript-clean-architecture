@@ -1,16 +1,16 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { MediaRepositoryPort } from '../../../../../../src/core/domain/media/port/persistence/MediaRepositoryPort';
-import { MediaDITokens } from '../../../../../../src/core/domain/media/di/MediaDITokens';
-import { TypeOrmMediaRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
-import { FileMetadata } from '../../../../../../src/core/domain/media/value-object/FileMetadata';
-import { Media } from '../../../../../../src/core/domain/media/entity/Media';
 import { v4 } from 'uuid';
-import { MediaType } from '../../../../../../src/core/common/enums/MediaEnums';
-import { HandleGetMediaPreviewQueryService } from '../../../../../../src/core/service/media/handler/HandleGetMediaPreviewQueryService';
-import { GetMediaPreviewQueryHandler } from '../../../../../../src/core/domain/media/handler/GetMediaPreviewQueryHandler';
-import { GetMediaPreviewQueryResult } from '../../../../../../src/core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
-import { GetMediaPreviewQuery } from '../../../../../../src/core/common/cqers/query/queries/media/GetMediaPreviewQuery';
-import { Optional } from '../../../../../../src/core/common/type/CommonTypes';
+import { Test, TestingModule } from '@nestjs/testing';
+import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
+import { MediaDITokens } from '@core/domain/media/di/MediaDITokens';
+import { TypeOrmMediaRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
+import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
+import { Media } from '@core/domain/media/entity/Media';
+import { MediaType } from '@core/common/enums/MediaEnums';
+import { HandleGetMediaPreviewQueryService } from '@core/service/media/handler/HandleGetMediaPreviewQueryService';
+import { GetMediaPreviewQueryHandler } from '@core/domain/media/handler/GetMediaPreviewQueryHandler';
+import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
+import { GetMediaPreviewQuery } from '@core/common/cqers/query/queries/media/GetMediaPreviewQuery';
+import { Optional } from '@core/common/type/CommonTypes';
 
 describe('HandleGetMediaPreviewQueryService', () => {
   let getMediaPreviewQueryHandler: GetMediaPreviewQueryHandler;

@@ -1,15 +1,15 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { GetPostListUseCase } from '../../../../../../src/core/domain/post/usecase/GetPostListUseCase';
-import { PostRepositoryPort } from '../../../../../../src/core/domain/post/port/persistence/PostRepositoryPort';
-import { PostDITokens } from '../../../../../../src/core/domain/post/di/PostDITokens';
-import { GetPostListService } from '../../../../../../src/core/service/post/usecase/GetPostListService';
-import { TypeOrmPostRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/post/TypeOrmPostRepositoryAdapter';
-import { Post } from '../../../../../../src/core/domain/post/entity/Post';
 import { v4 } from 'uuid';
-import { GetPostListPort } from '../../../../../../src/core/domain/post/port/usecase/GetPostListPort';
-import { PostUseCaseDto } from '../../../../../../src/core/domain/post/usecase/dto/PostUseCaseDto';
-import { PostOwner } from '../../../../../../src/core/domain/post/entity/PostOwner';
-import { UserRole } from '../../../../../../src/core/common/enums/UserEnums';
+import { Test, TestingModule } from '@nestjs/testing';
+import { GetPostListUseCase } from '@core/domain/post/usecase/GetPostListUseCase';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { PostDITokens } from '@core/domain/post/di/PostDITokens';
+import { GetPostListService } from '@core/service/post/usecase/GetPostListService';
+import { Post } from '@core/domain/post/entity/Post';
+import { GetPostListPort } from '@core/domain/post/port/usecase/GetPostListPort';
+import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
+import { PostOwner } from '@core/domain/post/entity/PostOwner';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { TypeOrmPostRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/post/TypeOrmPostRepositoryAdapter';
 
 describe('GetPostListService', () => {
   let getPostListService: GetPostListUseCase;

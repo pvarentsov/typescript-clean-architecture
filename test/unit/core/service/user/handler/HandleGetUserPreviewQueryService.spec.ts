@@ -1,15 +1,15 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { UserRepositoryPort } from '../../../../../../src/core/domain/user/port/persistence/UserRepositoryPort';
-import { UserDITokens } from '../../../../../../src/core/domain/user/di/UserDITokens';
-import { TypeOrmUserRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/user/TypeOrmUserRepositoryAdapter';
-import { User } from '../../../../../../src/core/domain/user/entity/User';
 import { v4 } from 'uuid';
-import { HandleGetUserPreviewQueryService } from '../../../../../../src/core/service/user/handler/HandleGetUserPreviewQueryService';
-import { GetUserPreviewQueryHandler } from '../../../../../../src/core/domain/user/handler/GetUserPreviewQueryHandler';
-import { GetUserPreviewQueryResult } from '../../../../../../src/core/common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
-import { GetUserPreviewQuery } from '../../../../../../src/core/common/cqers/query/queries/user/GetUserPreviewQuery';
-import { Optional } from '../../../../../../src/core/common/type/CommonTypes';
-import { UserRole } from '../../../../../../src/core/common/enums/UserEnums';
+import { Test, TestingModule } from '@nestjs/testing';
+import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
+import { UserDITokens } from '@core/domain/user/di/UserDITokens';
+import { User } from '@core/domain/user/entity/User';
+import { HandleGetUserPreviewQueryService } from '@core/service/user/handler/HandleGetUserPreviewQueryService';
+import { GetUserPreviewQueryHandler } from '@core/domain/user/handler/GetUserPreviewQueryHandler';
+import { GetUserPreviewQueryResult } from '@core/common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
+import { GetUserPreviewQuery } from '@core/common/cqers/query/queries/user/GetUserPreviewQuery';
+import { Optional } from '@core/common/type/CommonTypes';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { TypeOrmUserRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/user/TypeOrmUserRepositoryAdapter';
 
 describe('HandleGetUserPreviewQueryService', () => {
   let getUserPreviewQueryHandler: GetUserPreviewQueryHandler;

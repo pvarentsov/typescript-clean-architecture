@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "./scripts/build.sh",
-    "build:local": "./scripts/build-local.sh",
     "copy:local-env": "cp ./env/local.app.env ./dist/.env",
     "start": "node ./dist/Main.js",
     "start:local": "yarn copy:local-env && cd ./dist && node -r dotenv/config Main.js",

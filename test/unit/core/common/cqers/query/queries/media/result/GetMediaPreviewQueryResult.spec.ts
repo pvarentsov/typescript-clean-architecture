@@ -1,6 +1,6 @@
-import { GetMediaPreviewQueryResult } from '../../../../../../../../../src/core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
 import { v4 } from 'uuid';
-import { MediaType } from '../../../../../../../../../src/core/common/enums/MediaEnums';
+import { MediaType } from '@core/common/enums/MediaEnums';
+import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
 
 describe('GetMediaPreviewQueryResult', () => {
 

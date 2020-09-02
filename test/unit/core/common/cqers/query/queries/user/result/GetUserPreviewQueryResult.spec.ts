@@ -1,6 +1,6 @@
-import { GetUserPreviewQueryResult } from '../../../../../../../../../src/core/common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
 import { v4 } from 'uuid';
-import { UserRole } from '../../../../../../../../../src/core/common/enums/UserEnums';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { GetUserPreviewQueryResult } from '@core/common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
 
 describe('GetUserPreviewQueryResult', () => {
 

@@ -1,6 +1,6 @@
-import { GetUserPreviewQuery } from '../../../../../../../../src/core/common/cqers/query/queries/user/GetUserPreviewQuery';
 import { v4 } from 'uuid';
-import { RepositoryFindOptions } from '../../../../../../../../src/core/common/persistence/RepositoryOptions';
+import { RepositoryFindOptions } from '@core/common/persistence/RepositoryOptions';
+import { GetUserPreviewQuery } from '@core/common/cqers/query/queries/user/GetUserPreviewQuery';
 
 describe('GetUserPreviewQuery', () => {
 

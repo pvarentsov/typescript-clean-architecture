@@ -1,18 +1,18 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { PublishPostUseCase } from '../../../../../../src/core/domain/post/usecase/PublishPostUseCase';
-import { PostRepositoryPort } from '../../../../../../src/core/domain/post/port/persistence/PostRepositoryPort';
-import { PostDITokens } from '../../../../../../src/core/domain/post/di/PostDITokens';
-import { PublishPostService } from '../../../../../../src/core/service/post/usecase/PublishPostService';
-import { TypeOrmPostRepositoryAdapter } from '../../../../../../src/infrastructure/adapter/persistence/typeorm/repository/post/TypeOrmPostRepositoryAdapter';
-import { Post } from '../../../../../../src/core/domain/post/entity/Post';
 import { v4 } from 'uuid';
-import { PublishPostPort } from '../../../../../../src/core/domain/post/port/usecase/PublishPostPort';
-import { Exception } from '../../../../../../src/core/common/exception/Exception';
-import { ClassValidationDetails } from '../../../../../../src/core/common/util/class-validator/ClassValidator';
-import { Code } from '../../../../../../src/core/common/code/Code';
+import { Test, TestingModule } from '@nestjs/testing';
+import { PublishPostUseCase } from '@core/domain/post/usecase/PublishPostUseCase';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { PostDITokens } from '@core/domain/post/di/PostDITokens';
+import { PublishPostService } from '@core/service/post/usecase/PublishPostService';
+import { Post } from '@core/domain/post/entity/Post';
+import { PublishPostPort } from '@core/domain/post/port/usecase/PublishPostPort';
+import { Exception } from '@core/common/exception/Exception';
+import { ClassValidationDetails } from '@core/common/util/class-validator/ClassValidator';
+import { Code } from '@core/common/code/Code';
 import { CqrsModule } from '@nestjs/cqrs';
-import { PostOwner } from '../../../../../../src/core/domain/post/entity/PostOwner';
-import { UserRole } from '../../../../../../src/core/common/enums/UserEnums';
+import { PostOwner } from '@core/domain/post/entity/PostOwner';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { TypeOrmPostRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/post/TypeOrmPostRepositoryAdapter';
 
 describe('PublishPostService', () => {
   let publishPostService: PublishPostUseCase;

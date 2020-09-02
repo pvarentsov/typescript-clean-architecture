@@ -1,7 +1,7 @@
-import { User } from '../../../../../../src/core/domain/user/entity/User';
-import { CreateUserEntityPayload } from '../../../../../../src/core/domain/user/entity/type/CreateUserEntityPayload';
 import { v4 } from 'uuid';
-import { UserRole } from '../../../../../../src/core/common/enums/UserEnums';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { User } from '@core/domain/user/entity/User';
+import { CreateUserEntityPayload } from '@core/domain/user/entity/type/CreateUserEntityPayload';
 
 describe('User', () => {
   

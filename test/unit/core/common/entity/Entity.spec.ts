@@ -1,9 +1,9 @@
-import { IsString } from 'class-validator';
-import { Entity } from '../../../../../src/core/common/entity/Entity';
 import { v4 } from 'uuid';
-import { Exception } from '../../../../../src/core/common/exception/Exception';
-import { ClassValidationDetails } from '../../../../../src/core/common/util/class-validator/ClassValidator';
-import { Code } from '../../../../../src/core/common/code/Code';
+import { IsString } from 'class-validator';
+import { Entity } from '@core/common/entity/Entity';
+import { Exception } from '@core/common/exception/Exception';
+import { ClassValidationDetails } from '@core/common/util/class-validator/ClassValidator';
+import { Code } from '@core/common/code/Code';
 
 class MockEntity extends Entity<string> {
   @IsString()

@@ -1,6 +1,6 @@
-import { GetMediaPreviewQuery } from '../../../../../../../../src/core/common/cqers/query/queries/media/GetMediaPreviewQuery';
 import { v4 } from 'uuid';
-import { RepositoryFindOptions } from '../../../../../../../../src/core/common/persistence/RepositoryOptions';
+import { GetMediaPreviewQuery } from '@core/common/cqers/query/queries/media/GetMediaPreviewQuery';
+import { RepositoryFindOptions } from '@core/common/persistence/RepositoryOptions';
 
 describe('GetMediaPreviewQuery', () => {
 

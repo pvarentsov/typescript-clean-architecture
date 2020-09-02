@@ -1,4 +1,4 @@
-import { CoreApiResponse } from '../../../../../src/core/common/api/CoreApiResponse';
+import { CoreApiResponse } from '@core/common/api/CoreApiResponse';
 
 describe('CoreApiResponse', () => {
 

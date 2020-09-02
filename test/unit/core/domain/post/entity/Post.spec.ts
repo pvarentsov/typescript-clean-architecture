@@ -1,10 +1,10 @@
-import { Post } from '../../../../../../src/core/domain/post/entity/Post';
-import { CreatePostEntityPayload } from '../../../../../../src/core/domain/post/entity/type/CreatePostEntityPayload';
-import { PostStatus } from '../../../../../../src/core/common/enums/PostEnums';
 import { v4 } from 'uuid';
-import { PostOwner } from '../../../../../../src/core/domain/post/entity/PostOwner';
-import { UserRole } from '../../../../../../src/core/common/enums/UserEnums';
-import { PostImage } from '../../../../../../src/core/domain/post/entity/PostImage';
+import { PostOwner } from '@core/domain/post/entity/PostOwner';
+import { UserRole } from '@core/common/enums/UserEnums';
+import { PostImage } from '@core/domain/post/entity/PostImage';
+import { Post } from '@core/domain/post/entity/Post';
+import { CreatePostEntityPayload } from '@core/domain/post/entity/type/CreatePostEntityPayload';
+import { PostStatus } from '@core/common/enums/PostEnums';
 
 describe('Post', () => {
   

@@ -1,8 +1,8 @@
 import { IsString } from 'class-validator';
-import { ValueObject } from '../../../../../src/core/common/value-object/ValueObject';
-import { ClassValidationDetails } from '../../../../../src/core/common/util/class-validator/ClassValidator';
-import { Exception } from '../../../../../src/core/common/exception/Exception';
-import { Code } from '../../../../../src/core/common/code/Code';
+import { ValueObject } from '@core/common/value-object/ValueObject';
+import { ClassValidationDetails } from '@core/common/util/class-validator/ClassValidator';
+import { Exception } from '@core/common/exception/Exception';
+import { Code } from '@core/common/code/Code';
 
 class MockValueObject extends ValueObject {
   @IsString()

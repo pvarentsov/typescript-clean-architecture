@@ -2,13 +2,14 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDirs": [
-      "./src"
+      "./src",
+      "./test"
     ],
-    "baseUrl": "src",
+    "baseUrl": "./",
     "paths": {
-      "@core/*": ["core/*"],
-      "@infrastructure/*": ["infrastructure/*"],
-      "@application/*": ["application/*"]
+      "@core/*": ["src/core/*"],
+      "@infrastructure/*": ["src/infrastructure/*"],
+      "@application/*": ["src/application/*"]
     },
     "target": "ES2020",
     "module": "commonjs",
@@ -31,6 +32,7 @@
     "sourceMap": true
   },
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./test/**/*.ts"
   ]
 }

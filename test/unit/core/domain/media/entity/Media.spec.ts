@@ -1,9 +1,9 @@
-import { Media } from '../../../../../../src/core/domain/media/entity/Media';
-import { CreateMediaEntityPayload } from '../../../../../../src/core/domain/media/entity/type/CreateMediaEntityPayload';
-import { MediaType } from '../../../../../../src/core/common/enums/MediaEnums';
-import { FileMetadata } from '../../../../../../src/core/domain/media/value-object/FileMetadata';
 import { v4 } from 'uuid';
-import { CreateFileMetadataValueObjectPayload } from '../../../../../../src/core/domain/media/value-object/type/CreateFileMetadataValueObjectPayload';
+import { CreateFileMetadataValueObjectPayload } from '@core/domain/media/value-object/type/CreateFileMetadataValueObjectPayload';
+import { Media } from '@core/domain/media/entity/Media';
+import { CreateMediaEntityPayload } from '@core/domain/media/entity/type/CreateMediaEntityPayload';
+import { MediaType } from '@core/common/enums/MediaEnums';
+import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
 
 describe('Media', () => {
   

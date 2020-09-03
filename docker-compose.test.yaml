@@ -5,30 +5,30 @@ services:
   postgresql_e2e:
     build: docker/postgres/.
     env_file:
-      - env/local.pg.env
+      - env/test.pg.env
     ports:
       - '5455:5432'
     networks:
       - iposter_e2e_network
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - pg_data_e2e:/var/lib/postgresql/data
 
   minio_e2e:
     image: minio/minio
     entrypoint: sh
     command: -c 'mkdir -p /export/images && /usr/bin/minio server /export'
     env_file:
-      - env/local.minio.env
+      - env/test.minio.env
     ports:
       - '9001:9000'
     networks:
       - iposter_e2e_network
     volumes:
-      - minio_data:/var/lib/minio/data
+      - minio_data_e2e:/var/lib/minio/data
 
 volumes:
-  pg_data:
-  minio_data:
+  pg_data_e2e:
+  minio_data_e2e:
 
 networks:
   iposter_e2e_network:

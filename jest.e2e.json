@@ -6,16 +6,7 @@
   "rootDir": ".",
   "verbose": true,
   "testEnvironment": "node",
-  "testRegex": "test/unit/.*.spec.ts",
-  "coverageReporters": [
-    "json-summary",
-    "text",
-    "lcov"
-  ],
-  "coverageDirectory": ".unit-test",
-  "collectCoverageFrom": [
-    "src/**/*.ts"
-  ],
+  "testRegex": "test/e2e/.*.spec.ts",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
@@ -27,10 +18,5 @@
   },
   "setupFiles": [
     "./test/.common/ExposeEnv.ts"
-  ],
-  "reporters": [
-    "default",
-    "jest-junit"
-  ],
-  "testResultsProcessor": "jest-sonar-reporter"
+  ]
 }

@@ -11,6 +11,7 @@
     "test:unit": "./node_modules/.bin/jest --config jest.unit.json",
     "test:unit:watch": "./node_modules/.bin/jest --config jest.unit.json --watch",
     "test:unit:cov": "./node_modules/.bin/jest --config jest.unit.json --coverage",
+    "test:e2e": "./node_modules/.bin/jest --config jest.e2e.json",
     "lib:check": "./node_modules/.bin/ncu",
     "lib:upgrade": "./node_modules/.bin/ncu -u && npm install",
     "lint": "eslint src/**/*.ts",

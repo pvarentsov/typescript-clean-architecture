@@ -1,13 +1,13 @@
-import { ServerTestApplication } from '@test/.common/ServerTestApplication';
+import { TestServer } from '../.common/TestServer';
 
 describe('DB Test', () => {
   
   describe('Connect', () => {
   
-    let serverApplication: ServerTestApplication;
+    let serverApplication: TestServer;
     
     beforeAll(async () => {
-      serverApplication = await ServerTestApplication.new();
+      serverApplication = await TestServer.new();
       await serverApplication.serverApplication.init();
     });
     

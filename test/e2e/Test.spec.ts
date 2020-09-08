@@ -12,8 +12,8 @@ describe('DB Test', () => {
     });
     
     test('Expect it successfully connects to DB', async () => {
-      const result: string = await fixtures.dbConnection.query('SELECT true as result');
-      expect(result).toEqual([{result: true}]);
+      const result: string = await fixtures.dbConnection.query('SELECT true as "isConnected"');
+      expect(result).toEqual([{isConnected: true}]);
     });
   
     afterAll(async () => {

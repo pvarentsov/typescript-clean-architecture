@@ -9,7 +9,7 @@ services:
     ports:
       - '5455:5432'
     networks:
-      - iposter_test_network
+      - iposter_network_test
     volumes:
       - pg_data_test:/var/lib/postgresql/data
 

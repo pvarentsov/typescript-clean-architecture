@@ -1,24 +1,24 @@
-import { ServerApplicationFixture, ServerApplicationFixtures } from '@test/.common/fixture/ServerApplicationFixture';
+import { ServerTestApplication } from '@test/.common/ServerTestApplication';
 
 describe('DB Test', () => {
   
   describe('Connect', () => {
   
-    let fixtures: ServerApplicationFixtures;
+    let serverApplication: ServerTestApplication;
     
     beforeAll(async () => {
-      fixtures = await ServerApplicationFixture.new();
-      await fixtures.serverApplication.init();
+      serverApplication = await ServerTestApplication.new();
+      await serverApplication.serverApplication.init();
     });
     
     test('Expect it successfully connects to DB', async () => {
-      const result: string = await fixtures.dbConnection.query('SELECT true as "isConnected"');
+      const result: string = await serverApplication.dbConnection.query('SELECT true as "isConnected"');
       expect(result).toEqual([{isConnected: true}]);
     });
   
     afterAll(async () => {
-      if (fixtures) {
-        await fixtures.serverApplication.close();
+      if (serverApplication) {
+        await serverApplication.serverApplication.close();
       }
     });
     

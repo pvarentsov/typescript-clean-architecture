@@ -1,16 +1,17 @@
 import { RootModule } from '@application/di/.RootModule';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Connection } from 'typeorm/index';
+import { Connection } from 'typeorm';
 
-export type ServerApplicationFixtures = {
-  serverApplication: NestExpressApplication,
-  dbConnection: Connection
-}
-
-export class ServerApplicationFixture {
+export class ServerTestApplication {
   
-  public static async new(): Promise<ServerApplicationFixtures> {
+  constructor(
+    public readonly serverApplication: NestExpressApplication,
+    public readonly dbConnection: Connection,
+    public readonly testingModule: TestingModule,
+  ) {}
+  
+  public static async new(): Promise<ServerTestApplication> {
     const testingModule: TestingModule = await Test
       .createTestingModule({imports: [RootModule]})
       .compile();
@@ -18,7 +19,7 @@ export class ServerApplicationFixture {
     const dbConnection: Connection = testingModule.get(Connection);
     const serverApplication: NestExpressApplication = testingModule.createNestApplication();
     
-    return { serverApplication, dbConnection };
+    return new ServerTestApplication(serverApplication, dbConnection, testingModule);
   }
   
 }

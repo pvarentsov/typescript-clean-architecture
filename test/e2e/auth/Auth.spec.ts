@@ -1,10 +1,12 @@
+import { HttpJwtPayload } from '@application/api/http-rest/auth/type/HttpAuthTypes';
 import { Code } from '@core/common/code/Code';
 import { UserRole } from '@core/common/enums/UserEnums';
 import { User } from '@core/domain/user/entity/User';
+import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
 import { HttpStatus } from '@nestjs/common';
 import { UserFixture } from '@test/e2e/.fixture/UserFixture';
-import * as request from 'supertest';
-import { Response } from 'supertest';
+import * as supertest from 'supertest';
+import { verify } from 'jsonwebtoken';
 import { v4 } from 'uuid';
 import { TestServer } from '../../.common/TestServer';
 
@@ -31,16 +33,18 @@ describe('Auth', () => {
       
       const user: User = await userFixture.insertUser({role, email, password});
       
-      const response: Response = await request(testServer.serverApplication.getHttpServer())
+      const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
         .post('/auth/login')
         .send({email, password})
         .expect(HttpStatus.OK);
+  
+      const tokenPayload: HttpJwtPayload = await verify(response.body.data.accessToken, ApiServerConfig.ACCESS_TOKEN_SECRET) as HttpJwtPayload;
       
       expect(response.body.code).toBe(Code.SUCCESS.code);
       expect(response.body.message).toBe(Code.SUCCESS.message);
       expect(response.body.timestamp).toBeGreaterThanOrEqual(currentDate - 5000);
       expect(response.body.data.id).toBe(user.getId());
-      expect(typeof response.body.data.accessToken === 'string').toBeTruthy();
+      expect(tokenPayload.id).toBe(user.getId());
     });
     
     afterAll(async () => {

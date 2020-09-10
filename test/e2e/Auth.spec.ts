@@ -4,11 +4,12 @@ import { UserRole } from '@core/common/enums/UserEnums';
 import { User } from '@core/domain/user/entity/User';
 import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
 import { HttpStatus } from '@nestjs/common';
-import { UserFixture } from '@test/e2e/.fixture/UserFixture';
+import { ExpectTest } from '@test/.common/ExpectTest';
+import { UserFixture } from '@test/e2e/fixture/UserFixture';
 import { verify } from 'jsonwebtoken';
 import * as supertest from 'supertest';
 import { v4 } from 'uuid';
-import { TestServer } from '../../.common/TestServer';
+import { TestServer } from '../.common/TestServer';
 
 describe('Auth', () => {
   
@@ -25,8 +26,6 @@ describe('Auth', () => {
     });
     
     test('When credentials are correct, expect user successfully log in', async () => {
-      const currentDate: number = Date.now();
-      
       const role: UserRole = UserRole.AUTHOR;
       const email: string = `${v4()}@email.com`;
       const password: string = v4();
@@ -39,11 +38,10 @@ describe('Auth', () => {
         .expect(HttpStatus.OK);
   
       const tokenPayload: HttpJwtPayload = await verify(response.body.data.accessToken, ApiServerConfig.ACCESS_TOKEN_SECRET) as HttpJwtPayload;
-      
-      expect(response.body.code).toBe(Code.SUCCESS.code);
-      expect(response.body.message).toBe(Code.SUCCESS.message);
-      expect(response.body.timestamp).toBeGreaterThanOrEqual(currentDate - 5000);
-      expect(response.body.data.id).toBe(user.getId());
+  
+      ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
+      ExpectTest.expectResponseData({response: response.body, passFields: ['id']}, {id: user.getId()});
+
       expect(tokenPayload.id).toBe(user.getId());
     });
   
@@ -89,8 +87,6 @@ async function expectWrongCredentialsOnLogin(
   
 ): Promise<void> {
   
-  const currentDate: number = Date.now();
-  
   await userFixture.insertUser({role: UserRole.GUEST, email: correctCredentials.email, password: correctCredentials.password});
   
   const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
@@ -98,8 +94,6 @@ async function expectWrongCredentialsOnLogin(
     .send(wrongCredentials)
     .expect(HttpStatus.OK);
   
-  expect(response.body.code).toBe(Code.WRONG_CREDENTIALS_ERROR.code);
-  expect(response.body.message).toBe(Code.WRONG_CREDENTIALS_ERROR.message);
-  expect(response.body.timestamp).toBeGreaterThanOrEqual(currentDate - 5000);
-  expect(response.body.data).toBeNull();
+  ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.WRONG_CREDENTIALS_ERROR.code, message: Code.WRONG_CREDENTIALS_ERROR.message});
+  ExpectTest.expectResponseData({response: response.body}, null);
 }

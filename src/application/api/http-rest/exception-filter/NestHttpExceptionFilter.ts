@@ -1,6 +1,7 @@
 import { CoreApiResponse } from '@core/common/api/CoreApiResponse';
 import { Code } from '@core/common/code/Code';
 import { Exception } from '@core/common/exception/Exception';
+import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Logger, UnauthorizedException } from '@nestjs/common';
 import { Request, Response } from 'express';
 
@@ -16,12 +17,14 @@ export class NestHttpExceptionFilter implements ExceptionFilter {
     errorResponse = this.handleNestError(error, errorResponse);
     errorResponse = this.handleCoreException(error, errorResponse);
     
-    const message: string =
-      `Method: ${request.method}; ` +
-      `Path: ${request.path}; `+
-      `Error: ${errorResponse.message}`;
+    if (ApiServerConfig.LOG_ENABLE) {
+      const message: string =
+        `Method: ${request.method}; ` +
+        `Path: ${request.path}; `+
+        `Error: ${errorResponse.message}`;
   
-    Logger.error(message);
+      Logger.error(message);
+    }
     
     response.json(errorResponse);
   }

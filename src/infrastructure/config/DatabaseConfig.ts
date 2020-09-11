@@ -11,5 +11,7 @@ export class DatabaseConfig {
   public static readonly DB_PASSWORD: string = get('DB_PASSWORD').required().asString();
   
   public static readonly DB_NAME: string = get('DB_NAME').required().asString();
+  
+  public static readonly DB_LOG_ENABLE: boolean = get('DB_LOG_ENABLE').required().asBool();
 
 }

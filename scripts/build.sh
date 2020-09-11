@@ -9,30 +9,30 @@ SCRIPT_DIR=$(
   pwd
 )
 
-clear_dist() {
+clear() {
     rm -rf ./dist/*
 }
 
-run_tsc() {
+tsc() {
     ./node_modules/.bin/tsc --project tsconfig.build.json --skipLibCheck
 }
 
-copy_configuration_files() {
+copy() {
     cp ./package.json ./dist/package.json
     cp ./package-lock.json ./dist/package-lock.json
 }
 
-install_dependencies() {
+install() {
     cd ./dist
     npm ci --production
     cd ..
 }
 
 compile() {
-    clear_dist
-    run_tsc
-    copy_configuration_files
-    install_dependencies
+    clear
+    tsc
+    copy
+    install
 }
 
 start() {

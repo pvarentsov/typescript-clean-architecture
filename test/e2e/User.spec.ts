@@ -55,8 +55,29 @@ describe('User', () => {
       };
       
       expect(createdUser).toBeDefined();
+      
       ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
       ExpectTest.expectResponseData({response: response.body, passFields: ['id', 'firstName', 'lastName', 'email', 'role']}, expectedData);
+    });
+  
+    test('When user already exists, expect it returns ENTITY_ALREADY_EXISTS_ERROR response', async () => {
+      const body: HttpRestApiModelCreateUserBody = {
+        firstName  : v4(),
+        lastName   : v4(),
+        email      : `${v4()}@email.com`,
+        role       : UserRole.AUTHOR,
+        password   : v4(),
+      };
+  
+      await userFixture.insertUser({role: body.role, email: body.email, password: body.password});
+    
+      const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
+        .post('/users/account')
+        .send(body)
+        .expect(HttpStatus.OK);
+      
+      ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.ENTITY_ALREADY_EXISTS_ERROR.code, message: 'User already exists.'});
+      ExpectTest.expectResponseData({response: response.body}, null);
     });
     
     afterAll(async () => {

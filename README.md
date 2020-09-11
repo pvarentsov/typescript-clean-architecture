@@ -89,9 +89,15 @@ IPoster is a simple fictional application that allows users to publish posts.
     
 * **Testing**
 
-    * Run unit tests - `npm run test:unit`
-    * Run unit tests with coverage - `npm run test:unit:cov`
-    * Run unit tests in `watch` mode - `npm run test:unit:watch`    
+    * unit tests:
+      * Run tests - `npm run test:unit`
+      * Run tests with coverage - `npm run test:unit:cov`
+      * Run tests in `watch` mode - `npm run test:unit:watch`
+    
+    * e2e tests:
+      * Prepare environment - `docker-compose -f docker-compose.test.yaml up -d`
+      * Run tests - `npm run test:e2e`
+     
     
 * **Libraries checking**    
    

@@ -6,11 +6,38 @@ import { NestEventBusAdapter } from '@infrastructure/adapter/cqers/NestEventBusA
 import { NestQueryBusAdapter } from '@infrastructure/adapter/cqers/NestQueryBusAdapter';
 import { TypeOrmLogger } from '@infrastructure/adapter/persistence/typeorm/logger/TypeOrmLogger';
 import { TypeOrmDirectory } from '@infrastructure/adapter/persistence/typeorm/TypeOrmDirectory';
+import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
 import { DatabaseConfig } from '@infrastructure/config/DatabaseConfig';
-import { Global, Module } from '@nestjs/common';
+import { Global, Module, Provider } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+const providers: Provider[] = [
+  {
+    provide : APP_FILTER,
+    useClass: NestHttpExceptionFilter,
+  },
+  {
+    provide: CoreDITokens.CommandBus,
+    useClass: NestCommandBusAdapter,
+  },
+  {
+    provide: CoreDITokens.QueryBus,
+    useClass: NestQueryBusAdapter,
+  },
+  {
+    provide: CoreDITokens.EventBus,
+    useClass: NestEventBusAdapter,
+  }
+];
+
+if (ApiServerConfig.LOG_ENABLE) {
+  providers.push({
+    provide : APP_INTERCEPTOR,
+    useClass: NestHttpLoggingInterceptor,
+  });
+}
 
 @Global()
 @Module({
@@ -24,36 +51,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username                 : DatabaseConfig.DB_USERNAME,
       password                 : DatabaseConfig.DB_PASSWORD,
       database                 : DatabaseConfig.DB_NAME,
-      logging                  : 'all',
-      logger                   : TypeOrmLogger.new(),
+      logging                  : DatabaseConfig.DB_LOG_ENABLE ? 'all' : false,
+      logger                   : DatabaseConfig.DB_LOG_ENABLE ? TypeOrmLogger.new() : undefined,
       entities                 : [`${TypeOrmDirectory}/entity/**/*{.ts,.js}`],
       migrationsRun            : true,
       migrations               : [`${TypeOrmDirectory}/migration/**/*{.ts,.js}`],
       migrationsTransactionMode: 'all',
     })
   ],
-  providers: [
-    {
-      provide : APP_FILTER,
-      useClass: NestHttpExceptionFilter,
-    },
-    {
-      provide : APP_INTERCEPTOR,
-      useClass: NestHttpLoggingInterceptor,
-    },
-    {
-      provide: CoreDITokens.CommandBus,
-      useClass: NestCommandBusAdapter,
-    },
-    {
-      provide: CoreDITokens.QueryBus,
-      useClass: NestQueryBusAdapter,
-    },
-    {
-      provide: CoreDITokens.EventBus,
-      useClass: NestEventBusAdapter,
-    },
-  ],
+  providers: providers,
   exports: [
     CoreDITokens.CommandBus,
     CoreDITokens.QueryBus,

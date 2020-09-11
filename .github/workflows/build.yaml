@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [e2e]
+    branches: [master]
   pull_request:
-    branches: [e2e]
+    branches: [master]
 
 jobs:
   build:

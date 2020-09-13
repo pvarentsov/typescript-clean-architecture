@@ -13,17 +13,17 @@ import { TestServer } from '../.common/TestServer';
 
 describe('Auth', () => {
   
+  let testServer: TestServer;
+  let userFixture: UserFixture;
+  
+  beforeAll(async () => {
+    testServer = await TestServer.new();
+    userFixture = UserFixture.new(testServer.testingModule);
+    
+    await testServer.serverApplication.init();
+  });
+  
   describe('POST /auth/login', () => {
-    
-    let testServer: TestServer;
-    let userFixture: UserFixture;
-    
-    beforeAll(async () => {
-      testServer = await TestServer.new();
-      userFixture = UserFixture.new(testServer.testingModule);
-      
-      await testServer.serverApplication.init();
-    });
     
     test('When credentials are correct, expect user successfully log in', async () => {
       const role: UserRole = UserRole.AUTHOR;
@@ -45,7 +45,7 @@ describe('Auth', () => {
       expect(tokenPayload.id).toBe(user.getId());
     });
   
-    test('When email is not correct, expect it returns WRONG_CREDENTIALS_ERROR response', async () => {
+    test('When email is not correct, expect it returns "WRONG_CREDENTIALS_ERROR" response', async () => {
       const email: string = `${v4()}@email.com`;
       const password: string = v4();
     
@@ -57,7 +57,7 @@ describe('Auth', () => {
       );
     });
   
-    test('When password is not correct, expect it returns WRONG_CREDENTIALS_ERROR response', async () => {
+    test('When password is not correct, expect it returns "WRONG_CREDENTIALS_ERROR" response', async () => {
       const email: string = `${v4()}@email.com`;
       const password: string = v4();
   
@@ -69,12 +69,12 @@ describe('Auth', () => {
       );
     });
     
-    afterAll(async () => {
-      if (testServer) {
-        await testServer.serverApplication.close();
-      }
-    });
-    
+  });
+  
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
   });
   
 });

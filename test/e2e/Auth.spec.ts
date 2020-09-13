@@ -4,7 +4,7 @@ import { UserRole } from '@core/common/enums/UserEnums';
 import { User } from '@core/domain/user/entity/User';
 import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
 import { HttpStatus } from '@nestjs/common';
-import { ExpectTest } from '@test/.common/ExpectTest';
+import { ResponseExpect } from '@test/e2e/expect/ResponseExpect';
 import { UserFixture } from '@test/e2e/fixture/UserFixture';
 import { verify } from 'jsonwebtoken';
 import * as supertest from 'supertest';
@@ -39,8 +39,8 @@ describe('Auth', () => {
   
       const tokenPayload: HttpJwtPayload = await verify(response.body.data.accessToken, ApiServerConfig.ACCESS_TOKEN_SECRET) as HttpJwtPayload;
   
-      ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
-      ExpectTest.expectResponseData({response: response.body, passFields: ['id']}, {id: user.getId()});
+      ResponseExpect.codeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
+      ResponseExpect.data({response: response.body, passFields: ['id']}, {id: user.getId()});
 
       expect(tokenPayload.id).toBe(user.getId());
     });
@@ -94,29 +94,6 @@ async function expectWrongCredentialsOnLogin(
     .send(wrongCredentials)
     .expect(HttpStatus.OK);
   
-  ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.WRONG_CREDENTIALS_ERROR.code, message: Code.WRONG_CREDENTIALS_ERROR.message});
-  ExpectTest.expectResponseData({response: response.body}, null);
-}
-
-export async function expectUnauthorizedError(
-  endpoint: {path: string, method: 'post'|'get'|'put'|'delete'},
-  testServer: TestServer,
-  accessToken?: string,
-  
-): Promise<void> {
-  
-  const agent: supertest.SuperTest<supertest.Test> = supertest(testServer.serverApplication.getHttpServer());
-  let response: supertest.Response;
-  
-  if (accessToken) {
-    response = await agent[endpoint.method](endpoint.path)
-      .set('x-api-token', accessToken)
-      .expect(HttpStatus.OK);
-  } else {
-    response = await agent[endpoint.method](endpoint.path)
-      .expect(HttpStatus.OK);
-  }
-  
-  ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.UNAUTHORIZED_ERROR.code, message: Code.UNAUTHORIZED_ERROR.message});
-  ExpectTest.expectResponseData({response: response.body}, null);
+  ResponseExpect.codeAndMessage(response.body, {code: Code.WRONG_CREDENTIALS_ERROR.code, message: Code.WRONG_CREDENTIALS_ERROR.message});
+  ResponseExpect.data({response: response.body}, null);
 }

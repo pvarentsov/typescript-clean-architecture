@@ -7,8 +7,8 @@ import { User } from '@core/domain/user/entity/User';
 import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
 import { CreateUserAdapter } from '@infrastructure/adapter/usecase/user/CreateUserAdapter';
 import { HttpStatus } from '@nestjs/common';
-import { ExpectTest } from '@test/.common/ExpectTest';
-import { expectUnauthorizedError } from '@test/e2e/Auth.spec';
+import { AuthExpect } from '@test/e2e/expect/AuthExpect';
+import { ResponseExpect } from '@test/e2e/expect/ResponseExpect';
 import { AuthFixture } from '@test/e2e/fixture/AuthFixture';
 import { UserFixture } from '@test/e2e/fixture/UserFixture';
 import * as supertest from 'supertest';
@@ -57,8 +57,8 @@ describe('User', () => {
         .send(body)
         .expect(HttpStatus.OK);
       
-      ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.ENTITY_ALREADY_EXISTS_ERROR.code, message: 'User already exists.'});
-      ExpectTest.expectResponseData({response: response.body}, null);
+      ResponseExpect.codeAndMessage(response.body, {code: Code.ENTITY_ALREADY_EXISTS_ERROR.code, message: 'User already exists.'});
+      ResponseExpect.data({response: response.body}, null);
     });
   
     test('When body is not valid, expect it returns "USE_CASE_PORT_VALIDATION_ERROR" response', async () => {
@@ -77,8 +77,8 @@ describe('User', () => {
     
       expect(response.body.data.context).toBe(CreateUserAdapter.name);
       expect(response.body.data.errors.map((error: Record<string, unknown>) => error.property)).toEqual(['firstName', 'lastName', 'email', 'role', 'password']);
-      
-      ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.USE_CASE_PORT_VALIDATION_ERROR.code, message: Code.USE_CASE_PORT_VALIDATION_ERROR.message});
+  
+      ResponseExpect.codeAndMessage(response.body, {code: Code.USE_CASE_PORT_VALIDATION_ERROR.code, message: Code.USE_CASE_PORT_VALIDATION_ERROR.message});
     });
     
   });
@@ -98,11 +98,11 @@ describe('User', () => {
     });
   
     test('When access token is not passed, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
-      await expectUnauthorizedError({method: 'get', path: '/users/me'}, testServer);
+      await AuthExpect.unauthorizedError({method: 'get', path: '/users/me'}, testServer);
     });
   
     test('When access token is not valid, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
-      await expectUnauthorizedError({method: 'get', path: '/users/me'}, testServer, v4());
+      await AuthExpect.unauthorizedError({method: 'get', path: '/users/me'}, testServer, v4());
     });
     
   });
@@ -141,8 +141,8 @@ async function expectItCreatesAccount(role: UserRole, testServer: TestServer, us
   
   expect(createdUser).toBeDefined();
   
-  ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
-  ExpectTest.expectResponseData({response: response.body}, expectedData);
+  ResponseExpect.codeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
+  ResponseExpect.data({response: response.body}, expectedData);
 }
 
 async function expectItReturnsUserAccount(userRole: UserRole, testServer: TestServer, userFixture: UserFixture): Promise<void> {
@@ -166,6 +166,6 @@ async function expectItReturnsUserAccount(userRole: UserRole, testServer: TestSe
     role     : user.getRole()
   };
   
-  ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
-  ExpectTest.expectResponseData({response: response.body}, expectedData);
+  ResponseExpect.codeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
+  ResponseExpect.data({response: response.body}, expectedData);
 }

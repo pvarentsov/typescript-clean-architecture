@@ -97,3 +97,26 @@ async function expectWrongCredentialsOnLogin(
   ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.WRONG_CREDENTIALS_ERROR.code, message: Code.WRONG_CREDENTIALS_ERROR.message});
   ExpectTest.expectResponseData({response: response.body}, null);
 }
+
+export async function expectUnauthorizedError(
+  endpoint: {path: string, method: 'post'|'get'|'put'|'delete'},
+  testServer: TestServer,
+  accessToken?: string,
+  
+): Promise<void> {
+  
+  const agent: supertest.SuperTest<supertest.Test> = supertest(testServer.serverApplication.getHttpServer());
+  let response: supertest.Response;
+  
+  if (accessToken) {
+    response = await agent[endpoint.method](endpoint.path)
+      .set('x-api-token', accessToken)
+      .expect(HttpStatus.OK);
+  } else {
+    response = await agent[endpoint.method](endpoint.path)
+      .expect(HttpStatus.OK);
+  }
+  
+  ExpectTest.expectResponseCodeAndMessage(response.body, {code: Code.UNAUTHORIZED_ERROR.code, message: Code.UNAUTHORIZED_ERROR.message});
+  ExpectTest.expectResponseData({response: response.body}, null);
+}

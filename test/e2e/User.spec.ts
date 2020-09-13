@@ -8,6 +8,7 @@ import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepos
 import { CreateUserAdapter } from '@infrastructure/adapter/usecase/user/CreateUserAdapter';
 import { HttpStatus } from '@nestjs/common';
 import { ExpectTest } from '@test/.common/ExpectTest';
+import { expectUnauthorizedError } from '@test/e2e/Auth.spec';
 import { AuthFixture } from '@test/e2e/fixture/AuthFixture';
 import { UserFixture } from '@test/e2e/fixture/UserFixture';
 import * as supertest from 'supertest';
@@ -94,6 +95,14 @@ describe('User', () => {
   
     test('Expect it returns admin account', async () => {
       await expectItReturnsUserAccount(UserRole.ADMIN, testServer, userFixture);
+    });
+  
+    test('When access token is not passed, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
+      await expectUnauthorizedError({method: 'get', path: '/users/me'}, testServer);
+    });
+  
+    test('When access token is not valid, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
+      await expectUnauthorizedError({method: 'get', path: '/users/me'}, testServer, v4());
     });
     
   });

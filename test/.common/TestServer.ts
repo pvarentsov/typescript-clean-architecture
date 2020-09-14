@@ -2,6 +2,7 @@ import { RootModule } from '@application/di/.RootModule';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Connection } from 'typeorm';
+import { initializeTransactionalContext, patchTypeORMRepositoryWithBaseRepository } from 'typeorm-transactional-cls-hooked';
 
 export class TestServer {
   
@@ -16,6 +17,9 @@ export class TestServer {
       .createTestingModule({imports: [RootModule]})
       .compile();
   
+    initializeTransactionalContext();
+    patchTypeORMRepositoryWithBaseRepository();
+    
     const dbConnection: Connection = testingModule.get(Connection);
     const serverApplication: NestExpressApplication = testingModule.createNestApplication();
     

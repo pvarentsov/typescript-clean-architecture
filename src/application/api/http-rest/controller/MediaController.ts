@@ -76,9 +76,12 @@ export class MediaController {
   @ApiQuery({name: 'name', type: 'string', required: false})
   @ApiQuery({name: 'type', enum: MediaType})
   @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponseMedia})
-  public async createMedia(@Req() request: HttpRequestWithUser,
-                           @UploadedFile() file: MulterFile,
-                           @Query() query: HttpRestApiModelCreateMediaQuery): Promise<CoreApiResponse<MediaUseCaseDto>> {
+  public async createMedia(
+    @Req() request: HttpRequestWithUser,
+    @UploadedFile() file: MulterFile,
+    @Query() query: HttpRestApiModelCreateMediaQuery
+    
+  ): Promise<CoreApiResponse<MediaUseCaseDto>> {
   
     const adapter: CreateMediaAdapter = await CreateMediaAdapter.new({
       executorId: request.user.id,
@@ -100,9 +103,12 @@ export class MediaController {
   @ApiBearerAuth()
   @ApiBody({type: HttpRestApiModelEditMediaBody})
   @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponseMedia})
-  public async editMedia(@HttpUser() user: HttpUserPayload,
-                         @Body() body: HttpRestApiModelEditMediaBody,
-                         @Param('mediaId') mediaId: string): Promise<CoreApiResponse<MediaUseCaseDto>> {
+  public async editMedia(
+    @HttpUser() user: HttpUserPayload,
+    @Body() body: HttpRestApiModelEditMediaBody,
+    @Param('mediaId') mediaId: string
+    
+  ): Promise<CoreApiResponse<MediaUseCaseDto>> {
     
     const adapter: EditMediaAdapter = await EditMediaAdapter.new({
       mediaId    : mediaId,

@@ -81,9 +81,12 @@ export class PostController {
   @ApiBearerAuth()
   @ApiBody({type: HttpRestApiModelEditPostBody})
   @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponsePost})
-  public async editPost(@HttpUser() user: HttpUserPayload,
-                        @Body() body: HttpRestApiModelCreatePostBody,
-                        @Param('postId') postId: string): Promise<CoreApiResponse<PostUseCaseDto>> {
+  public async editPost(
+    @HttpUser() user: HttpUserPayload,
+    @Body() body: HttpRestApiModelCreatePostBody,
+    @Param('postId') postId: string
+    
+  ): Promise<CoreApiResponse<PostUseCaseDto>> {
     
     const adapter: EditPostAdapter = await EditPostAdapter.new({
       executorId: user.id,
@@ -105,8 +108,11 @@ export class PostController {
   @ApiBearerAuth()
   @ApiQuery({name: 'authorId', type: 'string', required: false})
   @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponsePostList})
-  public async getPostList(@HttpUser() user: HttpUserPayload,
-                           @Query() query: HttpRestApiModelGetPostListQuery): Promise<CoreApiResponse<PostUseCaseDto[]>> {
+  public async getPostList(
+    @HttpUser() user: HttpUserPayload,
+    @Query() query: HttpRestApiModelGetPostListQuery
+    
+  ): Promise<CoreApiResponse<PostUseCaseDto[]>> {
     
     const adapter: GetPostListAdapter = await GetPostListAdapter.new({
       executorId: user.id,

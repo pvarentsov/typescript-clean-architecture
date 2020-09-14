@@ -11,6 +11,7 @@ import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepos
 import { FileStorageConfig } from '@infrastructure/config/FileStorageConfig';
 import { HttpStatus } from '@nestjs/common';
 import { e2eAssetDirectory } from '@test/e2e/asset/E2EAssetDirectory';
+import { AuthExpect } from '@test/e2e/expect/AuthExpect';
 import { ResponseExpect } from '@test/e2e/expect/ResponseExpect';
 import { AuthFixture } from '@test/e2e/fixture/AuthFixture';
 import { UserFixture } from '@test/e2e/fixture/UserFixture';
@@ -44,6 +45,14 @@ describe('User', () => {
   
     test('When owner is author, expect it creates media', async () => {
       await expectItCreatesMedia(UserRole.AUTHOR, testServer, mediaRepository, userFixture);
+    });
+  
+    test('When access token is not passed, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
+      await AuthExpect.unauthorizedError({method: 'post', path: '/medias'}, testServer);
+    });
+  
+    test('When access token is not valid, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
+      await AuthExpect.unauthorizedError({method: 'post', path: '/medias'}, testServer, v4());
     });
     
   });

@@ -5,9 +5,8 @@ import { Optional } from '@core/common/type/CommonTypes';
 import { MediaDITokens } from '@core/domain/media/di/MediaDITokens';
 import { Media } from '@core/domain/media/entity/Media';
 import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
-import { UserDITokens } from '@core/domain/user/di/UserDITokens';
 import { User } from '@core/domain/user/entity/User';
-import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
+import { CreateMediaAdapter } from '@infrastructure/adapter/usecase/media/CreateMediaAdapter';
 import { FileStorageConfig } from '@infrastructure/config/FileStorageConfig';
 import { HttpStatus } from '@nestjs/common';
 import { e2eAssetDirectory } from '@test/e2e/asset/E2EAssetDirectory';
@@ -46,6 +45,19 @@ describe('User', () => {
     test('When owner is author, expect it creates media', async () => {
       await expectItCreatesMedia(UserRole.AUTHOR, testServer, mediaRepository, userFixture);
     });
+    
+    test('When owner is guest, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+      const executor: User = await userFixture.insertUser({role: UserRole.GUEST, email: `${v4()}@email.com`, password: v4()});
+      const auth: {accessToken: string} = await AuthFixture.loginUser({id: executor.getId()});
+      
+      const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
+        .post('/medias')
+        .set('x-api-token', auth.accessToken)
+        .expect(HttpStatus.OK);
+      
+      ResponseExpect.codeAndMessage(response.body, {code: Code.ACCESS_DENIED_ERROR.code, message: Code.ACCESS_DENIED_ERROR.message});
+      ResponseExpect.data({response: response.body}, null);
+    });
   
     test('When access token is not passed, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
       await AuthExpect.unauthorizedError({method: 'post', path: '/medias'}, testServer);
@@ -53,6 +65,27 @@ describe('User', () => {
   
     test('When access token is not valid, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
       await AuthExpect.unauthorizedError({method: 'post', path: '/medias'}, testServer, v4());
+    });
+  
+    test('When request data is not valid, expect it returns "USE_CASE_PORT_VALIDATION_ERROR" response', async () => {
+      const filePath: string = path.resolve(e2eAssetDirectory, 'content/cat.png');
+      
+      const executor: User = await userFixture.insertUser({role: UserRole.AUTHOR, email: `${v4()}@email.com`, password: v4()});
+      const auth: {accessToken: string} = await AuthFixture.loginUser({id: executor.getId()});
+      
+      const invalidMediaType: string = 'INVALID_MEDIA_TYPE';
+  
+      const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
+        .post('/medias')
+        .attach('file', filePath)
+        .query({type: invalidMediaType})
+        .set('x-api-token', auth.accessToken)
+        .expect(HttpStatus.OK);
+      
+      expect(response.body.data.context).toBe(CreateMediaAdapter.name);
+      expect(response.body.data.errors.map((error: Record<string, unknown>) => error.property)).toEqual(['type']);
+    
+      ResponseExpect.codeAndMessage(response.body, {code: Code.USE_CASE_PORT_VALIDATION_ERROR.code, message: Code.USE_CASE_PORT_VALIDATION_ERROR.message});
     });
     
   });

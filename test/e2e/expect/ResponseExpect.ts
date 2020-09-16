@@ -8,12 +8,18 @@ export class ResponseExpect {
     expect(TestUtil.filterObject(response, ['code', 'message'])).toEqual(expected);
   }
   
-  public static data(options: {response: CoreApiResponse<unknown>, passFields?: string[]}, expected: Nullable<Record<string, unknown>>): void {
-    const testingObject: Record<string, unknown> = options.passFields
-      ? TestUtil.filterObject(options.response.data, options.passFields)
-      : options.response.data as Record<string, unknown>;
+  public static data(options: {response: CoreApiResponse<unknown>, passFields?: string[]}, expected: Nullable<unknown>): void {
+    const toFilterObject = (object: any): unknown => {
+      return options.passFields
+        ? TestUtil.filterObject(object, options.passFields)
+        : object;
+    };
     
-    expect(testingObject).toEqual(expected);
+    const filteredData: unknown = Array.isArray(options.response.data)
+      ? options.response.data.map(item => toFilterObject(item))
+      : toFilterObject(options.response.data);
+    
+    expect(filteredData).toEqual(expected);
   }
   
 }

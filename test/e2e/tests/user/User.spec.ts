@@ -7,13 +7,13 @@ import { User } from '@core/domain/user/entity/User';
 import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
 import { CreateUserAdapter } from '@infrastructure/adapter/usecase/user/CreateUserAdapter';
 import { HttpStatus } from '@nestjs/common';
+import { TestServer } from '@test/.common/TestServer';
 import { AuthExpect } from '@test/e2e/expect/AuthExpect';
 import { ResponseExpect } from '@test/e2e/expect/ResponseExpect';
 import { AuthFixture } from '@test/e2e/fixture/AuthFixture';
 import { UserFixture } from '@test/e2e/fixture/UserFixture';
 import * as supertest from 'supertest';
 import { v4 } from 'uuid';
-import { TestServer } from '../.common/TestServer';
 
 describe('User', () => {
   

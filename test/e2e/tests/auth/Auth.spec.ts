@@ -4,12 +4,12 @@ import { UserRole } from '@core/common/enums/UserEnums';
 import { User } from '@core/domain/user/entity/User';
 import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
 import { HttpStatus } from '@nestjs/common';
+import { TestServer } from '@test/.common/TestServer';
 import { ResponseExpect } from '@test/e2e/expect/ResponseExpect';
 import { UserFixture } from '@test/e2e/fixture/UserFixture';
 import { verify } from 'jsonwebtoken';
 import * as supertest from 'supertest';
 import { v4 } from 'uuid';
-import { TestServer } from '../.common/TestServer';
 
 describe('Auth', () => {
   

@@ -104,7 +104,7 @@ describe('Post.Get', () => {
         status     : PostStatus.PUBLISHED,
         createdAt  : post!.getCreatedAt().getTime(),
         editedAt   : post?.getEditedAt()?.getTime() || null,
-        publishedAt: post?.getPublishedAt()?.getTime(),
+        publishedAt: post?.getPublishedAt()?.getTime() || null,
       };
       ResponseExpect.codeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
       ResponseExpect.data({response: response.body}, expectedPostData);

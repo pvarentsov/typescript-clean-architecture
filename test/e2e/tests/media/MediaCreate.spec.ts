@@ -39,15 +39,15 @@ describe('Media.Create', () => {
   
   describe('POST /medias', () => {
     
-    test('When owner is admin, expect it creates media', async () => {
+    test('When admin creates media, expect it returns new media', async () => {
       await expectItCreatesMedia(UserRole.ADMIN, testServer, mediaRepository, userFixture);
     });
   
-    test('When owner is author, expect it creates media', async () => {
+    test('When author creates media, expect it returns new media', async () => {
       await expectItCreatesMedia(UserRole.AUTHOR, testServer, mediaRepository, userFixture);
     });
     
-    test('When owner is guest, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+    test('When guest creates media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.GUEST, email: `${v4()}@email.com`, password: v4()});
       const auth: {accessToken: string} = await AuthFixture.loginUser({id: executor.getId()});
       

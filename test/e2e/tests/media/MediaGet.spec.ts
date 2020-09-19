@@ -32,7 +32,7 @@ describe('Media.Get', () => {
   
   describe('GET /medias/{mediaId}', () => {
     
-    test('When owner is admin, expect it returns media response', async () => {
+    test('When admin requests own media, expect it returns media', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.ADMIN, email: `${v4()}@email.com`, password: v4()});
       const { accessToken } = await AuthFixture.loginUser({id: executor.getId()});
   
@@ -57,7 +57,7 @@ describe('Media.Get', () => {
       ResponseExpect.data({response: response.body}, expectedData);
     });
   
-    test('When owner is author, expect it returns media response', async () => {
+    test('When author requests own media, expect it returns media', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.AUTHOR, email: `${v4()}@email.com`, password: v4()});
       const { accessToken } = await AuthFixture.loginUser({id: executor.getId()});
     

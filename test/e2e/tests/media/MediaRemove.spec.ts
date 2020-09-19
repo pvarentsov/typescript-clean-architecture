@@ -36,15 +36,15 @@ describe('Media.Remove', () => {
   
   describe('DELETE /medias/{mediaId}', () => {
     
-    test('When owner is admin, expect it removes media', async () => {
+    test('When admin removes media, expect it removes media', async () => {
       await expectItRemovesMedia(UserRole.ADMIN, testServer, mediaRepository, userFixture, mediaFixture);
     });
     
-    test('When owner is author, expect it removes media', async () => {
+    test('When author removes media, expect it removes media', async () => {
       await expectItRemovesMedia(UserRole.AUTHOR, testServer, mediaRepository, userFixture, mediaFixture);
     });
     
-    test('When owner is guest, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+    test('When guest removes media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.GUEST, email: `${v4()}@email.com`, password: v4()});
       const auth: {accessToken: string} = await AuthFixture.loginUser({id: executor.getId()});
   

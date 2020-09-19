@@ -30,11 +30,11 @@ describe('Media.GetList', () => {
   
   describe('GET /medias', () => {
     
-    test('When owner is admin, expect it returns media list response', async () => {
+    test('When admin requests media, expect it returns media list response', async () => {
       await expectItReturnsMediaList(UserRole.ADMIN, testServer, userFixture, mediaFixture);
     });
   
-    test('When owner is author, expect it returns media list response', async () => {
+    test('When author requests media, expect it returns media list response', async () => {
       await expectItReturnsMediaList(UserRole.AUTHOR, testServer, userFixture, mediaFixture);
     });
   
@@ -50,7 +50,6 @@ describe('Media.GetList', () => {
       ResponseExpect.codeAndMessage(response.body, {code: Code.ACCESS_DENIED_ERROR.code, message: Code.ACCESS_DENIED_ERROR.message});
       ResponseExpect.data({response: response.body}, null);
     });
-    
     
     test('When access token is not passed, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
       await AuthExpect.unauthorizedError({method: 'get', path: '/medias'}, testServer);

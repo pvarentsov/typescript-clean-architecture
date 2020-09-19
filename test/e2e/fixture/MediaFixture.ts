@@ -21,7 +21,7 @@ export class MediaFixture {
     const editedAt: Date = new Date(Date.now() - 1000);
   
     const metadataPayload: CreateFileMetadataValueObjectPayload = {
-      relativePath: 'relative/path',
+      relativePath: `images/${v4()}.png`,
       size        : 42_000_000,
       ext         : 'png',
       mimetype    : 'image/png'

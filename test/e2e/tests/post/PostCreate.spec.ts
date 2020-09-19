@@ -90,11 +90,7 @@ describe('Post.Create', () => {
       
       const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
         .post('/posts')
-        .send({
-          title  : 42,
-          content: 42,
-          imageId: 'not-uuid'
-        })
+        .send({title  : 42, content: 42, imageId: 'not-uuid'})
         .set('x-api-token', accessToken)
         .expect(HttpStatus.OK);
 

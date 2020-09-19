@@ -99,7 +99,7 @@ async function expectItReturnsMediaList(
     .set('x-api-token', accessToken)
     .expect(HttpStatus.OK);
   
-  const expectedMedia: Record<string, unknown> = {
+  const expectedMediaData: Record<string, unknown> = {
     id       : media!.getId(),
     ownerId  : executor.getId(),
     name     : media.getName(),
@@ -110,5 +110,5 @@ async function expectItReturnsMediaList(
   };
   
   ResponseExpect.codeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
-  ResponseExpect.data({response: response.body}, [expectedMedia]);
+  ResponseExpect.data({response: response.body}, [expectedMediaData]);
 }

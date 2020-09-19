@@ -127,7 +127,7 @@ async function expectItCreatesMedia(
   
   const createdMedia: Optional<Media> = await mediaRepository.findMedia({id: response.body.data.id});
   
-  const expectedData: Record<string, unknown> = {
+  const expectedMediaData: Record<string, unknown> = {
     id       : createdMedia!.getId(),
     ownerId  : executor.getId(),
     name     : mediaName,
@@ -142,5 +142,5 @@ async function expectItCreatesMedia(
   expect(createdMedia!.getMetadata().mimetype).toBe('image/png');
   
   ResponseExpect.codeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
-  ResponseExpect.data({response: response.body}, expectedData);
+  ResponseExpect.data({response: response.body}, expectedMediaData);
 }

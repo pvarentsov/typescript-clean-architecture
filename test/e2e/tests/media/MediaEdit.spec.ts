@@ -153,7 +153,7 @@ async function expectItEditsMedia(
   
   const editedMedia: Optional<Media> = await mediaRepository.findMedia({id: media.getId()});
   
-  const expectedData: Record<string, unknown> = {
+  const expectedMediaData: Record<string, unknown> = {
     id       : media!.getId(),
     ownerId  : executor.getId(),
     name     : newName,
@@ -167,5 +167,5 @@ async function expectItEditsMedia(
   expect(editedMedia!.getEditedAt()!.getTime()).toBeGreaterThan(media!.getEditedAt()!.getTime());
   
   ResponseExpect.codeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
-  ResponseExpect.data({response: response.body}, expectedData);
+  ResponseExpect.data({response: response.body}, expectedMediaData);
 }

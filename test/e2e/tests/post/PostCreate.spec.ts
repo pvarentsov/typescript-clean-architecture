@@ -90,7 +90,7 @@ describe('Post.Create', () => {
       
       const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
         .post('/posts')
-        .send({title  : 42, content: 42, imageId: 'not-uuid'})
+        .send({title: 42, content: 42, imageId: 'not-uuid'})
         .set('x-api-token', accessToken)
         .expect(HttpStatus.OK);
 
@@ -106,7 +106,7 @@ describe('Post.Create', () => {
       
       const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
         .post('/posts')
-        .send({title  : v4(), content: v4(), imageId: v4()})
+        .send({title: v4(), content: v4(), imageId: v4()})
         .set('x-api-token', accessToken)
         .expect(HttpStatus.OK);
   
@@ -156,7 +156,7 @@ async function expectItCreatesPost(
     ? {id: postImage!.getId(), url: `${FileStorageConfig.BASE_PATH}/${postImage!.getRelativePath()}`}
     : null;
   
-  const expectedPost: Record<string, unknown> = {
+  const expectedPostData: Record<string, unknown> = {
     id         : createdPost!.getId(),
     owner      : PostFixture.userToPostOwner(executor),
     image      : expectedImage,
@@ -171,5 +171,5 @@ async function expectItCreatesPost(
   expect(createdPost).toBeDefined();
   
   ResponseExpect.codeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
-  ResponseExpect.data({response: response.body}, expectedPost);
+  ResponseExpect.data({response: response.body}, expectedPostData);
 }

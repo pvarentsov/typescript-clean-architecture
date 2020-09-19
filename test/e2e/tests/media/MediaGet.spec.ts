@@ -68,7 +68,7 @@ describe('Media.Get', () => {
         .set('x-api-token', accessToken)
         .expect(HttpStatus.OK);
     
-      const expectedData: Record<string, unknown> = {
+      const expectedMediaData: Record<string, unknown> = {
         id       : media!.getId(),
         ownerId  : executor.getId(),
         name     : media.getName(),
@@ -79,7 +79,7 @@ describe('Media.Get', () => {
       };
     
       ResponseExpect.codeAndMessage(response.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
-      ResponseExpect.data({response: response.body}, expectedData);
+      ResponseExpect.data({response: response.body}, expectedMediaData);
     });
   
     test('When guest requests media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {

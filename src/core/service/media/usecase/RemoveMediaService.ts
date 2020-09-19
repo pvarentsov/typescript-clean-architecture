@@ -1,7 +1,7 @@
 import { Code } from '@core/common/code/Code';
-import { MediaRemovedEvent } from '@core/common/cqers/event/events/media/MediaRemovedEvent';
+import { MediaRemovedEvent } from '@core/common/message/event/events/media/MediaRemovedEvent';
 import { Exception } from '@core/common/exception/Exception';
-import { EventBusPort } from '@core/common/port/cqers/EventBusPort';
+import { EventBusPort } from '@core/common/port/message/EventBusPort';
 import { CoreAssert } from '@core/common/util/assert/CoreAssert';
 import { Media } from '@core/domain/media/entity/Media';
 import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';

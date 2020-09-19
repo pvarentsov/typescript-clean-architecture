@@ -1,5 +1,5 @@
-import { GetMediaPreviewQuery } from '@core/common/cqers/query/queries/media/GetMediaPreviewQuery';
-import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
+import { GetMediaPreviewQuery } from '@core/common/message/query/queries/media/GetMediaPreviewQuery';
+import { GetMediaPreviewQueryResult } from '@core/common/message/query/queries/media/result/GetMediaPreviewQueryResult';
 import { MediaType } from '@core/common/enums/MediaEnums';
 import { Optional } from '@core/common/type/CommonTypes';
 import { MediaDITokens } from '@core/domain/media/di/MediaDITokens';

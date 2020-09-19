@@ -1,4 +1,4 @@
-import { QueryBusPort } from '@core/common/port/cqers/QueryBusPort';
+import { QueryBusPort } from '@core/common/port/message/QueryBusPort';
 import { Injectable } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 

@@ -1,4 +1,4 @@
-import { MediaRemovedEvent } from '@core/common/cqers/event/events/media/MediaRemovedEvent';
+import { MediaRemovedEvent } from '@core/common/message/event/events/media/MediaRemovedEvent';
 import { PostDITokens } from '@core/domain/post/di/PostDITokens';
 import { PostImageRemovedEventHandler } from '@core/domain/post/handler/PostImageRemovedEventHandler';
 import { Inject, Injectable } from '@nestjs/common';

@@ -1,5 +1,5 @@
-import { DoesMediaExistQuery } from '@core/common/cqers/query/queries/media/DoesMediaExistQuery';
-import { DoesMediaExistQueryResult } from '@core/common/cqers/query/queries/media/result/DoesMediaExistQueryResult';
+import { DoesMediaExistQuery } from '@core/common/message/query/queries/media/DoesMediaExistQuery';
+import { DoesMediaExistQueryResult } from '@core/common/message/query/queries/media/result/DoesMediaExistQueryResult';
 import { DoesMediaExistQueryHandler } from '@core/domain/media/handler/DoesMediaExistQueryHandler';
 import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
 

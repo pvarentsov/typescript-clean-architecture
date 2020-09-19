@@ -1,4 +1,4 @@
-import { EventBusPort } from '@core/common/port/cqers/EventBusPort';
+import { EventBusPort } from '@core/common/port/message/EventBusPort';
 import { Injectable } from '@nestjs/common';
 import { EventBus } from '@nestjs/cqrs';
 

@@ -1,4 +1,4 @@
-import { DoesMediaExistQuery } from '@core/common/cqers/query/queries/media/DoesMediaExistQuery';
+import { DoesMediaExistQuery } from '@core/common/message/query/queries/media/DoesMediaExistQuery';
 import { RepositoryFindOptions } from '@core/common/persistence/RepositoryOptions';
 import { v4 } from 'uuid';
 

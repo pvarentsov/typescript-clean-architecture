@@ -1,4 +1,4 @@
-import { UserRole } from '../../../../../enums/UserEnums';
+import { UserRole } from '@core/common/enums/UserEnums';
 
 export class GetUserPreviewQueryResult {
   

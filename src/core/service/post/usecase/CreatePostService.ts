@@ -1,10 +1,10 @@
 import { Code } from '@core/common/code/Code';
-import { GetMediaPreviewQuery } from '@core/common/cqers/query/queries/media/GetMediaPreviewQuery';
-import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
-import { GetUserPreviewQuery } from '@core/common/cqers/query/queries/user/GetUserPreviewQuery';
-import { GetUserPreviewQueryResult } from '@core/common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
+import { GetMediaPreviewQuery } from '@core/common/message/query/queries/media/GetMediaPreviewQuery';
+import { GetMediaPreviewQueryResult } from '@core/common/message/query/queries/media/result/GetMediaPreviewQueryResult';
+import { GetUserPreviewQuery } from '@core/common/message/query/queries/user/GetUserPreviewQuery';
+import { GetUserPreviewQueryResult } from '@core/common/message/query/queries/user/result/GetUserPreviewQueryResult';
 import { Exception } from '@core/common/exception/Exception';
-import { QueryBusPort } from '@core/common/port/cqers/QueryBusPort';
+import { QueryBusPort } from '@core/common/port/message/QueryBusPort';
 import { Optional } from '@core/common/type/CommonTypes';
 import { CoreAssert } from '@core/common/util/assert/CoreAssert';
 import { Post } from '@core/domain/post/entity/Post';

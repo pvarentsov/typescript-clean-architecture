@@ -1,4 +1,4 @@
-import { GetUserPreviewQueryResult } from '@core/common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
+import { GetUserPreviewQueryResult } from '@core/common/message/query/queries/user/result/GetUserPreviewQueryResult';
 import { UserRole } from '@core/common/enums/UserEnums';
 import { v4 } from 'uuid';
 

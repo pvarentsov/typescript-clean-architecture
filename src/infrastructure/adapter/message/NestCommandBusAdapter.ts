@@ -1,7 +1,6 @@
-import { CommandBusPort } from '@core/common/port/cqers/CommandBusPort';
+import { CommandBusPort } from '@core/common/port/message/CommandBusPort';
 import { Injectable } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-
 
 @Injectable()
 export class NestCommandBusAdapter implements CommandBusPort {

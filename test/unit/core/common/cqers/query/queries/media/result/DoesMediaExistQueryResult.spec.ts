@@ -1,4 +1,4 @@
-import { DoesMediaExistQueryResult } from '@core/common/cqers/query/queries/media/result/DoesMediaExistQueryResult';
+import { DoesMediaExistQueryResult } from '@core/common/message/query/queries/media/result/DoesMediaExistQueryResult';
 
 describe('DoesMediaExistQueryResult', () => {
 

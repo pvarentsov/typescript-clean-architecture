@@ -1,9 +1,9 @@
 import { Code } from '@core/common/code/Code';
-import { MediaRemovedEvent } from '@core/common/cqers/event/events/media/MediaRemovedEvent';
+import { MediaRemovedEvent } from '@core/common/message/event/events/media/MediaRemovedEvent';
 import { CoreDITokens } from '@core/common/di/CoreDITokens';
 import { MediaType } from '@core/common/enums/MediaEnums';
 import { Exception } from '@core/common/exception/Exception';
-import { EventBusPort } from '@core/common/port/cqers/EventBusPort';
+import { EventBusPort } from '@core/common/port/message/EventBusPort';
 import { ClassValidationDetails } from '@core/common/util/class-validator/ClassValidator';
 import { MediaDITokens } from '@core/domain/media/di/MediaDITokens';
 import { Media } from '@core/domain/media/entity/Media';
@@ -12,7 +12,7 @@ import { RemoveMediaPort } from '@core/domain/media/port/usecase/RemoveMediaPort
 import { RemoveMediaUseCase } from '@core/domain/media/usecase/RemoveMediaUseCase';
 import { FileMetadata } from '@core/domain/media/value-object/FileMetadata';
 import { RemoveMediaService } from '@core/service/media/usecase/RemoveMediaService';
-import { NestEventBusAdapter } from '@infrastructure/adapter/cqers/NestEventBusAdapter';
+import { NestEventBusAdapter } from '@infrastructure/adapter/message/NestEventBusAdapter';
 import { TypeOrmMediaRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
 import { CqrsModule } from '@nestjs/cqrs';
 import { Test, TestingModule } from '@nestjs/testing';

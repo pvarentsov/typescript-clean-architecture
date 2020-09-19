@@ -1,4 +1,4 @@
-import { GetUserPreviewQuery } from '@core/common/cqers/query/queries/user/GetUserPreviewQuery';
+import { GetUserPreviewQuery } from '@core/common/message/query/queries/user/GetUserPreviewQuery';
 import { RepositoryFindOptions } from '@core/common/persistence/RepositoryOptions';
 import { v4 } from 'uuid';
 

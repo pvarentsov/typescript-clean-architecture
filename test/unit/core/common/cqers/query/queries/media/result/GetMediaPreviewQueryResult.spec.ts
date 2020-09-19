@@ -1,4 +1,4 @@
-import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
+import { GetMediaPreviewQueryResult } from '@core/common/message/query/queries/media/result/GetMediaPreviewQueryResult';
 import { MediaType } from '@core/common/enums/MediaEnums';
 import { v4 } from 'uuid';
 

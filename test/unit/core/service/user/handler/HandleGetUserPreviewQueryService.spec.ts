@@ -1,5 +1,5 @@
-import { GetUserPreviewQuery } from '@core/common/cqers/query/queries/user/GetUserPreviewQuery';
-import { GetUserPreviewQueryResult } from '@core/common/cqers/query/queries/user/result/GetUserPreviewQueryResult';
+import { GetUserPreviewQuery } from '@core/common/message/query/queries/user/GetUserPreviewQuery';
+import { GetUserPreviewQueryResult } from '@core/common/message/query/queries/user/result/GetUserPreviewQueryResult';
 import { UserRole } from '@core/common/enums/UserEnums';
 import { Optional } from '@core/common/type/CommonTypes';
 import { UserDITokens } from '@core/domain/user/di/UserDITokens';

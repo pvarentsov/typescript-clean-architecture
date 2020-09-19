@@ -1,8 +1,8 @@
 import { Code } from '@core/common/code/Code';
-import { GetMediaPreviewQuery } from '@core/common/cqers/query/queries/media/GetMediaPreviewQuery';
-import { GetMediaPreviewQueryResult } from '@core/common/cqers/query/queries/media/result/GetMediaPreviewQueryResult';
+import { GetMediaPreviewQuery } from '@core/common/message/query/queries/media/GetMediaPreviewQuery';
+import { GetMediaPreviewQueryResult } from '@core/common/message/query/queries/media/result/GetMediaPreviewQueryResult';
 import { Exception } from '@core/common/exception/Exception';
-import { QueryBusPort } from '@core/common/port/cqers/QueryBusPort';
+import { QueryBusPort } from '@core/common/port/message/QueryBusPort';
 import { Nullable, Optional } from '@core/common/type/CommonTypes';
 import { CoreAssert } from '@core/common/util/assert/CoreAssert';
 import { Post } from '@core/domain/post/entity/Post';

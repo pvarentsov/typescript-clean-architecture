@@ -1,9 +1,9 @@
 import { NestHttpExceptionFilter } from '@application/api/http-rest/exception-filter/NestHttpExceptionFilter';
 import { NestHttpLoggingInterceptor } from '@application/api/http-rest/interceptor/NestHttpLoggingInterceptor';
 import { CoreDITokens } from '@core/common/di/CoreDITokens';
-import { NestCommandBusAdapter } from '@infrastructure/adapter/cqers/NestCommandBusAdapter';
-import { NestEventBusAdapter } from '@infrastructure/adapter/cqers/NestEventBusAdapter';
-import { NestQueryBusAdapter } from '@infrastructure/adapter/cqers/NestQueryBusAdapter';
+import { NestCommandBusAdapter } from '@infrastructure/adapter/message/NestCommandBusAdapter';
+import { NestEventBusAdapter } from '@infrastructure/adapter/message/NestEventBusAdapter';
+import { NestQueryBusAdapter } from '@infrastructure/adapter/message/NestQueryBusAdapter';
 import { TypeOrmLogger } from '@infrastructure/adapter/persistence/typeorm/logger/TypeOrmLogger';
 import { TypeOrmDirectory } from '@infrastructure/adapter/persistence/typeorm/TypeOrmDirectory';
 import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';

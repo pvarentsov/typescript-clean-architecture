@@ -1,4 +1,4 @@
-import { MediaRemovedEvent } from '@core/common/cqers/event/events/media/MediaRemovedEvent';
+import { MediaRemovedEvent } from '@core/common/message/event/events/media/MediaRemovedEvent';
 import { MediaType } from '@core/common/enums/MediaEnums';
 import { v4 } from 'uuid';
 

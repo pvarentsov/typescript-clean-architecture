@@ -1,8 +1,10 @@
 import { Code } from '@core/common/code/Code';
+import { PostStatus } from '@core/common/enums/PostEnums';
 import { UserRole } from '@core/common/enums/UserEnums';
 import { PostDITokens } from '@core/domain/post/di/PostDITokens';
 import { Post } from '@core/domain/post/entity/Post';
 import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
+import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
 import { User } from '@core/domain/user/entity/User';
 import { RemovePostAdapter } from '@infrastructure/adapter/usecase/post/RemovePostAdapter';
 import { HttpStatus } from '@nestjs/common';
@@ -151,7 +153,7 @@ async function expectItRemovesPost(
   const executor: User = await userFixture.insertUser({role: executorRole, email: `${v4()}@email.com`, password: v4()});
   const auth: {accessToken: string} = await AuthFixture.loginUser({id: executor.getId()});
   
-  const post: Post = await postFixture.insertPost({owner: executor});
+  const post: Post = await postFixture.insertPost({owner: executor, status: PostStatus.PUBLISHED});
   
   const removeResponse: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
     .delete(`/posts/${post.getId()}`)
@@ -175,5 +177,5 @@ async function expectItRemovesPost(
   ResponseExpect.data({response: getResponse.body}, null);
   
   ResponseExpect.codeAndMessage(getListResponse.body, {code: Code.SUCCESS.code, message: Code.SUCCESS.message});
-  ResponseExpect.data({response: getListResponse.body}, []);
+  expect(getListResponse.body.data.filter((item: PostUseCaseDto) => item.id === post.getId())).toEqual([]);
 }

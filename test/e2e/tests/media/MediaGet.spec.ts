@@ -97,19 +97,53 @@ describe('Media.Get', () => {
       ResponseExpect.data({response: response.body}, null);
     });
     
-    test('When user try to get other people\'s media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+    test('When author requests other people\'s media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
       const ownerId: string = v4();
-      
+    
       const executor: User = await userFixture.insertUser({role: UserRole.AUTHOR, email: `${v4()}@email.com`, password: v4()});
       const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
-      
+    
       const media: Media = await mediaFixture.insertMedia({ownerId});
-      
+    
       const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
         .get(`/medias/${media.getId()}`)
         .set('x-api-token', accessToken)
         .expect(HttpStatus.OK);
-      
+    
+      ResponseExpect.codeAndMessage(response.body, {code: Code.ACCESS_DENIED_ERROR.code, message: Code.ACCESS_DENIED_ERROR.message});
+      ResponseExpect.data({response: response.body}, null);
+    });
+  
+    test('When admin requests other people\'s media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+      const ownerId: string = v4();
+    
+      const executor: User = await userFixture.insertUser({role: UserRole.ADMIN, email: `${v4()}@email.com`, password: v4()});
+      const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
+    
+      const media: Media = await mediaFixture.insertMedia({ownerId});
+    
+      const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
+        .get(`/medias/${media.getId()}`)
+        .set('x-api-token', accessToken)
+        .expect(HttpStatus.OK);
+    
+      ResponseExpect.codeAndMessage(response.body, {code: Code.ACCESS_DENIED_ERROR.code, message: Code.ACCESS_DENIED_ERROR.message});
+      ResponseExpect.data({response: response.body}, null);
+    });
+  
+    test('When gust requests other people\'s media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+      const ownerId: string = v4();
+    
+      const executor: User = await userFixture.insertUser({role: UserRole.GUEST, email: `${v4()}@email.com`, password: v4()});
+      const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
+    
+      const media: Media = await mediaFixture.insertMedia({ownerId});
+    
+      const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
+        .get(`/medias/${media.getId()}`)
+        .set('x-api-token', accessToken)
+        .expect(HttpStatus.OK);
+    
       ResponseExpect.codeAndMessage(response.body, {code: Code.ACCESS_DENIED_ERROR.code, message: Code.ACCESS_DENIED_ERROR.message});
       ResponseExpect.data({response: response.body}, null);
     });

@@ -35,7 +35,7 @@ describe('Post.GetMineList', () => {
     }
   });
   
-  describe('GET /posts', () => {
+  describe('GET /posts/mine', () => {
   
     test('When author requests own post list, expect it returns all author\'s posts', async () => {
       await expectItReturnsListWithMinePosts(UserRole.AUTHOR, testServer, userFixture, postFixture);

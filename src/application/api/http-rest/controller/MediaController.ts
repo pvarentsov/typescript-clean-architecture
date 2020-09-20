@@ -41,7 +41,6 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { parse } from 'path';
-import { Transactional } from 'typeorm-transactional-cls-hooked';
 import { resolve } from 'url';
 
 @Controller('medias')
@@ -66,7 +65,6 @@ export class MediaController {
   ) {}
   
   @Post()
-  @Transactional()
   @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @UseInterceptors(FileInterceptor('file'))
@@ -97,7 +95,6 @@ export class MediaController {
   }
   
   @Put(':mediaId')
-  @Transactional()
   @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()
@@ -149,7 +146,6 @@ export class MediaController {
   }
   
   @Delete(':mediaId')
-  @Transactional()
   @HttpAuth(UserRole.ADMIN, UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()

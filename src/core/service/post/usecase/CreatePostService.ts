@@ -1,9 +1,9 @@
 import { Code } from '@core/common/code/Code';
+import { Exception } from '@core/common/exception/Exception';
 import { GetMediaPreviewQuery } from '@core/common/message/query/queries/media/GetMediaPreviewQuery';
 import { GetMediaPreviewQueryResult } from '@core/common/message/query/queries/media/result/GetMediaPreviewQueryResult';
 import { GetUserPreviewQuery } from '@core/common/message/query/queries/user/GetUserPreviewQuery';
 import { GetUserPreviewQueryResult } from '@core/common/message/query/queries/user/result/GetUserPreviewQueryResult';
-import { Exception } from '@core/common/exception/Exception';
 import { QueryBusPort } from '@core/common/port/message/QueryBusPort';
 import { Optional } from '@core/common/type/CommonTypes';
 import { CoreAssert } from '@core/common/util/assert/CoreAssert';
@@ -45,6 +45,14 @@ export class CreatePostService implements CreatePostUseCase {
     await this.postRepository.addPost(post);
     
     return PostUseCaseDto.newFromPost(post);
+  }
+  
+  public async onCommit(): Promise<void> {
+    return undefined;
+  }
+  
+  public async onRollback(): Promise<void> {
+    return undefined;
   }
   
 }

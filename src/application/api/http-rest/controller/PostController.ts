@@ -26,7 +26,6 @@ import { RemovePostAdapter } from '@infrastructure/adapter/usecase/post/RemovePo
 import { FileStorageConfig } from '@infrastructure/config/FileStorageConfig';
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Transactional } from 'typeorm-transactional-cls-hooked';
 import { resolve } from 'url';
 
 @Controller('posts')
@@ -54,7 +53,6 @@ export class PostController {
   ) {}
   
   @Post()
-  @Transactional()
   @HttpAuth(UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()
@@ -75,7 +73,6 @@ export class PostController {
   }
   
   @Put(':postId')
-  @Transactional()
   @HttpAuth(UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()
@@ -168,7 +165,6 @@ export class PostController {
   }
   
   @Delete(':postId')
-  @Transactional()
   @HttpAuth(UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()

@@ -1,6 +1,6 @@
 import { Code } from '@core/common/code/Code';
-import { MediaRemovedEvent } from '@core/common/message/event/events/media/MediaRemovedEvent';
 import { Exception } from '@core/common/exception/Exception';
+import { MediaRemovedEvent } from '@core/common/message/event/events/media/MediaRemovedEvent';
 import { EventBusPort } from '@core/common/port/message/EventBusPort';
 import { CoreAssert } from '@core/common/util/assert/CoreAssert';
 import { Media } from '@core/domain/media/entity/Media';
@@ -26,6 +26,14 @@ export class RemoveMediaService implements RemoveMediaUseCase {
     
     await this.mediaRepository.removeMedia(media);
     await this.eventBus.sendEvent(MediaRemovedEvent.new(media.getId(), media.getOwnerId(), media.getType()));
+  }
+  
+  public async onCommit(): Promise<void> {
+    return undefined;
+  }
+  
+  public async onRollback(): Promise<void> {
+    return undefined;
   }
   
 }

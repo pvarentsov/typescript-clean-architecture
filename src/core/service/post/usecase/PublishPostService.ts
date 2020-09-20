@@ -28,4 +28,12 @@ export class PublishPostService implements PublishPostUseCase {
     return PostUseCaseDto.newFromPost(post);
   }
   
+  public async onCommit(): Promise<void> {
+    return undefined;
+  }
+  
+  public async onRollback(): Promise<void> {
+    return undefined;
+  }
+  
 }

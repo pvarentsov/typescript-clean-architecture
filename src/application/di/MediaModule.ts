@@ -1,6 +1,9 @@
 import { MediaController } from '@application/api/http-rest/controller/MediaController';
 import { CoreDITokens } from '@core/common/di/CoreDITokens';
 import { MediaDITokens } from '@core/domain/media/di/MediaDITokens';
+import { CreateMediaUseCase } from '@core/domain/media/usecase/CreateMediaUseCase';
+import { EditMediaUseCase } from '@core/domain/media/usecase/EditMediaUseCase';
+import { RemoveMediaUseCase } from '@core/domain/media/usecase/RemoveMediaUseCase';
 import { HandleDoesMediaExistQueryService } from '@core/service/media/handler/HandleDoesMediaExistQueryService';
 import { HandleGetMediaPreviewQueryService } from '@core/service/media/handler/HandleGetMediaPreviewQueryService';
 import { CreateMediaService } from '@core/service/media/usecase/CreateMediaService';
@@ -12,6 +15,7 @@ import { MinioMediaFileStorageAdapter } from '@infrastructure/adapter/persistenc
 import { TypeOrmMediaRepositoryAdapter } from '@infrastructure/adapter/persistence/typeorm/repository/media/TypeOrmMediaRepositoryAdapter';
 import { NestWrapperDoesMediaExistQueryHandler } from '@infrastructure/handler/media/NestWrapperDoesMediaExistQueryHandler';
 import { NestWrapperGetMediaPreviewQueryHandler } from '@infrastructure/handler/media/NestWrapperGetMediaPreviewQueryHandler';
+import { TransactionalUseCaseWrapper } from '@infrastructure/transaction/TransactionalUseCaseWrapper';
 import { Module } from '@nestjs/common';
 import { Provider } from '@nestjs/common/interfaces/modules/provider.interface';
 import { Connection } from 'typeorm';
@@ -31,12 +35,19 @@ const persistenceProviders: Provider[] = [
 const useCaseProviders: Provider[] = [
   {
     provide   : MediaDITokens.CreateMediaUseCase,
-    useFactory: (mediaRepository, mediaFileStorage) => new CreateMediaService(mediaRepository, mediaFileStorage),
+    useFactory: (mediaRepository, mediaFileStorage) => {
+      const service: CreateMediaUseCase = new CreateMediaService(mediaRepository, mediaFileStorage);
+      return new TransactionalUseCaseWrapper(service);
+    },
     inject    : [MediaDITokens.MediaRepository, MediaDITokens.MediaFileStorage]
   },
   {
     provide   : MediaDITokens.EditMediaUseCase,
-    useFactory: (mediaRepository) => new EditMediaService(mediaRepository),
+    useFactory: (mediaRepository) => {
+      const service: EditMediaUseCase = new EditMediaService(mediaRepository);
+      return new TransactionalUseCaseWrapper(service);
+      
+    },
     inject    : [MediaDITokens.MediaRepository]
   },
   {
@@ -51,7 +62,10 @@ const useCaseProviders: Provider[] = [
   },
   {
     provide   : MediaDITokens.RemoveMediaUseCase,
-    useFactory: (mediaRepository, eventBus) => new RemoveMediaService(mediaRepository, eventBus),
+    useFactory: (mediaRepository, eventBus) => {
+      const service: RemoveMediaUseCase = new RemoveMediaService(mediaRepository, eventBus);
+      return new TransactionalUseCaseWrapper(service);
+    },
     inject    : [MediaDITokens.MediaRepository, CoreDITokens.EventBus]
   },
 ];

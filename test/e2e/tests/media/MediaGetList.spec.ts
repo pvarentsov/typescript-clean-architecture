@@ -28,6 +28,12 @@ describe('Media.GetList', () => {
     await testServer.serverApplication.init();
   });
   
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
+  });
+  
   describe('GET /medias', () => {
     
     test('When admin requests media, expect it returns media list response', async () => {
@@ -59,7 +65,7 @@ describe('Media.GetList', () => {
       await AuthExpect.unauthorizedError({method: 'get', path: '/medias'}, testServer, v4());
     });
     
-    test('When user try to get not existing media, expect it returns empty array', async () => {
+    test('When user requests not existing media, expect it returns empty array', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.ADMIN, email: `${v4()}@email.com`, password: v4()});
       const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
       
@@ -72,12 +78,6 @@ describe('Media.GetList', () => {
       ResponseExpect.data({response: response.body}, []);
     });
     
-  });
-  
-  afterAll(async () => {
-    if (testServer) {
-      await testServer.serverApplication.close();
-    }
   });
   
 });

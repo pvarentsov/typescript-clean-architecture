@@ -126,7 +126,7 @@ export class PostController {
   }
   
   @Get('mine')
-  @HttpAuth(UserRole.AUTHOR, UserRole.ADMIN, UserRole.GUEST)
+  @HttpAuth(UserRole.AUTHOR)
   @HttpCode(HttpStatus.OK)
   @ApiBearerAuth()
   @ApiResponse({status: HttpStatus.OK, type: HttpRestApiResponsePostList})

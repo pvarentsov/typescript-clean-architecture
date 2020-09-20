@@ -37,6 +37,12 @@ describe('Post.Remove', () => {
     await testServer.serverApplication.init();
   });
   
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
+  });
+  
   describe('DELETE /posts/{postId}', () => {
     
     test('When author removes post, expect it removes post', async () => {
@@ -73,7 +79,7 @@ describe('Post.Remove', () => {
       ResponseExpect.data({response: response.body}, null);
     });
   
-    test('When user try to remove other people\'s post, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+    test('When user removes other people\'s post, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.AUTHOR, email: `${v4()}@email.com`, password: v4()});
       const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
   
@@ -103,7 +109,7 @@ describe('Post.Remove', () => {
       await AuthExpect.unauthorizedError({method: 'delete', path: `/posts/${post.getId()}`}, testServer, v4());
     });
   
-    test('When user try to remove not existing post, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
+    test('When user removes not existing post, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.AUTHOR, email: `${v4()}@email.com`, password: v4()});
       const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
       
@@ -131,12 +137,6 @@ describe('Post.Remove', () => {
       ResponseExpect.codeAndMessage(response.body, {code: Code.USE_CASE_PORT_VALIDATION_ERROR.code, message: Code.USE_CASE_PORT_VALIDATION_ERROR.message});
     });
     
-  });
-  
-  afterAll(async () => {
-    if (testServer) {
-      await testServer.serverApplication.close();
-    }
   });
   
 });

@@ -37,6 +37,12 @@ describe('Media.Edit', () => {
     await testServer.serverApplication.init();
   });
   
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
+  });
+  
   describe('PUT /medias/{mediaId}', () => {
     
     test('When admin edits media, expect it returns edited media', async () => {
@@ -62,7 +68,7 @@ describe('Media.Edit', () => {
       ResponseExpect.data({response: response.body}, null);
     });
   
-    test('When user try to edit other people\'s media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+    test('When user edits other people\'s media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
       const ownerId: string = v4();
       
       const executor: User = await userFixture.insertUser({role: UserRole.AUTHOR, email: `${v4()}@email.com`, password: v4()});
@@ -89,7 +95,7 @@ describe('Media.Edit', () => {
       await AuthExpect.unauthorizedError({method: 'put', path: `/medias/${media.getId()}`}, testServer, v4());
     });
   
-    test('When user try to edit not existing media, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
+    test('When user edits not existing media, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.ADMIN, email: `${v4()}@email.com`, password: v4()});
       const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
       
@@ -120,12 +126,6 @@ describe('Media.Edit', () => {
       ResponseExpect.codeAndMessage(response.body, {code: Code.USE_CASE_PORT_VALIDATION_ERROR.code, message: Code.USE_CASE_PORT_VALIDATION_ERROR.message});
     });
     
-  });
-  
-  afterAll(async () => {
-    if (testServer) {
-      await testServer.serverApplication.close();
-    }
   });
   
 });

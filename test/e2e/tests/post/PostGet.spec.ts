@@ -29,6 +29,12 @@ describe('Post.Get', () => {
     await testServer.serverApplication.init();
   });
   
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
+  });
+  
   describe('GET /posts/{postId}', () => {
   
     test('When author requests own draft post, expect it returns post', async () => {
@@ -226,7 +232,7 @@ describe('Post.Get', () => {
       await AuthExpect.unauthorizedError({method: 'get', path: `/posts/${post.getId()}`}, testServer, v4());
     });
     
-    test('When user try to get not existing post, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
+    test('When user requests not existing post, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.ADMIN, email: `${v4()}@email.com`, password: v4()});
       const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
       
@@ -254,12 +260,6 @@ describe('Post.Get', () => {
       ResponseExpect.codeAndMessage(response.body, {code: Code.USE_CASE_PORT_VALIDATION_ERROR.code, message: Code.USE_CASE_PORT_VALIDATION_ERROR.message});
     });
     
-  });
-  
-  afterAll(async () => {
-    if (testServer) {
-      await testServer.serverApplication.close();
-    }
   });
   
 });

@@ -2,6 +2,7 @@ import { Code } from '@core/common/code/Code';
 import { PostStatus } from '@core/common/enums/PostEnums';
 import { UserRole } from '@core/common/enums/UserEnums';
 import { Post } from '@core/domain/post/entity/Post';
+import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
 import { User } from '@core/domain/user/entity/User';
 import { HttpStatus } from '@nestjs/common';
 import { TestServer } from '@test/.common/TestServer';
@@ -12,9 +13,8 @@ import { PostFixture } from '@test/e2e/fixture/PostFixture';
 import { UserFixture } from '@test/e2e/fixture/UserFixture';
 import * as supertest from 'supertest';
 import { v4 } from 'uuid';
-import { PostUseCaseDto } from '@core/domain/post/usecase/dto/PostUseCaseDto';
 
-describe('Post.GetCommonList', () => {
+describe('Post.GetMineList', () => {
   
   let testServer: TestServer;
   let userFixture: UserFixture;
@@ -37,31 +37,49 @@ describe('Post.GetCommonList', () => {
   
   describe('GET /posts', () => {
   
-    test('When author requests common post list, expect it returns list with only published posts', async () => {
-      await expectItReturnsListWithPublishedPosts(UserRole.AUTHOR, testServer, userFixture, postFixture);
+    test('When author requests own post list, expect it returns all author\'s posts', async () => {
+      await expectItReturnsListWithMinePosts(UserRole.AUTHOR, testServer, userFixture, postFixture);
     });
   
-    test('When admin requests common post list, expect it returns list with only published posts', async () => {
-      await expectItReturnsListWithPublishedPosts(UserRole.ADMIN, testServer, userFixture, postFixture);
+    test('When admin requests own post list, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+      const executor: User = await userFixture.insertUser({role: UserRole.ADMIN, email: `${v4()}@email.com`, password: v4()});
+      const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
+      
+      const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
+        .get('/posts/mine')
+        .set('x-api-token', accessToken)
+        .expect(HttpStatus.OK);
+    
+      ResponseExpect.codeAndMessage(response.body, {code: Code.ACCESS_DENIED_ERROR.code, message: Code.ACCESS_DENIED_ERROR.message});
+      ResponseExpect.data({response: response.body}, null);
     });
   
-    test('When guest requests common post list, expect it returns list with only published posts', async () => {
-      await expectItReturnsListWithPublishedPosts(UserRole.GUEST, testServer, userFixture, postFixture);
+    test('When guest requests own post list, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+      const executor: User = await userFixture.insertUser({role: UserRole.GUEST, email: `${v4()}@email.com`, password: v4()});
+      const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
+  
+      const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
+        .get('/posts/mine')
+        .set('x-api-token', accessToken)
+        .expect(HttpStatus.OK);
+    
+      ResponseExpect.codeAndMessage(response.body, {code: Code.ACCESS_DENIED_ERROR.code, message: Code.ACCESS_DENIED_ERROR.message});
+      ResponseExpect.data({response: response.body}, null);
     });
     
     test('When access token is not passed, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
-      await AuthExpect.unauthorizedError({method: 'get', path: '/posts'}, testServer);
+      await AuthExpect.unauthorizedError({method: 'get', path: '/posts/mine'}, testServer);
     });
     
     test('When access token is not valid, expect it returns "UNAUTHORIZED_ERROR" response', async () => {
-      await AuthExpect.unauthorizedError({method: 'get', path: '/posts'}, testServer, v4());
+      await AuthExpect.unauthorizedError({method: 'get', path: '/posts/mine'}, testServer, v4());
     });
     
   });
   
 });
 
-async function expectItReturnsListWithPublishedPosts(
+async function expectItReturnsListWithMinePosts(
   executorRole: UserRole,
   testServer: TestServer,
   userFixture: UserFixture,
@@ -81,18 +99,18 @@ async function expectItReturnsListWithPublishedPosts(
   const otherUserPublishedPost: Post = await postFixture.insertPost({owner: otherUser, status: PostStatus.PUBLISHED, withImage: false});
   
   const response: supertest.Response = await supertest(testServer.serverApplication.getHttpServer())
-    .get('/posts')
+    .get('/posts/mine')
     .set('x-api-token', accessToken)
     .expect(HttpStatus.OK);
   
   const expectedPostList: Array<Record<string, unknown>> = [
+    buildExpectedPostDto(executorDraftPost, executor),
     buildExpectedPostDto(executorPublishedPost, executor),
-    buildExpectedPostDto(otherUserPublishedPost, otherUser),
   ];
   
   const notExpectedPostList: Array<Record<string, unknown>> = [
-    buildExpectedPostDto(executorDraftPost, executor),
     buildExpectedPostDto(otherUserDraftPost, otherUser),
+    buildExpectedPostDto(otherUserPublishedPost, otherUser),
   ];
   
   const authorIds: string[] = [executor.getId(), otherUser.getId()];

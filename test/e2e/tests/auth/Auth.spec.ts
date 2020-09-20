@@ -23,6 +23,12 @@ describe('Auth', () => {
     await testServer.serverApplication.init();
   });
   
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
+  });
+  
   describe('POST /auth/login', () => {
     
     test('When credentials are correct, expect user successfully log in', async () => {
@@ -69,12 +75,6 @@ describe('Auth', () => {
       );
     });
     
-  });
-  
-  afterAll(async () => {
-    if (testServer) {
-      await testServer.serverApplication.close();
-    }
   });
   
 });

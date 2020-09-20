@@ -42,6 +42,12 @@ describe('Post.Edit', () => {
     await testServer.serverApplication.init();
   });
   
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
+  });
+  
   describe('PUT /posts/{postId}', () => {
     
     test('When author edits post, expect it returns edited post and attaches image', async () => {
@@ -157,7 +163,7 @@ describe('Post.Edit', () => {
       ResponseExpect.data({response: response.body}, expectedPostData);
     });
   
-    test('When user try to attach not existing image, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
+    test('When user attaches not existing image, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.AUTHOR, email: `${v4()}@email.com`, password: v4()});
       const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
   
@@ -173,12 +179,6 @@ describe('Post.Edit', () => {
       ResponseExpect.data({response: response.body}, null);
     });
     
-  });
-  
-  afterAll(async () => {
-    if (testServer) {
-      await testServer.serverApplication.close();
-    }
   });
   
 });

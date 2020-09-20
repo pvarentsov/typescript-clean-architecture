@@ -1,8 +1,12 @@
 import { Code } from '@core/common/code/Code';
 import { UserRole } from '@core/common/enums/UserEnums';
+import { Optional } from '@core/common/type/CommonTypes';
 import { MediaDITokens } from '@core/domain/media/di/MediaDITokens';
 import { Media } from '@core/domain/media/entity/Media';
 import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
+import { PostDITokens } from '@core/domain/post/di/PostDITokens';
+import { Post } from '@core/domain/post/entity/Post';
+import { PostRepositoryPort } from '@core/domain/post/port/persistence/PostRepositoryPort';
 import { User } from '@core/domain/user/entity/User';
 import { RemoveMediaAdapter } from '@infrastructure/adapter/usecase/media/RemoveMediaAdapter';
 import { HttpStatus } from '@nestjs/common';
@@ -11,6 +15,7 @@ import { AuthExpect } from '@test/e2e/expect/AuthExpect';
 import { ResponseExpect } from '@test/e2e/expect/ResponseExpect';
 import { AuthFixture } from '@test/e2e/fixture/AuthFixture';
 import { MediaFixture } from '@test/e2e/fixture/MediaFixture';
+import { PostFixture } from '@test/e2e/fixture/PostFixture';
 import { UserFixture } from '@test/e2e/fixture/UserFixture';
 import * as supertest from 'supertest';
 import { v4 } from 'uuid';
@@ -21,18 +26,28 @@ describe('Media.Remove', () => {
   
   let userFixture: UserFixture;
   let mediaFixture: MediaFixture;
+  let postFixture: PostFixture;
   
   let mediaRepository: MediaRepositoryPort;
+  let postRepository: PostRepositoryPort;
   
   beforeAll(async () => {
     testServer = await TestServer.new();
     
     userFixture = UserFixture.new(testServer.testingModule);
     mediaFixture = MediaFixture.new(testServer.testingModule);
+    postFixture = PostFixture.new(testServer.testingModule);
   
     mediaRepository = testServer.testingModule.get(MediaDITokens.MediaRepository);
+    postRepository = testServer.testingModule.get(PostDITokens.PostRepository);
     
     await testServer.serverApplication.init();
+  });
+  
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
   });
   
   describe('DELETE /medias/{mediaId}', () => {
@@ -60,7 +75,31 @@ describe('Media.Remove', () => {
       ResponseExpect.data({response: response.body}, null);
     });
   
-    test('When user try to remove other people\'s media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
+    test('When user removes media, expect it reset post-image in all relative posts', async () => {
+      const executor: User = await userFixture.insertUser({role: UserRole.AUTHOR, email: `${v4()}@email.com`, password: v4()});
+      const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
+      
+      const draftPost: Post = await postFixture.insertPost({owner: executor, withImage: true});
+      const publishedPost: Post = await postFixture.insertPost({owner: executor, withImage: true});
+    
+      await supertest(testServer.serverApplication.getHttpServer())
+        .delete(`/medias/${draftPost.getImage()!.getId()}`)
+        .set('x-api-token', accessToken)
+        .expect(HttpStatus.OK);
+
+      await supertest(testServer.serverApplication.getHttpServer())
+        .delete(`/medias/${publishedPost.getImage()!.getId()}`)
+        .set('x-api-token', accessToken)
+        .expect(HttpStatus.OK);
+  
+      const draftPostWithoutImage: Optional<Post> = await postRepository.findPost({id: draftPost.getId()});
+      const publishedPostWithoutImage: Optional<Post> = await postRepository.findPost({id: publishedPost.getId()});
+    
+      expect(draftPostWithoutImage!.getImage()).toBeNull();
+      expect(publishedPostWithoutImage!.getImage()).toBeNull();
+    });
+  
+    test('When user removes other people\'s media, expect it returns "ACCESS_DENIED_ERROR" response', async () => {
       const ownerId: string = v4();
       
       const executor: User = await userFixture.insertUser({role: UserRole.AUTHOR, email: `${v4()}@email.com`, password: v4()});
@@ -87,7 +126,7 @@ describe('Media.Remove', () => {
       await AuthExpect.unauthorizedError({method: 'delete', path: `/medias/${media.getId()}`}, testServer, v4());
     });
   
-    test('When user try to remove not existing media, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
+    test('When user removes not existing media, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.ADMIN, email: `${v4()}@email.com`, password: v4()});
       const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
       
@@ -115,12 +154,6 @@ describe('Media.Remove', () => {
       ResponseExpect.codeAndMessage(response.body, {code: Code.USE_CASE_PORT_VALIDATION_ERROR.code, message: Code.USE_CASE_PORT_VALIDATION_ERROR.message});
     });
     
-  });
-  
-  afterAll(async () => {
-    if (testServer) {
-      await testServer.serverApplication.close();
-    }
   });
   
 });

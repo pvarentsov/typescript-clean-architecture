@@ -40,6 +40,12 @@ describe('Post.Create', () => {
     await testServer.serverApplication.init();
   });
   
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
+  });
+  
   describe('POST /posts', () => {
     
     test('When author creates post, expect it returns new post with image', async () => {
@@ -100,7 +106,7 @@ describe('Post.Create', () => {
       ResponseExpect.codeAndMessage(response.body, {code: Code.USE_CASE_PORT_VALIDATION_ERROR.code, message: Code.USE_CASE_PORT_VALIDATION_ERROR.message});
     });
   
-    test('When user try to attach not existing image, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
+    test('When user attaches not existing image, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.AUTHOR, email: `${v4()}@email.com`, password: v4()});
       const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
       
@@ -114,12 +120,6 @@ describe('Post.Create', () => {
       ResponseExpect.data({response: response.body}, null);
     });
     
-  });
-  
-  afterAll(async () => {
-    if (testServer) {
-      await testServer.serverApplication.close();
-    }
   });
   
 });

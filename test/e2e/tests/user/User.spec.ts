@@ -31,6 +31,12 @@ describe('User', () => {
     await testServer.serverApplication.init();
   });
   
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
+  });
+  
   describe('POST /users/account', () => {
     
     test('Expect it creates guest account', async () => {
@@ -105,12 +111,6 @@ describe('User', () => {
       await AuthExpect.unauthorizedError({method: 'get', path: '/users/me'}, testServer, v4());
     });
     
-  });
-  
-  afterAll(async () => {
-    if (testServer) {
-      await testServer.serverApplication.close();
-    }
   });
   
 });

@@ -30,6 +30,12 @@ describe('Media.Get', () => {
     await testServer.serverApplication.init();
   });
   
+  afterAll(async () => {
+    if (testServer) {
+      await testServer.serverApplication.close();
+    }
+  });
+  
   describe('GET /medias/{mediaId}', () => {
     
     test('When admin requests own media, expect it returns media', async () => {
@@ -158,7 +164,7 @@ describe('Media.Get', () => {
       await AuthExpect.unauthorizedError({method: 'get', path: `/medias/${media.getId()}`}, testServer, v4());
     });
     
-    test('When user try to get not existing media, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
+    test('When user requests not existing media, expect it returns "ENTITY_NOT_FOUND_ERROR" response', async () => {
       const executor: User = await userFixture.insertUser({role: UserRole.ADMIN, email: `${v4()}@email.com`, password: v4()});
       const {accessToken} = await AuthFixture.loginUser({id: executor.getId()});
       
@@ -186,12 +192,6 @@ describe('Media.Get', () => {
       ResponseExpect.codeAndMessage(response.body, {code: Code.USE_CASE_PORT_VALIDATION_ERROR.code, message: Code.USE_CASE_PORT_VALIDATION_ERROR.message});
     });
     
-  });
-  
-  afterAll(async () => {
-    if (testServer) {
-      await testServer.serverApplication.close();
-    }
   });
   
 });

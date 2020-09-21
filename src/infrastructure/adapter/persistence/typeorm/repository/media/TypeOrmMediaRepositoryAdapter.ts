@@ -4,10 +4,11 @@ import { Media } from '@core/domain/media/entity/Media';
 import { MediaRepositoryPort } from '@core/domain/media/port/persistence/MediaRepositoryPort';
 import { TypeOrmMediaMapper } from '@infrastructure/adapter/persistence/typeorm/entity/media/mapper/TypeOrmMediaMapper';
 import { TypeOrmMedia } from '@infrastructure/adapter/persistence/typeorm/entity/media/TypeOrmMedia';
-import { EntityRepository, InsertResult, Repository, SelectQueryBuilder } from 'typeorm/index';
+import { EntityRepository, InsertResult, SelectQueryBuilder } from 'typeorm';
+import { BaseRepository } from 'typeorm-transactional-cls-hooked';
 
 @EntityRepository(TypeOrmMedia)
-export class TypeOrmMediaRepositoryAdapter extends Repository<TypeOrmMedia> implements MediaRepositoryPort {
+export class TypeOrmMediaRepositoryAdapter extends BaseRepository<TypeOrmMedia> implements MediaRepositoryPort {
   
   private readonly mediaAlias: string = 'media';
   

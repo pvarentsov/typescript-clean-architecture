@@ -7,10 +7,11 @@ import { TypeOrmMedia } from '@infrastructure/adapter/persistence/typeorm/entity
 import { TypeOrmPostMapper } from '@infrastructure/adapter/persistence/typeorm/entity/post/mapper/TypeOrmPostMapper';
 import { TypeOrmPost } from '@infrastructure/adapter/persistence/typeorm/entity/post/TypeOrmPost';
 import { TypeOrmUser } from '@infrastructure/adapter/persistence/typeorm/entity/user/TypeOrmUser';
-import { EntityRepository, InsertResult, Repository, SelectQueryBuilder, UpdateQueryBuilder } from 'typeorm/index';
+import { EntityRepository, InsertResult, SelectQueryBuilder, UpdateQueryBuilder } from 'typeorm';
+import { BaseRepository } from 'typeorm-transactional-cls-hooked';
 
 @EntityRepository(TypeOrmPost)
-export class TypeOrmPostRepositoryAdapter extends Repository<TypeOrmPost> implements PostRepositoryPort {
+export class TypeOrmPostRepositoryAdapter extends BaseRepository<TypeOrmPost> implements PostRepositoryPort {
   
   private readonly postAlias: string = 'post';
   

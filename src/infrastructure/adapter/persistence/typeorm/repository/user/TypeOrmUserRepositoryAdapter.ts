@@ -4,10 +4,11 @@ import { User } from '@core/domain/user/entity/User';
 import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
 import { TypeOrmUserMapper } from '@infrastructure/adapter/persistence/typeorm/entity/user/mapper/TypeOrmUserMapper';
 import { TypeOrmUser } from '@infrastructure/adapter/persistence/typeorm/entity/user/TypeOrmUser';
-import { EntityRepository, InsertResult, Repository, SelectQueryBuilder } from 'typeorm';
+import { EntityRepository, InsertResult, SelectQueryBuilder } from 'typeorm';
+import { BaseRepository } from 'typeorm-transactional-cls-hooked';
 
 @EntityRepository(TypeOrmUser)
-export class TypeOrmUserRepositoryAdapter extends Repository<TypeOrmUser> implements UserRepositoryPort {
+export class TypeOrmUserRepositoryAdapter extends BaseRepository<TypeOrmUser> implements UserRepositoryPort {
   
   private readonly userAlias: string = 'user';
   

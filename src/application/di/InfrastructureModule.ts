@@ -8,10 +8,11 @@ import { TypeOrmLogger } from '@infrastructure/adapter/persistence/typeorm/logge
 import { TypeOrmDirectory } from '@infrastructure/adapter/persistence/typeorm/TypeOrmDirectory';
 import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
 import { DatabaseConfig } from '@infrastructure/config/DatabaseConfig';
-import { Global, Module, Provider } from '@nestjs/common';
+import { Global, Module, OnApplicationBootstrap, Provider } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { initializeTransactionalContext } from 'typeorm-transactional-cls-hooked';
 
 const providers: Provider[] = [
   {
@@ -66,4 +67,8 @@ if (ApiServerConfig.LOG_ENABLE) {
     CoreDITokens.EventBus,
   ]
 })
-export class InfrastructureModule {}
+export class InfrastructureModule implements OnApplicationBootstrap {
+  onApplicationBootstrap(): void {
+    initializeTransactionalContext();
+  }
+}

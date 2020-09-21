@@ -10,10 +10,10 @@ export class TransactionalUseCaseWrapper implements UseCase<unknown, unknown> {
   
   @Transactional()
   public async execute(port?: unknown): Promise<unknown> {
-    runOnTransactionRollback(async (error: Error) => this.useCase.onRollback(error, port));
+    runOnTransactionRollback(async (error: Error) => this.useCase.onRollback?.(error, port));
     
     const result: unknown = await this.useCase.execute(port);
-    runOnTransactionCommit(async () => this.useCase.onCommit(result, port));
+    runOnTransactionCommit(async () => this.useCase.onCommit?.(result, port));
     
     return result;
   }

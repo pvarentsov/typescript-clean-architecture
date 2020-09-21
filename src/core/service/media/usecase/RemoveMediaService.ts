@@ -28,12 +28,4 @@ export class RemoveMediaService implements RemoveMediaUseCase {
     await this.eventBus.sendEvent(MediaRemovedEvent.new(media.getId(), media.getOwnerId(), media.getType()));
   }
   
-  public async onCommit(): Promise<void> {
-    return undefined;
-  }
-  
-  public async onRollback(): Promise<void> {
-    return undefined;
-  }
-  
 }

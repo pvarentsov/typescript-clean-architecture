@@ -39,14 +39,6 @@ export class EditPostService implements EditPostUseCase {
     return PostUseCaseDto.newFromPost(post);
   }
   
-  public async onCommit(): Promise<void> {
-    return undefined;
-  }
-  
-  public async onRollback(): Promise<void> {
-    return undefined;
-  }
-  
   /** ¯\_(ツ)_/¯ **/
   private async defineNewImage(payload: EditPostPort, post: Post): Promise<Optional<Nullable<PostImage>>> {
     let newPostImage: Optional<Nullable<PostImage>>;

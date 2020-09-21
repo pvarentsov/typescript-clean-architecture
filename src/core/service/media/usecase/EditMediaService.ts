@@ -28,12 +28,4 @@ export class EditMediaService implements EditMediaUseCase {
     return MediaUseCaseDto.newFromMedia(media);
   }
   
-  public async onCommit(): Promise<void> {
-    return undefined;
-  }
-  
-  public async onRollback(): Promise<void> {
-    return undefined;
-  }
-  
 }

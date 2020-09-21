@@ -24,12 +24,4 @@ export class RemovePostService implements RemovePostUseCase {
     await this.postRepository.removePost(post);
   }
   
-  public async onCommit(): Promise<void> {
-    return undefined;
-  }
-  
-  public async onRollback(): Promise<void> {
-    return undefined;
-  }
-  
 }

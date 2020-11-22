@@ -14,8 +14,8 @@
     "test:e2e": "jest --config jest.e2e.json",
     "lib:check": "ncu",
     "lib:upgrade": "ncu -u && npm install",
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix",
+    "lint": "eslint '{src,test}/**/*.ts'",
+    "lint:fix": "eslint --fix '{src,test}/**/*.ts'",
     "migration:create": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:create -n",
     "migration:revert": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:revert"
   },

@@ -2,7 +2,7 @@ import { HttpAuthService } from '@application/api/http-rest/auth/HttpAuthService
 import { HttpJwtPayload, HttpUserPayload } from '@application/api/http-rest/auth/type/HttpAuthTypes';
 import { Code } from '@core/common/code/Code';
 import { Exception } from '@core/common/exception/Exception';
-import { Optional } from '@core/common/type/CommonTypes';
+import { CoreAssert } from '@core/common/util/assert/CoreAssert';
 import { User } from '@core/domain/user/entity/User';
 import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
 import { Injectable } from '@nestjs/common';
@@ -21,14 +21,12 @@ export class HttpJwtStrategy extends PassportStrategy(Strategy) {
   }
   
   public async validate(payload: HttpJwtPayload): Promise<HttpUserPayload> {
-    const user: Optional<User> = await this.authService.getUser({id: payload.id});
-    if (!user) {
-      throw Exception.new({code: Code.UNAUTHORIZED_ERROR});
-    }
+    const user: User = CoreAssert.notEmpty(
+      await this.authService.getUser({id: payload.id}),
+      Exception.new({code: Code.UNAUTHORIZED_ERROR})
+    );
   
     return {id: user.getId(), email: user.getEmail(), role: user.getRole()};
   }
   
 }
-
-

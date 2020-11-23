@@ -2,7 +2,7 @@ import { HttpAuthService } from '@application/api/http-rest/auth/HttpAuthService
 import { HttpUserPayload } from '@application/api/http-rest/auth/type/HttpAuthTypes';
 import { Code } from '@core/common/code/Code';
 import { Exception } from '@core/common/exception/Exception';
-import { Nullable } from '@core/common/type/CommonTypes';
+import { CoreAssert } from '@core/common/util/assert/CoreAssert';
 import { ApiServerConfig } from '@infrastructure/config/ApiServerConfig';
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
@@ -19,14 +19,12 @@ export class HttpLocalStrategy extends PassportStrategy(Strategy) {
   }
   
   public async validate(username: string, password: string): Promise<HttpUserPayload> {
-    const user: Nullable<HttpUserPayload> = await this.authService.validateUser(username, password);
-    if (!user) {
-      throw Exception.new({code: Code.WRONG_CREDENTIALS_ERROR});
-    }
+    const user: HttpUserPayload = CoreAssert.notEmpty(
+      await this.authService.validateUser(username, password),
+      Exception.new({code: Code.WRONG_CREDENTIALS_ERROR})
+    ) ;
     
     return user;
   }
 
 }
-
-

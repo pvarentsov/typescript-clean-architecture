@@ -1,0 +1,4 @@
+{
+    "editor.lightbulb.enabled": false,
+    "jestrunner.configPath": "jest.json"
+}

@@ -89,21 +89,11 @@ IPoster is a simple fictional application that allows users to publish posts.
     
 * **Testing**
 
-    * unit tests:
-      * Run tests - `npm run test:unit`
-      * Run tests with coverage - `npm run test:unit:cov`
-      * Run tests in `watch` mode - `npm run test:unit:watch`
-    
-    * e2e tests:
-      * Prepare environment - `docker-compose -f docker-compose.test.yaml up -d`
-      * Run tests - `npm run test:e2e`
+    * Prepare environment - `docker-compose -f docker-compose.test.yaml up -d`
+    * Run tests - `npm run test:unit`
+    * Run tests with coverage - `npm run test:unit:cov`
      
-    
 * **Libraries checking**    
    
     * Show new libraries' versions - `npm run lib:check`
-    * Upgrade libraries' versions - `npm run lib:upgrade`    
-
-* **IDE configuring**
-    * [Run application in the IntelliJ IDEA](./asset/IdeaApplicationLaunchConfiguration.png)
-    * [Run unit tests in the IntelliJ IDEA](./asset/IdeaUnitTestConfiguration.png)
+    * Upgrade libraries' versions - `npm run lib:upgrade`  

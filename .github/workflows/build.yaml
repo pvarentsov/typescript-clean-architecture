@@ -37,13 +37,10 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Run unit tests
-        run: npm run test:unit:cov
-
-      - name: Run e2e tests
+      - name: Run tests
         run: |
           docker-compose -f docker-compose.test.yaml up -d
-          npm run test:e2e
+          npm run test:cov
 
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master

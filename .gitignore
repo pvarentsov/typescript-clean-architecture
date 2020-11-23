@@ -1,6 +1,5 @@
 .idea/*
-.vscode/*
-.unit-test/*
+.coverage/*
 node_modules/*
 dist/*
 test-report.xml

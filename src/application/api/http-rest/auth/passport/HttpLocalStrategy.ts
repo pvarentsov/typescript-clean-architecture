@@ -22,7 +22,7 @@ export class HttpLocalStrategy extends PassportStrategy(Strategy) {
     const user: HttpUserPayload = CoreAssert.notEmpty(
       await this.authService.validateUser(username, password),
       Exception.new({code: Code.WRONG_CREDENTIALS_ERROR})
-    ) ;
+    );
     
     return user;
   }

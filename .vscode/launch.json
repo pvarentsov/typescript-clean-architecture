@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "RUN",
+            "name": "Run",
             "program": "${workspaceFolder}/dist/Main.js",
             "sourceMaps": true,
             "args": ["dotenv_config_path=/${workspaceFolder}/dist/.env"],

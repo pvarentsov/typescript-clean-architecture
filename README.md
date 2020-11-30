@@ -96,4 +96,14 @@ IPoster is a simple fictional application that allows users to publish posts.
 * **Libraries checking**    
    
     * Show new libraries' versions - `npm run lib:check`
-    * Upgrade libraries' versions - `npm run lib:upgrade`  
+    * Upgrade libraries' versions - `npm run lib:upgrade`
+    
+* **IDE**
+
+    * IntelliJ IDEA:
+      1. [Launch Configuration](./asset/IdeaRunConfiguration.png)
+      2. [Test Configuration](./asset/IdeaTestConfiguration.png)
+      
+    * Visual Studio Code:
+      1. [Launch Configuration](./.vscode/launch.json)
+      2. [Test Configuration](./.vscode/settings.json)

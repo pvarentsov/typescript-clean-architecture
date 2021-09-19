@@ -84,7 +84,7 @@ describe('CreateUserService', () => {
       
       } catch (e) {
       
-        const exception: Exception<ClassValidationDetails> = e;
+        const exception: Exception<ClassValidationDetails> = e as Exception<ClassValidationDetails>;
       
         expect(exception).toBeInstanceOf(Exception);
         expect(exception.code).toBe(Code.ENTITY_ALREADY_EXISTS_ERROR.code);

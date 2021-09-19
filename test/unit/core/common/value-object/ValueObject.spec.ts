@@ -34,7 +34,7 @@ describe('ValueObject', () => {
         
       } catch (e) {
         
-        const exception: Exception<ClassValidationDetails> = e;
+        const exception: Exception<ClassValidationDetails> = e as Exception<ClassValidationDetails>;
         
         expect(exception).toBeInstanceOf(Exception);
         expect(exception.code).toBe(Code.VALUE_OBJECT_VALIDATION_ERROR.code);

@@ -34,7 +34,7 @@ describe('UseCaseValidatableAdapter', () => {
         
       } catch (e) {
         
-        const exception: Exception<ClassValidationDetails> = e;
+        const exception: Exception<ClassValidationDetails> = e as Exception<ClassValidationDetails>;
         
         expect(exception).toBeInstanceOf(Exception);
         expect(exception.code).toBe(Code.USE_CASE_PORT_VALIDATION_ERROR.code);

@@ -86,7 +86,7 @@ describe('RemoveMediaService', () => {
         
       } catch (e) {
   
-        const exception: Exception<ClassValidationDetails> = e;
+        const exception: Exception<ClassValidationDetails> = e as Exception<ClassValidationDetails>;
   
         expect(exception).toBeInstanceOf(Exception);
         expect(exception.code).toBe(Code.ENTITY_NOT_FOUND_ERROR.code);
@@ -107,7 +107,7 @@ describe('RemoveMediaService', () => {
       
       } catch (e) {
       
-        const exception: Exception<ClassValidationDetails> = e;
+        const exception: Exception<ClassValidationDetails> = e as Exception<ClassValidationDetails>;
       
         expect(exception).toBeInstanceOf(Exception);
         expect(exception.code).toBe(Code.ACCESS_DENIED_ERROR.code);

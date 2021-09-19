@@ -38,7 +38,7 @@ describe('Entity', () => {
         
       } catch (e) {
         
-        const exception: Exception<void> = e;
+        const exception: Exception<void> = e as Exception<void>;
         
         expect(exception).toBeInstanceOf(Exception);
         expect(exception.code).toBe(Code.ENTITY_VALIDATION_ERROR.code);
@@ -66,7 +66,7 @@ describe('Entity', () => {
         
       } catch (e) {
         
-        const exception: Exception<ClassValidationDetails> = e;
+        const exception: Exception<ClassValidationDetails> = e as Exception<ClassValidationDetails>;
         
         expect(exception).toBeInstanceOf(Exception);
         expect(exception.code).toBe(Code.ENTITY_VALIDATION_ERROR.code);

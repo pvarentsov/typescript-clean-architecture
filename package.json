@@ -64,7 +64,7 @@
     "@nestjs/cqrs": "8.0.0",
     "@nestjs/jwt": "8.0.0",
     "@nestjs/passport": "8.0.1",
-    "@nestjs/platform-express": "8.0.6",
+    "@nestjs/platform-express": "8.4.7",
     "@nestjs/swagger": "5.0.9",
     "@nestjs/typeorm": "8.0.2",
     "bcryptjs": "2.4.3",

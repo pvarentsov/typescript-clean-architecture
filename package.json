@@ -70,7 +70,7 @@
     "bcryptjs": "2.4.3",
     "busboy": "0.3.1",
     "class-transformer": "0.4.0",
-    "class-validator": "0.13.1",
+    "class-validator": "0.14.0",
     "dotenv": "10.0.0",
     "env-var": "7.0.1",
     "minio": "7.0.19",

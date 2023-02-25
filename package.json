@@ -75,7 +75,7 @@
     "env-var": "7.3.0",
     "minio": "7.0.32",
     "module-alias": "2.2.2",
-    "passport": "0.4.1",
+    "passport": "0.6.0",
     "passport-jwt": "4.0.1",
     "passport-local": "1.0.0",
     "pg": "8.9.0",

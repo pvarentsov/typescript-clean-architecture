@@ -1,6 +1,6 @@
 import { EventBusPort } from '@core/common/port/message/EventBusPort';
 import { Injectable } from '@nestjs/common';
-import { EventBus } from '@nestjs/cqrs';
+import { EventBus, IEvent } from '@nestjs/cqrs';
 
 @Injectable()
 export class NestEventBusAdapter implements EventBusPort {
@@ -10,7 +10,7 @@ export class NestEventBusAdapter implements EventBusPort {
   ) {}
   
   public async sendEvent<TEvent>(event: TEvent): Promise<void> {
-    return this.eventBus.publish(event);
+    return this.eventBus.publish(event as IEvent);
   }
   
 }

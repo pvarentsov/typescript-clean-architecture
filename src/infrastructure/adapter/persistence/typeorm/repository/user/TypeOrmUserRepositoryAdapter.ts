@@ -1,5 +1,5 @@
 import { RepositoryFindOptions } from '@core/common/persistence/RepositoryOptions';
-import { Optional } from '@core/common/type/CommonTypes';
+import { Nullable, Optional } from '@core/common/type/CommonTypes';
 import { User } from '@core/domain/user/entity/User';
 import { UserRepositoryPort } from '@core/domain/user/port/persistence/UserRepositoryPort';
 import { TypeOrmUserMapper } from '@infrastructure/adapter/persistence/typeorm/entity/user/mapper/TypeOrmUserMapper';

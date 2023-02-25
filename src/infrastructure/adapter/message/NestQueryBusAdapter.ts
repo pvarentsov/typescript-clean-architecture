@@ -1,6 +1,6 @@
 import { QueryBusPort } from '@core/common/port/message/QueryBusPort';
 import { Injectable } from '@nestjs/common';
-import { QueryBus } from '@nestjs/cqrs';
+import { QueryBus, IQuery } from '@nestjs/cqrs';
 
 @Injectable()
 export class NestQueryBusAdapter implements QueryBusPort {
@@ -11,7 +11,7 @@ export class NestQueryBusAdapter implements QueryBusPort {
   }
   
   public async sendQuery<TQuery, TQueryResult>(query: TQuery): Promise<TQueryResult> {
-    return this.queryBus.execute(query);
+    return this.queryBus.execute(query as IQuery);
   }
   
 }

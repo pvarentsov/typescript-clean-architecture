@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "./scripts/build.sh",
-    "copy:local-env": "cp ./env/local.app.env ./dist/.env",
-    "start": "node ./dist/Main.js",
-    "start:local": "npm run copy:local-env && cd ./dist && node -r dotenv/config Main.js",
+    "copy:local-env": "cp ./env/prod.app.env ./dist/.env",
+    "start": "node ./dist/main.js",
+    "start:local": "npm run copy:local-env && cd ./dist && node -r dotenv/config main.js",
     "test": "jest --config jest.json",
     "test:cov": "jest --config jest.json --coverage",
     "lib:check": "ncu",
@@ -15,7 +15,9 @@
     "lint": "eslint '{src,test}/**/*.ts'",
     "lint:fix": "eslint --fix '{src,test}/**/*.ts'",
     "migration:create": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:create -n",
-    "migration:revert": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:revert"
+    "migration:revert": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:revert",
+    "migration:run": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:run",
+    "migration:show": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:show"
   },
   "repository": {
     "type": "git",

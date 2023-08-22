@@ -12,7 +12,11 @@ import { Global, Module, OnApplicationBootstrap, Provider } from '@nestjs/common
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import * as fs from 'fs';
+import * as path from 'path';
 import { initializeTransactionalContext } from 'typeorm-transactional-cls-hooked';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+
 
 const providers: Provider[] = [
   {
@@ -45,20 +49,23 @@ if (ApiServerConfig.LOG_ENABLE) {
   imports: [
     CqrsModule,
     TypeOrmModule.forRoot({
-      name                     : 'default',
-      type                     : 'postgres',
+      // name                     : 'postgres',
+      type: 'postgres',
       host                     : DatabaseConfig.DB_HOST,
       port                     : DatabaseConfig.DB_PORT,
       username                 : DatabaseConfig.DB_USERNAME,
       password                 : DatabaseConfig.DB_PASSWORD,
       database                 : DatabaseConfig.DB_NAME,
-      logging                  : DatabaseConfig.DB_LOG_ENABLE ? 'all' : false,
-      logger                   : DatabaseConfig.DB_LOG_ENABLE ? TypeOrmLogger.new() : undefined,
+      logging                  : 'all',
+      logger                   : TypeOrmLogger.new(),
       entities                 : [`${TypeOrmDirectory}/entity/**/*{.ts,.js}`],
       migrationsRun            : true,
       migrations               : [`${TypeOrmDirectory}/migration/**/*{.ts,.js}`],
       migrationsTransactionMode: 'all',
-    })
+      // ssl: {
+      //   ca: fs.readFileSync('/Users/adrian/Development/Github/NestJs/typescript-clean-architecture/certs/global-bundle.pem')
+      // }
+    } as PostgresConnectionOptions)
   ],
   providers: providers,
   exports: [

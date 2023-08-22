@@ -1,30 +1,50 @@
 version: '3.2'
 
 services:
-
-  postgresql_local:
-    build: docker/postgres/.
+  backend:
+    build:
+      context: ./
     env_file:
-      - env/local.pg.env
+      - env/prod.app.env
     ports:
-      - '5454:5432'
+      - '3005:3005'
     networks:
       - iposter_network_local
-    volumes:
-      - pg_data_local:/var/lib/postgresql/data
 
-  minio_local:
-    image: minio/minio
-    entrypoint: sh
-    command: -c 'mkdir -p /export/images && minio server /export'
-    env_file:
-      - env/local.minio.env
+#  postgresql_local:
+#    build: docker/postgres/.
+#    env_file:
+#      - env/local.pg.env
+#    ports:
+#      - '5454:5432'
+#    networks:
+#      - iposter_network_local
+#    volumes:
+#      - ./pg_data_local:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@email.com
+      PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - '9000:9000'
+      - 5050:80
     networks:
       - iposter_network_local
-    volumes:
-      - minio_data_local:/var/lib/minio/data
+
+#  minio_local:
+#    image: minio/minio
+#    entrypoint: sh
+#    command: -c 'mkdir -p /export/images && minio server /export'
+#    env_file:
+#      - env/local.minio.env
+#    ports:
+#      - '9000:9000'
+#    networks:
+#      - iposter_network_local
+#    volumes:
+#      - ./minio_data_local:/var/lib/minio/data
 
 volumes:
   pg_data_local:

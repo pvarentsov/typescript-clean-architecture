@@ -44,10 +44,28 @@ IPoster is a simple fictional application that allows users to publish posts.
   
 ## Local Development
 
+```bash
+# Retrieve an authentication token and authenticate your Docker client to your registry.
+$ aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 001179066666.dkr.ecr.us-east-1.amazonaws.com
+
+# Build your Docker image using the following command.
+$ docker build -t aws-deployment-nestjs-other-prod . --platform=linux/amd64
+$ docker buildx build -t aws-deployment-nestjs-other-prod --platform=linux/amd64 .
+
+$ docker run -p3005:3005 aws-deployment-nestjs-other-prod
+
+# After the build completes, tag your image so you can push the image to this repository:
+$ docker tag aws-deployment-nestjs-other-prod:latest 001179066666.dkr.ecr.us-east-1.amazonaws.com/aws-deployment-nestjs-other-prod:latest
+
+# Run the following command to push this image to your newly created AWS repository:
+$ docker push 001179066666.dkr.ecr.us-east-1.amazonaws.com/aws-deployment-nestjs-other-prod:latest
+```
+
 * **Docker**
 
     All necessary external services are described in the [./docker-compose.local.yml](./docker-compose.local.yaml):
     * Run `docker-compose -f docker-compose.local.yaml up -d`
+    * Run `docker-compose -f docker-compose.local.yaml up --build`
     * Stop `docker-compose -f docker-compose.local.yaml stop`
     
     Services:

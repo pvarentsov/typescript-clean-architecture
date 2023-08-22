@@ -1,0 +1,166 @@
+{
+  "family": "aws-deployment-nestjs-task-prod",
+  "containerDefinitions": [
+    {
+      "name": "aws-deployment-nestjs-container-prod",
+      "image": "001179066666.dkr.ecr.us-east-1.amazonaws.com/aws-deployment-nestjs-other-prod:latest",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "hostPort": 8000,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        {
+          "name": "API_HOST",
+          "value": "localhost"
+        },
+        {
+          "name": "API_PORT",
+          "value": "8000"
+        },
+        {
+          "name": "API_ACCESS_TOKEN_SECRET",
+          "value": "uiuaGeeX"
+        },
+        {
+          "name": "API_ACCESS_TOKEN_TTL_IN_MINUTES",
+          "value": "60"
+        },
+        {
+          "name": "API_ACCESS_TOKEN_HEADER",
+          "value": "x-api-token"
+        },
+        {
+          "name": "API_LOGIN_USERNAME_FIELD",
+          "value": "email"
+        },
+        {
+          "name": "API_LOGIN_PASSWORD_FIELD",
+          "value": "password"
+        },
+        {
+          "name": "API_LOG_ENABLE",
+          "value": "true"
+        },
+        {
+          "name": "API_ACCESS_TOKEN_HEADER",
+          "value": "x-api-token"
+        },
+        {
+          "name": "DB_HOST",
+          "value": "aws-deployment-nestjs-db-prod.cva4yvsjut4x.us-east-1.rds.amazonaws.com"
+        },
+        {
+          "name": "DB_PORT",
+          "value": "5432"
+        },
+        {
+          "name": "DB_USERNAME",
+          "value": "edu"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "value": "super-secret-password!!!"
+        },
+        {
+          "name": "DB_NAME",
+          "value": "iposter"
+        },
+        {
+          "name": "DB_LOG_ENABLE",
+          "value": "true"
+        },
+        {
+          "name": "DB_LOG_ENABLE",
+          "value": "true"
+        },
+        {
+          "name": "DB_LOG_ENABLE",
+          "value": "true"
+        },
+        {
+          "name": "DB_LOG_ENABLE",
+          "value": "true"
+        },
+        {
+          "name": "DB_LOG_ENABLE",
+          "value": "true"
+        },
+        {
+          "name": "DB_LOG_ENABLE",
+          "value": "true"
+        },
+        {
+          "name": "FILE_STORAGE_ENDPOINT",
+          "value": "minio_local"
+        },
+        {
+          "name": "FILE_STORAGE_PORT",
+          "value": "9000"
+        },
+        {
+          "name": "FILE_STORAGE_ACCESS_KEY",
+          "value": "aid6jaeng6IeWahv6hae"
+        },
+        {
+          "name": "FILE_STORAGE_SECRET_KEY",
+          "value": "ri5aX5Meishi9haihooB"
+        },
+        {
+          "name": "FILE_STORAGE_USE_SSL",
+          "value": "false"
+        },
+        {
+          "name": "FILE_STORAGE_BASE_PATH",
+          "value": "http://localhost:9000"
+        },
+        {
+          "name": "FILE_STORAGE_IMAGE_BUCKET",
+          "value": "images"
+        },
+        {
+          "name": "FILE_STORAGE_IMAGE_EXT",
+          "value": "png"
+        },
+        {
+          "name": "FILE_STORAGE_IMAGE_MIMETYPE",
+          "value": "image/png"
+        }
+      ],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "secrets": [
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/aws-deployment-nestjs-task-prod",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "taskRoleArn": "arn:aws:iam::001179066666:role/aws-deployment-nestjs-ecsTaskRole",
+  "executionRoleArn": "arn:aws:iam::001179066666:role/aws-deployment-nestjs-ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "256",
+  "memory": "512",
+  "tags": [
+    {
+      "key": "Environment",
+      "value": "prod"
+    },
+    {
+      "key": "Name",
+      "value": "aws-deployment-nestjs-task-prod"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+.coverage
+.github
+.vscode
+dist
+docker
+node_modules
+minio_data_local
+pg_data_local
+.dockerignore
+Dockerfile
+npm-debug.log
